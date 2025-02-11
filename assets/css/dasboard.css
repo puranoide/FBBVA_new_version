@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;    
+    background: #bdbcbc;
+}
+
+header{
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+}
+
+header h1{
+    color: #1e3041;
+    font-weight: 600;
+}
+header h2{
+    color: #1e3041;
+    font-weight: 600;
+}
+
+header button{
+    background: #1e3041;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+header button:hover{
+    background: #3b5e7e;
+    transform: scale(1.05);
+    transition: .3s;
+}
+main {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh; /* establece un alto mínimo para el main */
+    background: #f0f0f0;
+  }
+  
+  .container {
+    max-width: 800px; /* establece un ancho máximo para el contenedor */
+    margin: 0 auto; /* centra el contenedor horizontalmente */
+    padding: 20px; /* agrega un padding para separar el contenido del borde */
+  }
+  
+  main form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+main form h1{
+    color: #1e3041;
+    font-weight: 600;
+}
+main form label{
+    color: #1e3041;
+    font-weight: 600;
+}
+main form input{
+    width: 300px;
+    height: 40px;
+    margin: 10px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #1e3041;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+}
