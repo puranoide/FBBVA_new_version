@@ -1,19 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;    
+    min-height: 100vh;
     background: #bdbcbc;
 }
 
-header{
+header {
     background: #ffffff;
     position: absolute;
     top: 0;
@@ -26,16 +26,17 @@ header{
     box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
 }
 
-header h1{
-    color: #1e3041;
-    font-weight: 600;
-}
-header h2{
+header h1 {
     color: #1e3041;
     font-weight: 600;
 }
 
-header button{
+header h2 {
+    color: #1e3041;
+    font-weight: 600;
+}
+
+header button {
     background: #1e3041;
     width: 100px;
     height: 40px;
@@ -47,44 +48,63 @@ header button{
     cursor: pointer;
 }
 
-header button:hover{
+header button:hover {
     background: #3b5e7e;
     transform: scale(1.05);
     transition: .3s;
 }
+
 main {
+    border: #3b5e7e solid 5px;
     margin-top: 100px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    flex-direction: row;
     width: 100%;
-    min-height: 100vh; /* establece un alto mínimo para el main */
+    min-height: 100vh;
+    /* establece un alto mínimo para el main */
     background: #f0f0f0;
-  }
-  
-  .container {
-    max-width: 800px; /* establece un ancho máximo para el contenedor */
-    margin: 0 auto; /* centra el contenedor horizontalmente */
-    padding: 20px; /* agrega un padding para separar el contenido del borde */
-  }
-  
-  main form {
+}
+
+.container {
+    border: solid 1px #ff0000;
+    max-width: 800px;
+    /* establece un ancho máximo para el contenedor */
+    margin: 0;
+    /* centra en el inicio de la pantalla */
+    padding: 20px;
+    /* agrega un padding para separar el contenido del borde */
+}
+
+main form {
+    border: solid 1px #1e3041;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     flex-direction: column;
     width: 100%;
-  }
-main form h1{
+}
+
+main form .fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+main form h1 {
+    color: #1e3041;
+    font-weight: 600;
+    
+}
+
+main form label {
     color: #1e3041;
     font-weight: 600;
 }
-main form label{
-    color: #1e3041;
-    font-weight: 600;
-}
-main form input{
+
+main form input {
     width: 300px;
     height: 40px;
     margin: 10px 0;
