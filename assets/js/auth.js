@@ -1,3 +1,5 @@
+//un lenguaje de eventos
+
 var loginButton = document.getElementById("login");
 var usuario= document.getElementById("usuario");
 var contrasena= document.getElementById("contrasena");

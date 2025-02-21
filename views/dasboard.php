@@ -27,7 +27,8 @@ if (!isset($_SESSION['nombre'])) {
 
     <main>
         <div class="container">
-            <form action="" method="post">
+            <form action="" method="post" id="formulario">
+                <input type="submit" id="enviar" value="enviar">
                 <h1>FACEBOOK</h1>
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
@@ -45,11 +46,14 @@ if (!isset($_SESSION['nombre'])) {
                 <div class="fila">
                     <label for="email">Visualizaciones</label>
                     <input type="text" name="visualizacionesfb" id="visualizacionesfb">
+        
                 </div>
+             
                 <div class="fila">
                     <label for="email">Alcance</label>
                     <input type="text" name="alcancefb" id="alcancefb">
                 </div>
+
                 <div class="fila">
                     <label for="email">Interacciones con el contenido</label>
                     <input type="text" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb">
@@ -63,6 +67,15 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Inversión Publicitaria</label>
                     <input type="text" name="inversionPublicitaria" id="inversionPublicitaria">
                 </div>
+
+
+                <h1 id="View_Rate"></h1> 
+                <h1 id="Engagement_Rate"></h1> 
+                <h1 id="Clickthrough_Rate"></h1> 
+
+
+
+
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
                     <input type="text" name="nPublicacionesfb" id="nPublicacionesfb">
@@ -76,19 +89,29 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="interaccionesxpublicacionesfb" id="interaccionesxpublicacionesfb">
                 </div>
 
+
+                <h1 id="KPI_Visualizaciones_Posts"></h1> 
+
+
                 <div class="fila">
                     <label for="email"># Reels </label>
                     <input type="text" name="nReels" id="nReels">
 
                 </div>
                 <div class="fila">
-                    <label for="email"># Visualizaciones </label>
+                    <label for="email"> Visualizaciones </label>
                     <input type="text" name="visualizacionesxreels" id="visualizacionesxreels">
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones </label>
                     <input type="text" name="interaccionesxreels" id="interaccionesxreels">
                 </div>
+
+                <h1 id="KPI2_Visualizaciones_Posts"></h1> 
+
+
+
+
                 <div class="fila">
                     <label for="email"># Historias </label>
                     <input type="text" name="nHistorias" id="nHistorias">
@@ -101,6 +124,10 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Interacciones </label>
                     <input type="text" name="interaccionesxhistorias" id="interaccionesxhistorias">
                 </div>
+
+
+                <h1 id="KPI3_Visualizaciones_Posts"></h1> 
+
 
                 <h1>INSTAGRAM</h1>
 
@@ -136,6 +163,14 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Inversión Publicitaria</label>
                     <input type="text" name="inversionPublicitariaig" id="inversionPublicitariaig">
                 </div>
+
+                <h1 id="View_Rate2"></h1> 
+                <h1 id="Engagement_Rate2"></h1> 
+                <h1 id="Clickthrough_Rate2"></h1> 
+
+
+
+
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
                     <input type="text" name="nPublicacionesig" id="nPublicacionesig">
@@ -148,6 +183,11 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Interacciones</label>
                     <input type="text" name="interaccionesxpublicacionesig" id="interaccionesxpublicacionesig">
                 </div>
+
+                <h1 id="KPI4_Visualizaciones_Posts"></h1> 
+
+
+
                 <div class="fila">
                     <label for="email"># Reels </label>
                     <input type="text" name="nReelsig" id="nReelsig">
@@ -160,6 +200,12 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Interacciones</label>
                     <input type="text" name="interaccionesxreelsig" id="interaccionesxreelsig">
                 </div>
+
+
+                <h1 id="KPI5_Visualizaciones_Posts"></h1> 
+
+
+
                 <div class="fila">
                     <label for="email"># Historias</label>
                     <input type="text" name="nHistoriasig" id="nHistoriasig">
@@ -172,6 +218,11 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Interacciones</label>
                     <input type="text" name="interaccionesHistoriasig" id="interaccionesHistoriasig">
                 </div>
+
+
+
+                <h1 id="KPI6_Visualizaciones_Posts"></h1> 
+
 
 
                 <h1>TikTok</h1>
@@ -198,6 +249,8 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok">
                 </div>
 
+                <h1 id="View_Rate3"></h1> 
+
                 <h1>X</h1>
 
                 <div class="fila">
@@ -211,10 +264,16 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
                 <div class="fila">
+                    <label for="email"># Publicaciones</label>
+                    <input type="text" name="nPublicacionesx" id="nPublicacionesx">
+                </div>
+
+                <div class="fila">
                     <label for="email">Impresiones</label>
                     <input type="text" name="inpremionesx" id="inpremionesx">
                 </div>
 
+                <h1 id="View_Rate4"></h1> 
 
             </form>
         </div>
@@ -224,6 +283,8 @@ if (!isset($_SESSION['nombre'])) {
 
     </main>
 
+
+    <script src="../assets/js/dasboard.js"></script>
 </body>
 
 </html>
