@@ -28,16 +28,17 @@ if (!isset($_SESSION['nombre'])) {
     <main>
         <div class="container">
             <form action="" method="post" id="formulario">
-                <input type="submit" id="enviar" value="enviar">
                 <h1>FACEBOOK</h1>
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
                     <input type="text" name="seguidoresfb" id="seguidoresfb">
+               
                 </div>
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email"># seguidores del mes</label>
-                    <input type="text" name="seguidoresdelmesfb" id="seguidoresdelmesfb">
                     
+                    <input type="text" name="seguidoresdelmesfb" id="seguidoresdelmesfb">
+                    <input class="ads" type="text" name="seguidoresdelmesfbads" id="seguidoresdelmesfbads" placeholder="ads">
                 </div>
                 <div class="fila">
                     <label for="email"># Posts (cuántas en el mes)</label>
@@ -49,29 +50,32 @@ if (!isset($_SESSION['nombre'])) {
         
                 </div>
              
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Alcance</label>
-                    <input type="text" name="alcancefb" id="alcancefb">
+                    <input type="text" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads">
                 </div>
 
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Interacciones con el contenido</label>
-                    <input type="text" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb">
+                    <input type="text" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="interracionesconelcontenidofb" id="interracionesconelcontenidofbads" placeholder="ads">
                 </div>
 
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Clics en enlace</label>
                     <input type="text" name="clicsenelalcancefb" id="clicsenelalcancefb" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="clicsenelalcancefbads" id="clicsenelalcancefbads" placeholder="ads">
                 </div>
                 <div class="fila">
                     <label for="email">Inversión Publicitaria</label>
-                    <input type="text" name="inversionPublicitaria" id="inversionPublicitaria">
+                    <input type="text" name="inversionPublicitaria" id="inversionPublicitaria" placeholder="ads">
                 </div>
 
 
-                <h1 id="View_Rate"></h1> 
-                <h1 id="Engagement_Rate"></h1> 
-                <h1 id="Clickthrough_Rate"></h1> 
+                <h3 id="View_Rate"></h3> 
+                <h3 id="Engagement_Rate"></h3> 
+                <h3 id="Clickthrough_Rate"></h3> 
 
 
 
@@ -90,7 +94,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h1 id="KPI_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI_Visualizaciones_Posts"></h3> 
 
 
                 <div class="fila">
@@ -107,7 +111,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="interaccionesxreels" id="interaccionesxreels">
                 </div>
 
-                <h1 id="KPI2_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI2_Visualizaciones_Posts"></h3> 
 
 
 
@@ -126,7 +130,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h1 id="KPI3_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI3_Visualizaciones_Posts"></h3> 
 
 
                 <h1>INSTAGRAM</h1>
@@ -147,26 +151,29 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Visualizaciones BFB</label>
                     <input type="text" name="visualizacionesBFB" id="visualizacionesBFB">
                 </div>
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Alcance</label>
                     <input type="text" name="alcanceIg" id="alcanceIg" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="alcanceIgads" id="alcanceIgads" placeholder="ads">
                 </div>
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Interacciones con el contenido</label>
                     <input type="text" name="interaccionesconelcontenidoig" id="interaccionesconelcontenidoig" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="interaccionesconelcontenidoigads" id="interaccionesconelcontenidoigads" placeholder="ads">
                 </div>
-                <div class="fila">
+                <div class="fila-ads">
                     <label for="email">Clics en enlace</label>
                     <input type="text" name="clicsenelalcanceig" id="clicsenelalcanceig" placeholder="Agregar dato del mismo mes 2024">
+                    <input type="text" class="ads" name="clicsenelalcanceigads" id="clicsenelalcanceigads" placeholder="ads">
                 </div>
                 <div class="fila">
                     <label for="email">Inversión Publicitaria</label>
                     <input type="text" name="inversionPublicitariaig" id="inversionPublicitariaig">
                 </div>
 
-                <h1 id="View_Rate2"></h1> 
-                <h1 id="Engagement_Rate2"></h1> 
-                <h1 id="Clickthrough_Rate2"></h1> 
+                <h3 id="View_Rate2"></h3> 
+                <h3 id="Engagement_Rate2"></h3> 
+                <h3 id="Clickthrough_Rate2"></h3> 
 
 
 
@@ -184,7 +191,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="interaccionesxpublicacionesig" id="interaccionesxpublicacionesig">
                 </div>
 
-                <h1 id="KPI4_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI4_Visualizaciones_Posts"></h3> 
 
 
 
@@ -202,7 +209,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h1 id="KPI5_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI5_Visualizaciones_Posts"></h3> 
 
 
 
@@ -221,7 +228,7 @@ if (!isset($_SESSION['nombre'])) {
 
 
 
-                <h1 id="KPI6_Visualizaciones_Posts"></h1> 
+                <h3 id="KPI6_Visualizaciones_Posts"></h3> 
 
 
 
@@ -249,7 +256,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok">
                 </div>
 
-                <h1 id="View_Rate3"></h1> 
+                <h3 id="View_Rate3"></h3> 
 
                 <h1>X</h1>
 
@@ -273,7 +280,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="inpremionesx" id="inpremionesx">
                 </div>
 
-                <h1 id="View_Rate4"></h1> 
+                <h3 id="View_Rate4"></h3> 
 
             </form>
         </div>

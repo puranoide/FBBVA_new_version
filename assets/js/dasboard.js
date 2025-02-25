@@ -1,5 +1,5 @@
 var formularioPrincipal = document.getElementById("formulario");
-var enviar = document.getElementById("enviar");
+
 var postalmesfb=document.getElementById("postalmesfb");
 var visualizacionesfb=document.getElementById("visualizacionesfb");
 var alcancefb=document.getElementById("alcancefb");
@@ -41,17 +41,6 @@ var View_Rate3=document.getElementById("View_Rate3");
 var View_Rate4=document.getElementById("View_Rate4");
 
 
-enviar.addEventListener("click", function () {
-    //login(email.value, password.value);
-    event.preventDefault(); // Evita que el formulario se envíe de manera tradicional
-    console.log("enviando");
-    var inputs = formularioPrincipal.querySelectorAll("input[type='text']");
-    inputs.forEach(input => {
-        console.log(input.name + ": " + input.value);
-    });
-
-    //formularioPrincipal.submit();
-});
 
 
 visualizacionesfb.addEventListener("blur", function () {
@@ -59,15 +48,18 @@ visualizacionesfb.addEventListener("blur", function () {
     var total1=parseInt(visualizacionesfb.value)/parseInt(postalmesfb.value);
     console.log(total1.toFixed());
     View_Rate.textContent="";
-    View_Rate.textContent=total1.toFixed();
+    View_Rate.textContent="View Rate :"+total1.toFixed();
 });
 
+/*visualizacionesfb.addEventListener("mouseover", function () {
+    alert("hola");
+});*/
 interracionesconelcontenidofb.addEventListener("blur", function () {
     console.log(" saliste de interraccionesconelcontenidofb");
     var total2 = (parseInt(interracionesconelcontenidofb.value) / parseInt(alcancefb.value)) * 100;
     console.log(total2 + "%");
     Engagement_Rate.textContent = "";
-    Engagement_Rate.textContent = total2.toFixed(2) + "%";
+    Engagement_Rate.textContent ="Engagement Rate :" + total2.toFixed(2) + "%";
   });
 
 clicsenelalcancefb.addEventListener("blur", function () {
@@ -75,7 +67,7 @@ clicsenelalcancefb.addEventListener("blur", function () {
     var total3 = (parseInt(clicsenelalcancefb.value) / parseInt(alcancefb.value)) * 100;
     console.log(total3 + "%");
     Clickthrough_Rate.textContent = "";
-    Clickthrough_Rate.textContent = total3.toFixed(2) + "%";
+    Clickthrough_Rate.textContent ="Click through Rate :"+total3.toFixed(2) + "%";
   });
 
   visualizacionesxpublicacionesfb.addEventListener("blur", function () {
