@@ -1,166 +1,164 @@
-var formularioPrincipal = document.getElementById("formulario");
+// Obtener el formulario
+const formulario = document.getElementById("formulario");
 
-var postalmesfb=document.getElementById("postalmesfb");
-var visualizacionesfb=document.getElementById("visualizacionesfb");
-var alcancefb=document.getElementById("alcancefb");
-var interracionesconelcontenidofb=document.getElementById("interracionesconelcontenidofb");
-var clicsenelalcancefb=document.getElementById("clicsenelalcancefb");
-var nPublicacionesfb=document.getElementById("nPublicacionesfb");
-var visualizacionesxpublicacionesfb=document.getElementById("visualizacionesxpublicacionesfb");
-var nReels=document.getElementById("nReels");
-var visualizacionesxreels=document.getElementById("visualizacionesxreels");
-var nHistorias=document.getElementById("nHistorias");
-var visualizacionesxhistorias=document.getElementById("visualizacionesxhistorias");
-var nPostsEnElMesIg=document.getElementById("nPostsEnElMesIg");
-var visualizacionesBFB=document.getElementById("visualizacionesBFB");
-var alcanceIg=document.getElementById("alcanceIg");
-var interaccionesconelcontenidoig=document.getElementById("interaccionesconelcontenidoig");
-var nPublicacionesig=document.getElementById("nPublicacionesig");
-var visualizacionesxpublicacionesig=document.getElementById("visualizacionesxpublicacionesig");
-var visualizacionesxreelsig=document.getElementById("visualizacionesxreelsig");
-var nReelsig=document.getElementById("nReelsig");
-var alcanceHistoriasig=document.getElementById("alcanceHistoriasig");
-var nHistoriasig=document.getElementById("nHistoriasig");
-var nPublicacionesTikTok=document.getElementById("nPublicacionesTikTok");
-var visualizacionesdevideoTikTok=document.getElementById("visualizacionesdevideoTikTok");
-var nPublicacionesx=document.getElementById("nPublicacionesx");
-var inpremionesx=document.getElementById("inpremionesx");
-var View_Rate=document.getElementById("View_Rate");
-var Engagement_Rate=document.getElementById("Engagement_Rate");
-var Clickthrough_Rate=document.getElementById("Clickthrough_Rate");
-var KPI_Visualizaciones_Post=document.getElementById("KPI_Visualizaciones_Post");
-var KPI2_Visualizaciones_Posts=document.getElementById("KPI2_Visualizaciones_Posts");
-var KPI3_Visualizaciones_Posts=document.getElementById("KPI3_Visualizaciones_Posts");
-var View_Rate2=document.getElementById("View_Rate2");
-var Engagement_Rate2=document.getElementById("Engagement_Rate2");
-var Clickthrough_Rate2=document.getElementById("Clickthrough_Rate2");
-var KPI4_Visualizaciones_Posts=document.getElementById("KPI4_Visualizaciones_Posts");
-var KPI5_Visualizaciones_Posts=document.getElementById("KPI5_Visualizaciones_Posts");
-var KPI6_Visualizaciones_Posts=document.getElementById("KPI6_Visualizaciones_Posts");
-var View_Rate3=document.getElementById("View_Rate3");
-var View_Rate4=document.getElementById("View_Rate4");
+// Objeto de configuración para todas las métricas
+const configuracionMetricas = {
+    facebook: {
+        vistas: {
+            entrada: 'visualizacionesfb',
+            divisor: 'postalmesfb',
+            salida: 'View_Rate',
+            etiqueta: 'Tasa de Visualización',
+            formato: 'fijo'
+        },
+        interacciones: {
+            entrada: 'interracionesconelcontenidofb',
+            divisor: 'alcancefb',
+            salida: 'Engagement_Rate',
+            etiqueta: 'Tasa de Interacción',
+            formato: 'porcentaje'
+        },
+        clics: {
+            entrada: 'clicsenelalcancefb',
+            divisor: 'alcancefb',
+            salida: 'Clickthrough_Rate',
+            etiqueta: 'Tasa de Clics',
+            formato: 'porcentaje'
+        },
+        publicaciones: {
+            entrada: 'visualizacionesxpublicacionesfb',
+            divisor: 'nPublicacionesfb',
+            salida: 'KPI_Visualizaciones_Posts',
+            formato: 'fijo'
+        },
+        reels: {
+            entrada: 'visualizacionesxreels',
+            divisor: 'nReels',
+            salida: 'KPI2_Visualizaciones_Posts',
+            formato: 'fijo'
+        },
+        historias: {
+            entrada: 'visualizacionesxhistorias',
+            divisor: 'nHistorias',
+            salida: 'KPI3_Visualizaciones_Posts',
+            formato: 'fijo'
+        }
+    },
+    instagram: {
+        vistas: {
+            entrada: 'visualizacionesBFB',
+            divisor: 'nPostsEnElMesIg',
+            salida: 'View_Rate2',
+            etiqueta: 'View Rate',
+            formato: 'fijo'
+        },
+        interacciones: {
+            entrada: 'interaccionesconelcontenidoig',
+            divisor: 'alcanceIg',
+            salida: 'Engagement_Rate2',
+            etiqueta: 'Tasa de Interacción',
+            formato: 'porcentaje'
+        },
+        clics: {
+            entrada: 'clicsenelalcanceig',
+            divisor: 'alcanceIg',
+            salida: 'Clickthrough_Rate2',
+            etiqueta: 'Tasa de Clics',
+            formato: 'porcentaje'
+        },
+        publicaciones: {
+            entrada: 'visualizacionesxpublicacionesig',
+            divisor: 'nPublicacionesig',
+            salida: 'KPI4_Visualizaciones_Posts',
+            formato: 'fijo'
+        },
+        reels: {
+            entrada: 'visualizacionesxreelsig',
+            divisor: 'nReelsig',
+            salida: 'KPI5_Visualizaciones_Posts',
+            formato: 'fijo'
+        },
+        historias: {
+            entrada: 'alcanceHistoriasig',
+            divisor: 'nHistoriasig',
+            salida: 'KPI6_Visualizaciones_Posts',
+            formato: 'fijo'
+        }
+    },
+    tiktok: {
+        vistas: {
+            entrada: 'visualizacionesdevideoTikTok',
+            divisor: 'nPublicacionesTikTok',
+            salida: 'View_Rate3',
+            formato: 'fijo'
+        }
+    },
+    x: {
+        vistas: {
+            entrada: 'inpremionesx',
+            divisor: 'nPublicacionesx',
+            salida: 'View_Rate4',
+            formato: 'fijo'
+        }
+    }
+};
 
+// Función para calcular y formatear resultados
+function calcularMetrica(valorEntrada, valorDivisor, formato) {
+    const numero = parseInt(valorEntrada) || 0;
+    const denominador = parseInt(valorDivisor) || 1; // Evitar división por cero
+    const resultado = formato === 'porcentaje' ? (numero / denominador * 100) : (numero / denominador);
+    return formato === 'porcentaje' ? resultado.toFixed(2) + '%' : resultado.toFixed();
+}
 
+// Manejador de eventos genérico
+function crearManejadorMetrica(config) {
+    return function() {
+        try {
+            const elementoEntrada = document.getElementById(config.entrada);
+            const elementoDivisor = document.getElementById(config.divisor);
+            const elementoSalida = document.getElementById(config.salida);
+            
+            if (!elementoEntrada || !elementoDivisor || !elementoSalida) {
+                console.error(`Falta elemento para ${config.entrada}`);
+                return;
+            }
 
+            const resultado = calcularMetrica(elementoEntrada.value, elementoDivisor.value, config.formato);
+            elementoSalida.textContent = config.etiqueta ? `${config.etiqueta}: ${resultado}` : resultado;
+            console.log(`Calculado ${config.entrada}: ${resultado}`);
+        } catch (error) {
+            console.error(`Error al calcular ${config.entrada}:`, error);
+        }
+    };
+}
 
-visualizacionesfb.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesfb");
-    var total1=parseInt(visualizacionesfb.value)/parseInt(postalmesfb.value);
-    console.log(total1.toFixed());
-    View_Rate.textContent="";
-    View_Rate.textContent="View Rate :"+total1.toFixed();
+// Registrar los eventos
+Object.values(configuracionMetricas).forEach(plataforma => {
+    Object.values(plataforma).forEach(metrica => {
+        const elementoEntrada = document.getElementById(metrica.entrada);
+        if (elementoEntrada) {
+            elementoEntrada.addEventListener('blur', crearManejadorMetrica(metrica));
+        }
+    });
 });
 
-/*visualizacionesfb.addEventListener("mouseover", function () {
-    alert("hola");
-});*/
-interracionesconelcontenidofb.addEventListener("blur", function () {
-    console.log(" saliste de interraccionesconelcontenidofb");
-    var total2 = (parseInt(interracionesconelcontenidofb.value) / parseInt(alcancefb.value)) * 100;
-    console.log(total2 + "%");
-    Engagement_Rate.textContent = "";
-    Engagement_Rate.textContent ="Engagement Rate :" + total2.toFixed(2) + "%";
-  });
+var alcancefbads = document.getElementById("alcancefbads");
 
-clicsenelalcancefb.addEventListener("blur", function () {
-    console.log(" saliste de clicsenelalcancefb");
-    var total3 = (parseInt(clicsenelalcancefb.value) / parseInt(alcancefb.value)) * 100;
-    console.log(total3 + "%");
-    Clickthrough_Rate.textContent = "";
-    Clickthrough_Rate.textContent ="Click through Rate :"+total3.toFixed(2) + "%";
-  });
-
-  visualizacionesxpublicacionesfb.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesxpublicacionesfb");
-    var total4=parseInt(visualizacionesxpublicacionesfb.value)/parseInt(nPublicacionesfb.value);
-    console.log(total4.toFixed());
-    KPI_Visualizaciones_Posts.textContent="";
-    KPI_Visualizaciones_Posts.textContent=total4.toFixed();
+alcancefbads.addEventListener("mouseenter", function() {
+    var alcancefb = document.getElementById("alcancefb");
+    const valor = parseInt(alcancefbads.value) || 0;
+    const total = parseInt(alcancefb.value) || 1;
+    const porcentaje = (valor / total * 100).toFixed(2);
+    const tooltip = document.createElement('span');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = `${porcentaje}%`;
+    alcancefbads.parentNode.insertBefore(tooltip, alcancefbads.nextSibling);
 });
 
-visualizacionesxreels.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesxreels");
-    var total5=parseInt(visualizacionesxreels.value)/parseInt(nReels.value);
-    console.log(total5.toFixed());
-    KPI2_Visualizaciones_Posts.textContent="";
-    KPI2_Visualizaciones_Posts.textContent=total5.toFixed();
-});
-
-visualizacionesxhistorias.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesxhistorias");
-    var total6=parseInt(visualizacionesxhistorias.value)/parseInt(nHistorias.value);
-    console.log(total6.toFixed());
-    KPI3_Visualizaciones_Posts.textContent="";
-    KPI3_Visualizaciones_Posts.textContent=total6.toFixed();
-});
-
-
-
-
-visualizacionesBFB.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesBFB");
-    var total7=parseInt(visualizacionesBFB.value)/parseInt(nPostsEnElMesIg.value);
-    console.log(total7.toFixed());
-    View_Rate2.textContent="";
-    View_Rate2.textContent=total7.toFixed();
-});
-
-interaccionesconelcontenidoig.addEventListener("blur", function () {
-    console.log(" saliste de interaccionesconelcontenidoig");
-    var total8 = (parseInt(interaccionesconelcontenidoig.value) / parseInt(alcanceIg.value)) * 100;
-    console.log(total8 + "%");
-    Engagement_Rate2.textContent = "";
-    Engagement_Rate2.textContent = total8.toFixed(2) + "%";
-  });
-
-clicsenelalcanceig.addEventListener("blur", function () {
-    console.log(" saliste de clicsenelalcanceig");
-    var total9 = (parseInt(clicsenelalcanceig.value) / parseInt(alcanceIg.value)) * 100;
-    console.log(total9 + "%");
-    Clickthrough_Rate2.textContent = "";
-    Clickthrough_Rate2.textContent = total9.toFixed(2) + "%";
-  });
-
-
-
-  visualizacionesxpublicacionesig.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesxpublicacionesig");
-    var total20=parseInt(visualizacionesxpublicacionesig.value)/parseInt(nPublicacionesig.value);
-    console.log(total20.toFixed());
-    KPI4_Visualizaciones_Posts.textContent="";
-    KPI4_Visualizaciones_Posts.textContent=total20.toFixed();
-});
-
-visualizacionesxreelsig.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesxreelsig");
-    var total21=parseInt(visualizacionesxreelsig.value)/parseInt(nReelsig.value);
-    console.log(total21.toFixed());
-    KPI5_Visualizaciones_Posts.textContent="";
-    KPI5_Visualizaciones_Posts.textContent=total21.toFixed();
-});
-
-alcanceHistoriasig.addEventListener("blur", function () {
-    console.log(" saliste de alcanceHistoriasig");
-    var total22=parseInt(alcanceHistoriasig.value)/parseInt(nHistoriasig.value);
-    console.log(total22.toFixed());
-    KPI6_Visualizaciones_Posts.textContent="";
-    KPI6_Visualizaciones_Posts.textContent=total22.toFixed();
-});
-
-
-visualizacionesdevideoTikTok.addEventListener("blur", function () {
-    console.log(" saliste de visualizacionesdevideoTikTok");
-    var total23=parseInt(visualizacionesdevideoTikTok.value)/parseInt(nPublicacionesTikTok.value);
-    console.log(total23.toFixed());
-    View_Rate3.textContent="";
-    View_Rate3.textContent=total23.toFixed();
-});
-
-
-inpremionesx.addEventListener("blur", function () {
-    console.log(" saliste de inpremionesx");
-    var total24=parseInt(inpremionesx.value)/parseInt(nPublicacionesx.value);
-    console.log(total24.toFixed());
-    View_Rate4.textContent="";
-    View_Rate4.textContent=total24.toFixed();
+alcancefbads.addEventListener("mouseleave", function() {
+    const tooltip = alcancefbads.parentNode.querySelector('.tooltip');
+    if (tooltip) {
+        tooltip.remove();
+    }
 });

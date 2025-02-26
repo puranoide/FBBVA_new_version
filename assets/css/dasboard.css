@@ -156,4 +156,19 @@ form h3{
 }
 .ads{
     margin-left: 10px;
+    cursor: help;
+}
+
+.tooltip{
+    background-color: #1e3041;
+    width: 70px;    
+    height: 20px;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
 }

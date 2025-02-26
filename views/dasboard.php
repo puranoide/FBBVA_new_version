@@ -54,6 +54,7 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Alcance</label>
                     <input type="text" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024">
                     <input type="text" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads">
+                    
                 </div>
 
                 <div class="fila-ads">
