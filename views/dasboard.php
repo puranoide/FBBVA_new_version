@@ -32,11 +32,11 @@ if (!isset($_SESSION['nombre'])) {
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
                     <input type="text" name="seguidoresfb" id="seguidoresfb">
-               
+
                 </div>
                 <div class="fila-ads">
                     <label for="email"># seguidores del mes</label>
-                    
+
                     <input type="text" name="seguidoresdelmesfb" id="seguidoresdelmesfb">
                     <input class="ads" type="text" name="seguidoresdelmesfbads" id="seguidoresdelmesfbads" placeholder="ads">
                 </div>
@@ -47,14 +47,14 @@ if (!isset($_SESSION['nombre'])) {
                 <div class="fila">
                     <label for="email">Visualizaciones</label>
                     <input type="text" name="visualizacionesfb" id="visualizacionesfb">
-        
+
                 </div>
-             
+
                 <div class="fila-ads">
                     <label for="email">Alcance</label>
                     <input type="text" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024">
                     <input type="text" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads">
-                    
+
                 </div>
 
                 <div class="fila-ads">
@@ -74,9 +74,9 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h3 id="View_Rate"></h3> 
-                <h3 id="Engagement_Rate"></h3> 
-                <h3 id="Clickthrough_Rate"></h3> 
+                <h3 id="View_Rate"></h3>
+                <h3 id="Engagement_Rate"></h3>
+                <h3 id="Clickthrough_Rate"></h3>
 
 
 
@@ -95,7 +95,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h3 id="KPI_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI_Visualizaciones_Posts"></h3>
 
 
                 <div class="fila">
@@ -112,7 +112,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="interaccionesxreels" id="interaccionesxreels">
                 </div>
 
-                <h3 id="KPI2_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI2_Visualizaciones_Posts"></h3>
 
 
 
@@ -131,7 +131,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h3 id="KPI3_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI3_Visualizaciones_Posts"></h3>
 
 
                 <h1>INSTAGRAM</h1>
@@ -172,9 +172,9 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="inversionPublicitariaig" id="inversionPublicitariaig">
                 </div>
 
-                <h3 id="View_Rate2"></h3> 
-                <h3 id="Engagement_Rate2"></h3> 
-                <h3 id="Clickthrough_Rate2"></h3> 
+                <h3 id="View_Rate2"></h3>
+                <h3 id="Engagement_Rate2"></h3>
+                <h3 id="Clickthrough_Rate2"></h3>
 
 
 
@@ -192,7 +192,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="interaccionesxpublicacionesig" id="interaccionesxpublicacionesig">
                 </div>
 
-                <h3 id="KPI4_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI4_Visualizaciones_Posts"></h3>
 
 
 
@@ -210,7 +210,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
 
-                <h3 id="KPI5_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI5_Visualizaciones_Posts"></h3>
 
 
 
@@ -229,7 +229,7 @@ if (!isset($_SESSION['nombre'])) {
 
 
 
-                <h3 id="KPI6_Visualizaciones_Posts"></h3> 
+                <h3 id="KPI6_Visualizaciones_Posts"></h3>
 
 
 
@@ -257,7 +257,7 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok">
                 </div>
 
-                <h3 id="View_Rate3"></h3> 
+                <h3 id="View_Rate3"></h3>
 
                 <h1>X</h1>
 
@@ -281,12 +281,12 @@ if (!isset($_SESSION['nombre'])) {
                     <input type="text" name="inpremionesx" id="inpremionesx">
                 </div>
 
-                <h3 id="View_Rate4"></h3> 
+                <h3 id="View_Rate4"></h3>
 
             </form>
         </div>
         <div class="container">
-        <h1>REGISTROS</h1>
+            aca deberia ir otro form pero onlyread
         </div>
 
     </main>
