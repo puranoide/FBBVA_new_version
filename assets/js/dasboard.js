@@ -1,9 +1,11 @@
 // Obtener el formulario
 const formulario = document.getElementById("formulario");
-
-// Configuración de métricas organizada por plataforma
+const botonEnviar= document.getElementById("enviar");
+// Configuración de métricas organizada por plataforma ESTO ES UN OBJETO,NO UN ARRAY,debe ser consumido
 const CONFIGURACION_METRICAS = {
+//este objeto tiene 4 diccionarios, uno para cada plataforma
   facebook: {
+    //aca detallamos cada una de las metricas,donde recibe una entrada,divisor y tambien que etiqueta(texto que se muestra) debe acompañar a la salida,salida que es el id del elemento dom donde se va a mostrar el resultado y el formato(fijo o porcentaje)
     vistas: {
       entrada: "visualizacionesfb",
       divisor: "postalmesfb",
@@ -187,118 +189,117 @@ function registrarEventos() {
 // Iniciar la aplicación
 registrarEventos();
 
-var alcancefbads = document.getElementById("alcancefbads");
-var interracionesconelcontenidofbads = document.getElementById("interracionesconelcontenidofbads");
-var clicsenelalcancefbads = document.getElementById("clicsenelalcancefbads");
 
-var alcanceIgads = document.getElementById("alcanceIgads");
-var interaccionesconelcontenidoigads = document.getElementById("interaccionesconelcontenidoigads");
-var clicsenelalcanceigads = document.getElementById("clicsenelalcanceigads");
+//logica de porcentaje de ads
 
-alcancefbads.addEventListener("mouseenter", function() {
-    var alcancefb = document.getElementById("alcancefb");
-    const valor = parseInt(alcancefbads.value) || 0;
-    const total = parseInt(alcancefb.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    alcancefbads.parentNode.insertBefore(tooltip, alcancefbads.nextSibling);
-});
 
-alcancefbads.addEventListener("mouseleave", function() {
-    const tooltip = alcancefbads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
+// Configuración de elementos y sus referencias
+const CONFIG_ELEMENTOS = {
+    facebook: {
+      alcance: {
+        elementoAds: "alcancefbads",
+        elementoTotal: "alcancefb",
+      },
+      interacciones: {
+        elementoAds: "interracionesconelcontenidofbads",
+        elementoTotal: "interracionesconelcontenidofb",
+      },
+      clics: {
+        elementoAds: "clicsenelalcancefbads",
+        elementoTotal: "clicsenelalcancefb",
+      },
+    },
+    instagram: {
+      alcance: {
+        elementoAds: "alcanceIgads",
+        elementoTotal: "alcanceIg",
+      },
+      interacciones: {
+        elementoAds: "interaccionesconelcontenidoigads",
+        elementoTotal: "interaccionesconelcontenidoig",
+      },
+      clics: {
+        elementoAds: "clicsenelalcanceigads",
+        elementoTotal: "clicsenelalcanceig",
+      },
+    },
+  };
+  
+  // Obtener elementos del DOM al inicio
+  const elementosDOM = {};
+  Object.entries(CONFIG_ELEMENTOS).forEach(([plataforma, metricas]) => {
+    elementosDOM[plataforma] = {};
+    Object.entries(metricas).forEach(([metrica, config]) => {
+      elementosDOM[plataforma][metrica] = {
+        ads: document.getElementById(config.elementoAds),
+        total: document.getElementById(config.elementoTotal),
+      };
+    });
+  });
+  
+  /**
+   * Calcula el porcentaje entre dos valores.
+   * @param {string} valor - Valor del elemento ads
+   * @param {string} total - Valor del elemento total
+   * @returns {string} Porcentaje formateado
+   */
+  function calcularPorcentaje(valor, total) {
+    const numValor = parseInt(valor) || 0;
+    const numTotal = parseInt(total) || 1; // Evitar división por cero
+    return ((numValor / numTotal) * 100).toFixed(2) + "%";
+  }
+  
+  /**
+   * Muestra un tooltip con el porcentaje.
+   * @param {HTMLElement} elemento - Elemento donde mostrar el tooltip
+   * @param {string} porcentaje - Valor del porcentaje a mostrar
+   */
+  function mostrarTooltip(elemento, porcentaje) {
+    const tooltip = document.createElement("span");
+    tooltip.className = "tooltip";
+    tooltip.textContent = porcentaje;
+    elemento.parentNode.insertBefore(tooltip, elemento.nextSibling);
+  }
+  
+  /**
+   * Elimina el tooltip asociado a un elemento.
+   * @param {HTMLElement} elemento - Elemento cuyo tooltip eliminar
+   */
+  function eliminarTooltip(elemento) {
+    const tooltip = elemento.parentNode.querySelector(".tooltip");
+    if (tooltip) tooltip.remove();
+  }
+  
+  /**
+   * Crea manejadores de eventos para mostrar/ocultar tooltips.
+   * @param {HTMLElement} elementoAds - Elemento ads
+   * @param {HTMLElement} elementoTotal - Elemento total
+   */
+  function configurarEventosTooltip(elementoAds, elementoTotal) {
+    elementoAds.addEventListener("mouseenter", () => {
+      const porcentaje = calcularPorcentaje(elementoAds.value, elementoTotal.value);
+      mostrarTooltip(elementoAds, porcentaje);
+    });
+  
+    elementoAds.addEventListener("mouseleave", () => {
+      eliminarTooltip(elementoAds);
+    });
+  }
+  
+  // Registrar eventos para todos los elementos
+  Object.values(elementosDOM).forEach((plataforma) => {
+    Object.values(plataforma).forEach(({ ads, total }) => {
+      if (ads && total) {
+        configurarEventosTooltip(ads, total);
+      } else {
+        console.warn(`Faltan elementos para configurar: ${ads?.id || "ads"} o ${total?.id || "total"}`);
+      }
+    });
+  });
 
-interracionesconelcontenidofbads.addEventListener("mouseenter", function() {
-    var interracionesconelcontenidofb = document.getElementById("interracionesconelcontenidofb");
-    const valor = parseInt(interracionesconelcontenidofbads.value) || 0;
-    const total = parseInt(interracionesconelcontenidofb.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    interracionesconelcontenidofbads.parentNode.insertBefore(tooltip, interracionesconelcontenidofbads.nextSibling);
-});
-
-interracionesconelcontenidofbads.addEventListener("mouseleave", function() {
-    const tooltip = interracionesconelcontenidofbads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
-
-clicsenelalcancefbads.addEventListener("mouseenter", function() {
-    var clicsenelalcancefb = document.getElementById("clicsenelalcancefb");
-    const valor = parseInt(clicsenelalcancefbads.value) || 0;
-    const total = parseInt(clicsenelalcancefb.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    clicsenelalcancefbads.parentNode.insertBefore(tooltip, clicsenelalcancefbads.nextSibling);
-});
-
-clicsenelalcancefbads.addEventListener("mouseleave", function() {
-    const tooltip = clicsenelalcancefbads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
-
-alcanceIgads.addEventListener("mouseenter", function() {
-    var alcanceIg = document.getElementById("alcanceIg");
-    const valor = parseInt(alcanceIgads.value) || 0;
-    const total = parseInt(alcanceIg.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    alcanceIgads.parentNode.insertBefore(tooltip, alcanceIgads.nextSibling);
-});
-
-alcanceIgads.addEventListener("mouseleave", function() {
-    const tooltip = alcanceIgads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
-
-interaccionesconelcontenidoigads.addEventListener("mouseenter", function() {
-    var interaccionesconelcontenidoig = document.getElementById("interaccionesconelcontenidoig");
-    const valor = parseInt(interaccionesconelcontenidoigads.value) || 0;
-    const total = parseInt(interaccionesconelcontenidoig.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    interaccionesconelcontenidoigads.parentNode.insertBefore(tooltip, interaccionesconelcontenidoigads.nextSibling);
-});
-
-interaccionesconelcontenidoigads.addEventListener("mouseleave", function() {
-    const tooltip = interaccionesconelcontenidoigads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
-
-clicsenelalcanceigads.addEventListener("mouseenter", function() {
-    var clicsenelalcanceig = document.getElementById("clicsenelalcanceig");
-    const valor = parseInt(clicsenelalcanceigads.value) || 0;
-    const total = parseInt(clicsenelalcanceig.value) || 1;
-    const porcentaje = (valor / total * 100).toFixed(2);
-    const tooltip = document.createElement('span');
-    tooltip.className = 'tooltip';
-    tooltip.textContent = `${porcentaje}%`;
-    clicsenelalcanceigads.parentNode.insertBefore(tooltip, clicsenelalcanceigads.nextSibling);
-});
-
-clicsenelalcanceigads.addEventListener("mouseleave", function() {
-    const tooltip = clicsenelalcanceigads.parentNode.querySelector('.tooltip');
-    if (tooltip) {
-        tooltip.remove();
-    }
-});
+  formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+  });
