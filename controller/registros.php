@@ -1,26 +1,24 @@
 <?php
 
-function login($conexion, $usuario, $contrasena)
+function createRegister($conexion, $data)
 {
-    // Sanitize inputs to prevent SQL injection
-    $usuario = mysqli_real_escape_string($conexion, $usuario);
-    $contrasena = mysqli_real_escape_string($conexion, $contrasena);
-    $query = "SELECT * FROM usuario WHERE nombreusuario = ? AND contrasena = ?";
-    $stmt = mysqli_prepare($conexion, $query);
-    mysqli_stmt_bind_param($stmt, "ss", $usuario, $contrasena);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-      
-        session_start();
 
-        $_SESSION['nombre'] = $row['nombreusuario'];
+    // Agregar una fecha por defecto (por ejemplo, la fecha y hora actuales)
+    $data['fechaCreada'] = date('Y-m-d H:i:s');
+    // Construir la consulta de forma dinámica
+    $columns = implode(", ", array_keys($data));
+    $placeholders = implode(", ", array_fill(0, count($data), "?"));
+    $sql = "INSERT INTO registros ($columns) VALUES ($placeholders)";
 
-        return true;
-    } else {
-        return false;
-    }
+    // Preparar la consulta
+    $stmt = $conexion->prepare($sql);
+
+    // Asignar los valores a los parámetros
+    $values = array_values($data);
+    $stmt->bind_param(str_repeat("s", count($values)), ...$values);
+
+    // Ejecutar la consulta
+    return $stmt->execute();
 }
 
 // Verify if receiving POST request with JSON
@@ -39,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include_once('bd.php');
     switch ($data['action']) {
-        case 'login':
+        case 'insert':
             if (!$conexion) {
                 echo json_encode(['error' => 'No se pudo conectar a la base de datos']);
                 exit;
@@ -47,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Resto del código...
             try {
-                $response = login($conexion, $data['usuario'], $data['contrasena']);
+                $response = createRegister($conexion, $data['data']);
                 if ($response) {
-                    echo json_encode(['success' => true, 'message' => 'login exitoso']);
+                    echo json_encode(['success' => true, 'message' => 'insert exitoso']);
                 } else {
-                    echo json_encode(['error' => 'login fallido']);
+                    echo json_encode(['error' => 'insert fallido']);
                 }
             } catch (Exception $e) {
                 echo json_encode(['error' => $e->getMessage()]);

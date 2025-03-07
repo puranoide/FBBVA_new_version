@@ -301,5 +301,24 @@ const CONFIG_ELEMENTOS = {
     event.preventDefault();
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
-    console.log(data);
+    insertarDatos(data);
   });
+
+  function insertarDatos(data) {
+    fetch("http://localhost/fbbva_new_version/controller/registros.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "insert",
+        data: data}),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.error("Error al insertar datos:", error);
+      });
+  }
