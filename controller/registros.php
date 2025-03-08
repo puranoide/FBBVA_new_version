@@ -21,6 +21,21 @@ function createRegister($conexion, $data)
     return $stmt->execute();
 }
 
+function listRegisters($conexion)
+{
+    $query = "SELECT * FROM registros order by id desc";
+    $result = mysqli_query($conexion, $query);
+    if (mysqli_num_rows($result) > 0) {
+        $registros = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $registros[] = $row;
+        }
+        return $registros;
+    } else {
+        return [];
+    }
+}
+
 // Verify if receiving POST request with JSON
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Set response header as JSON
@@ -53,6 +68,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } catch (Exception $e) {
                 echo json_encode(['error' => $e->getMessage()]);
+            }
+            break;
+        case 'list':
+            if (!$conexion) {
+                echo json_encode(['error' => 'No se pudo conectar a la base de datos']);
+                exit;
+            }
+            $response = listRegisters($conexion);
+            if ($response) {
+                echo json_encode(['success' => true, 'data' => $response]);
+            } else {
+                echo json_encode(['error' => 'list fallido']);
             }
             break;
         default:

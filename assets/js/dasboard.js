@@ -186,8 +186,6 @@ function registrarEventos() {
   });
 }
 
-// Iniciar la aplicación
-registrarEventos();
 
 
 //logica de porcentaje de ads
@@ -322,3 +320,26 @@ const CONFIG_ELEMENTOS = {
         console.error("Error al insertar datos:", error);
       });
   }
+
+
+  function listarRegistros() {
+    fetch("http://localhost/fbbva_new_version/controller/registros.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "list"
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.error("Error al listar registros:", error);
+      });
+  }
+// Iniciar la aplicación
+registrarEventos();
+listarRegistros();
