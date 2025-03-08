@@ -289,7 +289,17 @@ if (!isset($_SESSION['nombre'])) {
             </form>
         </div>
         <div class="container">
-            aca deberia ir otro form pero onlyread
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>seguidoresfb</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
         </div>
 
     </main>

@@ -321,6 +321,7 @@ const CONFIG_ELEMENTOS = {
       });
   }
 
+  var Registros = {}
 
   function listarRegistros() {
     fetch("http://localhost/fbbva_new_version/controller/registros.php", {
@@ -334,12 +335,30 @@ const CONFIG_ELEMENTOS = {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        Registros = result.data
+        console.log(Registros)
+        MostrarRegistros();
+
       })
       .catch((error) => {
         console.error("Error al listar registros:", error);
       });
   }
 // Iniciar la aplicación
-registrarEventos();
-listarRegistros();
+window.addEventListener("load", iniciarApp);
+function iniciarApp() {
+  registrarEventos();
+  listarRegistros();
+}
+function MostrarRegistros() {
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
+  Registros.forEach((registro) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${registro.id}</td>
+      <td>${registro.seguidoresfb}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
