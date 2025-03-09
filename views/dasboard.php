@@ -288,18 +288,8 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
             </form>
         </div>
-        <div class="container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>seguidoresfb</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-
-                </tbody>
-            </table>
+        <div class="container-group-registros" id="resultadosRegistros">
+        
         </div>
 
     </main>

@@ -1,6 +1,7 @@
 // Obtener el formulario
 const formulario = document.getElementById("formulario");
 const botonEnviar= document.getElementById("enviar");
+const resultadosRegistros = document.getElementById("resultadosRegistros");
 // Configuración de métricas organizada por plataforma ESTO ES UN OBJETO,NO UN ARRAY,debe ser consumido
 const CONFIGURACION_METRICAS = {
 //este objeto tiene 4 diccionarios, uno para cada plataforma
@@ -336,8 +337,7 @@ const CONFIG_ELEMENTOS = {
       .then((response) => response.json())
       .then((result) => {
         Registros = result.data
-        console.log(Registros)
-        MostrarRegistros();
+        MostrarRegistros(Registros);
 
       })
       .catch((error) => {
@@ -350,15 +350,11 @@ function iniciarApp() {
   registrarEventos();
   listarRegistros();
 }
-function MostrarRegistros() {
-  const tbody = document.getElementById("tbody");
-  tbody.innerHTML = "";
-  Registros.forEach((registro) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${registro.id}</td>
-      <td>${registro.seguidoresfb}</td>
-    `;
-    tbody.appendChild(row);
+function MostrarRegistros(Registros) {
+  console.log(Registros);
+  Registros.forEach(registro => {
+      var containerRegistro=document.createElement("div");
+      containerRegistro.classList.add("container-registro");
+      resultadosRegistros.appendChild(containerRegistro);
   });
 }

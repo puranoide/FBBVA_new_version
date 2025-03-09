@@ -69,8 +69,8 @@ main {
 }
 
 .container {
-
-    max-width: 800px;
+    width: 50%;
+    max-width: 600px;
     /* establece un ancho máximo para el contenedor */
     margin: 0;
     /* centra en el inicio de la pantalla */
@@ -191,4 +191,28 @@ form input[type="submit"]:hover {
     background: #3b5e7e;
     transform: scale(1.05);
     transition: .3s;
+}
+
+.container-group-registros{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    /* establece un ancho máximo para el contenedor */
+ 
+    /* centra en el inicio de la pantalla */
+    padding: 20px;
+    /* agrega un padding para separar el contenido del borde */
+    overflow-x: auto;
+    background-color: aliceblue;
+    border-radius:  15px;
+}
+.container-registro{
+    border-radius: 15px;
+    margin: 10px;
+    min-width: 500px;
+    height: 900px;
+    background-color: #fdfdfd;
+    display: flex;
+    flex-shrink: 0;
 }
