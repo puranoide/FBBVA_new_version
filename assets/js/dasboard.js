@@ -353,8 +353,50 @@ function iniciarApp() {
 function MostrarRegistros(Registros) {
   console.log(Registros);
   Registros.forEach(registro => {
+      var fecha=formatoFecha(registro.fechaCreada);
       var containerRegistro=document.createElement("div");
       containerRegistro.classList.add("container-registro");
+      //resultadosRegistros.appendChild(containerRegistro);
+      
+      var pFecha=document.createElement("p");
+      pFecha.textContent=fecha;
+      pFecha.classList.add("fechaRegistro");
+
+      var divRowContainer=document.createElement("div");
+      divRowContainer.classList.add("row-container-registros");
+      containerRegistro.appendChild(divRowContainer);
+     
+      var pSeguidoresfb=document.createElement("p");
+      pSeguidoresfb.textContent='Seguidores totales: '+registro.seguidoresfb;
+      pSeguidoresfb.classList.add("fechaRegistro");
+
+      var ppostalmesfb=document.createElement("p");
+      ppostalmesfb.textContent='# Posts (cuántas en el mes) :'+registro.postalmesfb;
+      ppostalmesfb.classList.add("fechaRegistro");
+       //definimos las variables que tienen ads
+      var Pseguidoresdelmesfb=document.createElement("p");
+      Pseguidoresdelmesfb.textContent='Seguidores del mes: '+registro.seguidoresdelmesfb;
+      var Pseguidoresdelmesfbads=document.createElement("p");
+      Pseguidoresdelmesfbads.textContent='ads: '+registro.seguidoresdelmesfbads;
+      //metemos en un div los p que tienen ads
+      divRowContainer.appendChild(Pseguidoresdelmesfb);
+      divRowContainer.appendChild(Pseguidoresdelmesfbads);
+      
+      containerRegistro.appendChild(pFecha);
+      containerRegistro.appendChild(pSeguidoresfb);
+      containerRegistro.appendChild(divRowContainer);
+      containerRegistro.appendChild(ppostalmesfb);
       resultadosRegistros.appendChild(containerRegistro);
+
   });
 }
+
+function formatoFecha(fecha) {
+  const meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+  const [year, month] = fecha.split("-");
+  return `${meses[parseInt(month, 10) - 1]}-${year}`;
+}
+

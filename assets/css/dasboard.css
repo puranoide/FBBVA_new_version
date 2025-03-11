@@ -214,5 +214,18 @@ form input[type="submit"]:hover {
     height: 900px;
     background-color: #fdfdfd;
     display: flex;
+    flex-direction: column;
     flex-shrink: 0;
+}
+.row-container-registros{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px #f50b0b;
+}
+
+.fechaRegistro{
+    margin: 10px;
+}
+.row-container-registros p{
+    margin: 10px;
 }

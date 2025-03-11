@@ -23,7 +23,7 @@ function createRegister($conexion, $data)
 
 function listRegisters($conexion)
 {
-    $query = "SELECT * FROM registros order by id desc";
+    $query = "SELECT * FROM registros order by id ASC";
     $result = mysqli_query($conexion, $query);
     if (mysqli_num_rows($result) > 0) {
         $registros = [];
