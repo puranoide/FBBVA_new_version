@@ -220,12 +220,25 @@ form input[type="submit"]:hover {
 .row-container-registros{
     display: flex;
     flex-direction: row;
-    border: solid 1px #f50b0b;
+    padding: 15px ;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .07);
+    border-radius:15px;
+    margin: 10px;
 }
 
 .fechaRegistro{
     margin: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .07);
+    font-size: 18px ;
+    padding: 15px ;
+    border-radius:15px;
 }
+
+
 .row-container-registros p{
-    margin: 10px;
+    font-size: 18px;
+}
+
+.row-container-registros p:nth-child(2){
+    margin-left: 15px;
 }

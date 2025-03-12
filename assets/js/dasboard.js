@@ -372,6 +372,8 @@ function MostrarRegistros(Registros) {
       var divRowContainerInteracciones=document.createElement("div");
       divRowContainerInteracciones.classList.add("row-container-registros");
       
+      var divRowContainerClicsEnlacefb=document.createElement("div");
+      divRowContainerClicsEnlacefb.classList.add("row-container-registros");
 
       var pSeguidoresfb=document.createElement("p");
       pSeguidoresfb.textContent='Seguidores totales: '+registro.seguidoresfb;
@@ -383,6 +385,9 @@ function MostrarRegistros(Registros) {
       var pVisualizacionesfb=document.createElement("p");
       pVisualizacionesfb.textContent='Visualizaciones :'+registro.visualizacionesfb;
       pVisualizacionesfb.classList.add("fechaRegistro");
+      var pInversionPublicitaria=document.createElement("p");
+      pInversionPublicitaria.textContent='Inversion Publicitaria :'+registro.inversionPublicitaria;
+      pInversionPublicitaria.classList.add("fechaRegistro")
 
        //definimos las variables que tienen ads
       var Pseguidoresdelmesfb=document.createElement("p");
@@ -400,6 +405,12 @@ function MostrarRegistros(Registros) {
       var pInteraccionesconelcontenidofbads=document.createElement("p");
       pInteraccionesconelcontenidofbads.textContent='ads: '+registro.interracionesconelcontenidofbads;
 
+      var pclicsenelalcancefb=document.createElement("p");
+      pclicsenelalcancefb.textContent='Clics en el enlace :'+registro.clicsenelalcancefb;
+      var pclicsenelalcancefbads=document.createElement("p");
+      pclicsenelalcancefbads.textContent='ads: '+registro.clicsenelalcancefbads;
+
+
       //metemos en un div los p que tienen ads
       divRowContainer.appendChild(Pseguidoresdelmesfb);
       divRowContainer.appendChild(Pseguidoresdelmesfbads);
@@ -407,7 +418,10 @@ function MostrarRegistros(Registros) {
       divRowContainerAlcance.appendChild(pAlcancefbads);
       divRowContainerInteracciones.appendChild(pInteraccionesconelcontenidofb);
       divRowContainerInteracciones.appendChild(pInteraccionesconelcontenidofbads);
+      divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefb);
+      divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefbads);
 
+      
       containerRegistro.appendChild(pFecha);
       containerRegistro.appendChild(pSeguidoresfb);
       containerRegistro.appendChild(divRowContainer);
@@ -415,6 +429,8 @@ function MostrarRegistros(Registros) {
       containerRegistro.appendChild(pVisualizacionesfb);
       containerRegistro.appendChild(divRowContainerAlcance);
       containerRegistro.appendChild(divRowContainerInteracciones);
+      containerRegistro.appendChild(divRowContainerClicsEnlacefb);
+      containerRegistro.appendChild(pInversionPublicitaria);
       resultadosRegistros.appendChild(containerRegistro);
 
   });
