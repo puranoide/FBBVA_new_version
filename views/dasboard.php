@@ -60,7 +60,7 @@ if (!isset($_SESSION['nombre'])) {
                 <div class="fila-ads">
                     <label for="email">Interacciones con el contenido</label>
                     <input type="number" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb" placeholder="Agregar dato del mismo mes 2024">
-                    <input type="number" class="ads" name="interracionesconelcontenidofb" id="interracionesconelcontenidofbads" placeholder="ads">
+                    <input type="number" class="ads" name="interracionesconelcontenidofbads" id="interracionesconelcontenidofbads" placeholder="ads">
                 </div>
 
                 <div class="fila-ads">

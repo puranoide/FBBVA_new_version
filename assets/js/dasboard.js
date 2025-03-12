@@ -361,11 +361,18 @@ function MostrarRegistros(Registros) {
       var pFecha=document.createElement("p");
       pFecha.textContent=fecha;
       pFecha.classList.add("fechaRegistro");
-
+      //conteiner con ads
       var divRowContainer=document.createElement("div");
       divRowContainer.classList.add("row-container-registros");
-      containerRegistro.appendChild(divRowContainer);
+  
+
+      var divRowContainerAlcance=document.createElement("div");
+      divRowContainerAlcance.classList.add("row-container-registros");
      
+      var divRowContainerInteracciones=document.createElement("div");
+      divRowContainerInteracciones.classList.add("row-container-registros");
+      
+
       var pSeguidoresfb=document.createElement("p");
       pSeguidoresfb.textContent='Seguidores totales: '+registro.seguidoresfb;
       pSeguidoresfb.classList.add("fechaRegistro");
@@ -373,19 +380,41 @@ function MostrarRegistros(Registros) {
       var ppostalmesfb=document.createElement("p");
       ppostalmesfb.textContent='# Posts (cuántas en el mes) :'+registro.postalmesfb;
       ppostalmesfb.classList.add("fechaRegistro");
+      var pVisualizacionesfb=document.createElement("p");
+      pVisualizacionesfb.textContent='Visualizaciones :'+registro.visualizacionesfb;
+      pVisualizacionesfb.classList.add("fechaRegistro");
+
        //definimos las variables que tienen ads
       var Pseguidoresdelmesfb=document.createElement("p");
       Pseguidoresdelmesfb.textContent='Seguidores del mes: '+registro.seguidoresdelmesfb;
       var Pseguidoresdelmesfbads=document.createElement("p");
       Pseguidoresdelmesfbads.textContent='ads: '+registro.seguidoresdelmesfbads;
+
+      var pAlcancefb=document.createElement("p");
+      pAlcancefb.textContent='Alcance: '+registro.alcancefb;
+      var pAlcancefbads=document.createElement("p");
+      pAlcancefbads.textContent='ads: '+registro.alcancefbads;
+
+      var pInteraccionesconelcontenidofb=document.createElement("p");
+      pInteraccionesconelcontenidofb.textContent='Interacciones con el contenido: '+registro.interracionesconelcontenidofb;
+      var pInteraccionesconelcontenidofbads=document.createElement("p");
+      pInteraccionesconelcontenidofbads.textContent='ads: '+registro.interracionesconelcontenidofbads;
+
       //metemos en un div los p que tienen ads
       divRowContainer.appendChild(Pseguidoresdelmesfb);
       divRowContainer.appendChild(Pseguidoresdelmesfbads);
-      
+      divRowContainerAlcance.appendChild(pAlcancefb);
+      divRowContainerAlcance.appendChild(pAlcancefbads);
+      divRowContainerInteracciones.appendChild(pInteraccionesconelcontenidofb);
+      divRowContainerInteracciones.appendChild(pInteraccionesconelcontenidofbads);
+
       containerRegistro.appendChild(pFecha);
       containerRegistro.appendChild(pSeguidoresfb);
       containerRegistro.appendChild(divRowContainer);
       containerRegistro.appendChild(ppostalmesfb);
+      containerRegistro.appendChild(pVisualizacionesfb);
+      containerRegistro.appendChild(divRowContainerAlcance);
+      containerRegistro.appendChild(divRowContainerInteracciones);
       resultadosRegistros.appendChild(containerRegistro);
 
   });
