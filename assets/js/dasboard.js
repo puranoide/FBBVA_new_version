@@ -421,6 +421,13 @@ function MostrarRegistros(Registros) {
       divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefb);
       divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefbads);
 
+
+      //kpis
+      var ViewRateFb=(registro.visualizacionesfb/registro.postalmesfb).toFixed(0);
+      var pViewRateFb=document.createElement("p");
+      pViewRateFb.textContent='View Rate Fb: '+ViewRateFb;
+      pViewRateFb.classList.add("card-kpis");
+
       
       containerRegistro.appendChild(pFecha);
       containerRegistro.appendChild(pSeguidoresfb);
@@ -431,6 +438,7 @@ function MostrarRegistros(Registros) {
       containerRegistro.appendChild(divRowContainerInteracciones);
       containerRegistro.appendChild(divRowContainerClicsEnlacefb);
       containerRegistro.appendChild(pInversionPublicitaria);
+      containerRegistro.appendChild(pViewRateFb);
       resultadosRegistros.appendChild(containerRegistro);
 
   });
