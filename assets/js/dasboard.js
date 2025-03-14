@@ -452,7 +452,7 @@ function MostrarRegistros(Registros) {
       
       var kpiVisualizaciones_Posts=(registro.visualizacionesxpublicacionesfb/registro.nPublicacionesfb).toFixed(0);
       var pKPI_Visualizaciones_Posts=document.createElement("p");
-      pKPI_Visualizaciones_Posts.textContent='KPI Visualizaciones / Posts: '+kpiVisualizaciones_Posts;
+      pKPI_Visualizaciones_Posts.textContent='KPI Visualizaciones / Posts:'+kpiVisualizaciones_Posts;
       pKPI_Visualizaciones_Posts.classList.add("card-kpis");
 
 
