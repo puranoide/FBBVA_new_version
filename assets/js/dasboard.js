@@ -389,6 +389,18 @@ function MostrarRegistros(Registros) {
       pInversionPublicitaria.textContent='Inversion Publicitaria :'+registro.inversionPublicitaria;
       pInversionPublicitaria.classList.add("fechaRegistro")
 
+      var pNumeroDePublicacionesFb=document.createElement("p");
+      pNumeroDePublicacionesFb.textContent='Numero de publicaciones: '+registro.nPublicacionesfb;
+      pNumeroDePublicacionesFb.classList.add("fechaRegistro");
+
+      var pvisualizacionesxpublicacionesfb=document.createElement("p");
+      pvisualizacionesxpublicacionesfb.textContent='Numero de visualizaciones: '+registro.visualizacionesxpublicacionesfb;
+      pvisualizacionesxpublicacionesfb.classList.add("fechaRegistro");
+
+      var pInteraccionesxpublicacionesfb=document.createElement("p");
+      pInteraccionesxpublicacionesfb.textContent='Numero de interacciones: '+registro.interaccionesxpublicacionesfb;
+      pInteraccionesxpublicacionesfb.classList.add("fechaRegistro");
+
        //definimos las variables que tienen ads
       var Pseguidoresdelmesfb=document.createElement("p");
       Pseguidoresdelmesfb.textContent='Seguidores del mes: '+registro.seguidoresdelmesfb;
@@ -428,7 +440,22 @@ function MostrarRegistros(Registros) {
       pViewRateFb.textContent='View Rate Fb: '+ViewRateFb;
       pViewRateFb.classList.add("card-kpis");
 
+      var engagementRateFb=(registro.interracionesconelcontenidofb/registro.alcancefb*100).toFixed(2);
+      var pEngagementRateFb=document.createElement("p");
+      pEngagementRateFb.textContent='Engagement Rate Fb: '+engagementRateFb+'%';
+      pEngagementRateFb.classList.add("card-kpis");
+
+      var clickthroughRateFb=(registro.clicsenelalcancefb/registro.alcancefb*100).toFixed(2);
+      var pClickthroughRateFb=document.createElement("p");
+      pClickthroughRateFb.textContent='Clickthrough Rate Fb: '+clickthroughRateFb+'%';
+      pClickthroughRateFb.classList.add("card-kpis");
       
+      var kpiVisualizaciones_Posts=(registro.visualizacionesxpublicacionesfb/registro.nPublicacionesfb).toFixed(0);
+      var pKPI_Visualizaciones_Posts=document.createElement("p");
+      pKPI_Visualizaciones_Posts.textContent='KPI Visualizaciones / Posts: '+kpiVisualizaciones_Posts;
+      pKPI_Visualizaciones_Posts.classList.add("card-kpis");
+
+
       containerRegistro.appendChild(pFecha);
       containerRegistro.appendChild(pSeguidoresfb);
       containerRegistro.appendChild(divRowContainer);
@@ -439,6 +466,12 @@ function MostrarRegistros(Registros) {
       containerRegistro.appendChild(divRowContainerClicsEnlacefb);
       containerRegistro.appendChild(pInversionPublicitaria);
       containerRegistro.appendChild(pViewRateFb);
+      containerRegistro.appendChild(pEngagementRateFb);
+      containerRegistro.appendChild(pClickthroughRateFb);
+      containerRegistro.appendChild(pNumeroDePublicacionesFb);
+      containerRegistro.appendChild(pvisualizacionesxpublicacionesfb);
+      containerRegistro.appendChild(pInteraccionesxpublicacionesfb);  
+      containerRegistro.appendChild(pKPI_Visualizaciones_Posts);
       resultadosRegistros.appendChild(containerRegistro);
 
   });

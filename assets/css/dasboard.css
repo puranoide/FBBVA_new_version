@@ -211,7 +211,7 @@ form input[type="submit"]:hover {
     border-radius: 15px;
     margin: 10px;
     min-width: 500px;
-    height: 900px;
+    /*min-height: 900px;*/
     background-color: #fdfdfd;
     display: flex;
     flex-direction: column;
