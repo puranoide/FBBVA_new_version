@@ -457,6 +457,79 @@ function MostrarRegistros(Registros) {
       pinversionPublicitariaig.textContent='Inversion Publicitaria: '+registro.inversionPublicitariaig;
       pinversionPublicitariaig.classList.add("fechaRegistro");
 
+      var pnPublicacionesig=document.createElement("p");
+      pnPublicacionesig.textContent='Numero de publicaciones: '+registro.nPublicacionesig;
+      pnPublicacionesig.classList.add("fechaRegistro");
+
+      var pvisualizacionesxpublicacionesig=document.createElement("p");
+      pvisualizacionesxpublicacionesig.textContent='visualizaciones: '+registro.visualizacionesxpublicacionesig;
+      pvisualizacionesxpublicacionesig.classList.add("fechaRegistro");
+
+      var pinteraccionesxpublicacionesig=document.createElement("p");
+      pinteraccionesxpublicacionesig.textContent='interacciones: '+registro.interaccionesxpublicacionesig;
+      pinteraccionesxpublicacionesig.classList.add("fechaRegistro");
+
+      var pnReelsig=document.createElement("p");
+      pnReelsig.textContent='# de reels: '+registro.nReelsig;
+      pnReelsig.classList.add("fechaRegistro");
+
+      var pvisualizacionesxreelsig=document.createElement("p");
+      pvisualizacionesxreelsig.textContent='visualizaciones: '+registro.visualizacionesxreelsig;
+      pvisualizacionesxreelsig.classList.add("fechaRegistro");
+
+      var pinteraccionesxreelsig=document.createElement("p");
+      pinteraccionesxreelsig.textContent='interacciones: '+registro.interaccionesxreelsig;
+      pinteraccionesxreelsig.classList.add("fechaRegistro");
+
+
+      var pnHistoriasig=document.createElement("p");
+      pnHistoriasig.textContent='# de historias: '+registro.nHistoriasig;
+      pnHistoriasig.classList.add("fechaRegistro");
+
+      var palcanceHistoriasig=document.createElement("p");
+      palcanceHistoriasig.textContent='Alcance: '+registro.alcanceHistoriasig;
+      palcanceHistoriasig.classList.add("fechaRegistro");
+
+      var pinteraccionesHistoriasig=document.createElement("p");
+      pinteraccionesHistoriasig.textContent='Interacciones: '+registro.interaccionesHistoriasig;
+      pinteraccionesHistoriasig.classList.add("fechaRegistro");
+
+      var pseguidorestotalesTikTok=document.createElement("p");
+      pseguidorestotalesTikTok.textContent='Seguidores totales: '+registro.seguidorestotalesTikTok;
+      pseguidorestotalesTikTok.classList.add("fechaRegistro");
+
+      var pnSeguidoresDelMesTikTok=document.createElement("p");
+      pnSeguidoresDelMesTikTok.textContent='Seguidores del mes: '+registro.nSeguidoresDelMesTikTok;
+      pnSeguidoresDelMesTikTok.classList.add("fechaRegistro");
+
+      var pnPublicacionesTikTok=document.createElement("p");
+      pnPublicacionesTikTok.textContent='Publicaciones: '+registro.nPublicacionesTikTok;
+      pnPublicacionesTikTok.classList.add("fechaRegistro");
+
+      var pnMeGustaDelMesTikTok=document.createElement("p");
+      pnMeGustaDelMesTikTok.textContent='Me gusta del mes: '+registro.nMeGustaDelMesTikTok;
+      pnMeGustaDelMesTikTok.classList.add("fechaRegistro");
+
+      var pvisualizacionesdevideoTikTok=document.createElement("p");
+      pvisualizacionesdevideoTikTok.textContent='Visualizaciones de video: '+registro.visualizacionesdevideoTikTok;
+      pvisualizacionesdevideoTikTok.classList.add("fechaRegistro");
+
+      var pseguidorestotalesx=document.createElement("p");
+      pseguidorestotalesx.textContent='Seguidores totales: '+registro.seguidorestotalesx;
+      pseguidorestotalesx.classList.add("fechaRegistro");
+
+      var pnSeguidoresDelMesx=document.createElement("p");
+      pnSeguidoresDelMesx.textContent='Seguidores del mes: '+registro.nSeguidoresDelMesx;
+      pnSeguidoresDelMesx.classList.add("fechaRegistro");
+
+      var pnPublicacionesx=document.createElement("p");
+      pnPublicacionesx.textContent='Publicaciones: '+registro.nPublicacionesx;
+      pnPublicacionesx.classList.add("fechaRegistro");
+
+      var pinpremionesx=document.createElement("p");
+      pinpremionesx.textContent='Premios: '+registro.inpremionesx;
+      pinpremionesx.classList.add("fechaRegistro");
+
        //definimos las variables que tienen ads
       var Pseguidoresdelmesfb=document.createElement("p");
       Pseguidoresdelmesfb.textContent='Seguidores del mes: '+registro.seguidoresdelmesfb;
@@ -559,6 +632,31 @@ function MostrarRegistros(Registros) {
       pKpi_Clickthrough_Rate_ig.textContent='Clickthrough Rate : '+kpi_Clickthrough_Rate_ig+'%';
       pKpi_Clickthrough_Rate_ig.classList.add("card-kpis");
 
+      var kpi_visualizaciones_post_publicaciones_ig=(registro.visualizacionesxpublicacionesig/registro.nPublicacionesig).toFixed(0);
+      var pKpi_visualizaciones_post_publicaciones_ig=document.createElement("p");
+      pKpi_visualizaciones_post_publicaciones_ig.textContent='KPI Visualizaciones / Posts:'+kpi_visualizaciones_post_publicaciones_ig;
+      pKpi_visualizaciones_post_publicaciones_ig.classList.add("card-kpis");
+
+      var kpi_visualizaciones_reels_ig=(registro.visualizacionesxreelsig/registro.nReelsig).toFixed(0);
+      var pKpi_visualizaciones_reels_ig=document.createElement("p");
+      pKpi_visualizaciones_reels_ig.textContent='KPI Visualizaciones / Posts:'+kpi_visualizaciones_reels_ig;
+      pKpi_visualizaciones_reels_ig.classList.add("card-kpis");
+
+      var kpi_visulizaciones_historias_ig=(registro.alcanceHistoriasig/registro.nHistoriasig).toFixed(0);
+      var pKpi_visulizaciones_historias_ig=document.createElement("p");
+      pKpi_visulizaciones_historias_ig.textContent='KPI Visualizaciones / Posts:'+kpi_visulizaciones_historias_ig;
+      pKpi_visulizaciones_historias_ig.classList.add("card-kpis");
+
+      var kpi_view_rate_tiktok=(registro.visualizacionesdevideoTikTok/registro.nPublicacionesTikTok).toFixed(0);
+      var pKpi_view_rate_tiktok=document.createElement("p");
+      pKpi_view_rate_tiktok.textContent='View Rate : '+kpi_view_rate_tiktok;
+      pKpi_view_rate_tiktok.classList.add("card-kpis");
+
+      var kpi_view_rate_X=(registro.inpremionesx/registro.nPublicacionesx).toFixed(0);
+      var pKpi_view_rate_X=document.createElement("p");
+      pKpi_view_rate_X.textContent='View Rate : '+kpi_view_rate_X;
+      pKpi_view_rate_X.classList.add("card-kpis");
+
       //titulos
       var PFacebook=document.createElement("p");
       PFacebook.textContent='FACEBOOK';
@@ -616,8 +714,36 @@ function MostrarRegistros(Registros) {
       containerRegistro.appendChild(pKpi_View_Rate_ig);
       containerRegistro.appendChild(pKpi_Engagement_Rate_ig);
       containerRegistro.appendChild(pKpi_Clickthrough_Rate_ig);
+      containerRegistro.appendChild(pnPublicacionesig);
+      containerRegistro.appendChild(pvisualizacionesxpublicacionesig);
+      containerRegistro.appendChild(pinteraccionesxpublicacionesig);
+      containerRegistro.appendChild(pKpi_visualizaciones_post_publicaciones_ig);
+      containerRegistro.appendChild(pnReelsig);
+      containerRegistro.appendChild(pvisualizacionesxreelsig);
+      containerRegistro.appendChild(pinteraccionesxreelsig);
+      containerRegistro.appendChild(pKpi_visualizaciones_reels_ig);
+      containerRegistro.appendChild(pnHistoriasig);
+
+      containerRegistro.appendChild(palcanceHistoriasig);
+      containerRegistro.appendChild(pinteraccionesHistoriasig);
+      containerRegistro.appendChild(pKpi_visulizaciones_historias_ig);
+
       containerRegistro.appendChild(Ptiktok);
+      containerRegistro.appendChild(pseguidorestotalesTikTok);
+      containerRegistro.appendChild(pnSeguidoresDelMesTikTok);
+      containerRegistro.appendChild(pnPublicacionesTikTok);
+      containerRegistro.appendChild(pnMeGustaDelMesTikTok);
+      containerRegistro.appendChild(pvisualizacionesdevideoTikTok);
+      containerRegistro.appendChild(pKpi_view_rate_tiktok);
+
+
       containerRegistro.appendChild(PX);
+      containerRegistro.appendChild(pseguidorestotalesx);
+      containerRegistro.appendChild(pnSeguidoresDelMesx);
+      containerRegistro.appendChild(pnPublicacionesx);
+      containerRegistro.appendChild(pinpremionesx);
+      containerRegistro.appendChild(pKpi_view_rate_X);
+
 
 
 
