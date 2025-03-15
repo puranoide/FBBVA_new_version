@@ -375,6 +375,18 @@ function MostrarRegistros(Registros) {
       var divRowContainerClicsEnlacefb=document.createElement("div");
       divRowContainerClicsEnlacefb.classList.add("row-container-registros");
 
+      var divRowContainerAlcanceIg=document.createElement("div");
+      divRowContainerAlcanceIg.classList.add("row-container-registros");
+
+      var divRowContainerInteraccionesIg=document.createElement("div");
+      divRowContainerInteraccionesIg.classList.add("row-container-registros");
+
+      var divRowContainerClicsEnlaceIg=document.createElement("div");
+      divRowContainerClicsEnlaceIg.classList.add("row-container-registros");
+      
+
+      //Parrafos normales
+
       var pSeguidoresfb=document.createElement("p");
       pSeguidoresfb.textContent='Seguidores totales: '+registro.seguidoresfb;
       pSeguidoresfb.classList.add("fechaRegistro");
@@ -401,6 +413,50 @@ function MostrarRegistros(Registros) {
       pInteraccionesxpublicacionesfb.textContent='Numero de interacciones: '+registro.interaccionesxpublicacionesfb;
       pInteraccionesxpublicacionesfb.classList.add("fechaRegistro");
 
+      var pnHistorias=document.createElement("p");
+      pnHistorias.textContent='# de historias: '+registro.nHistorias;
+      pnHistorias.classList.add("fechaRegistro");
+
+      var pnReels=document.createElement("p");
+      pnReels.textContent='# de reels: '+registro.nReels;
+      pnReels.classList.add("fechaRegistro");
+
+      var pVisualizacionesxreels=document.createElement("p");
+      pVisualizacionesxreels.textContent='Visualizaciones: '+registro.visualizacionesxreels;
+      pVisualizacionesxreels.classList.add("fechaRegistro");
+
+      var pInteraccionesxreels=document.createElement("p");
+      pInteraccionesxreels.textContent='Interacciones: '+registro.interaccionesxreels;
+      pInteraccionesxreels.classList.add("fechaRegistro");
+
+      var pvisualizacionesxhistorias=document.createElement("p");
+      pvisualizacionesxhistorias.textContent='Visualizaciones: '+registro.visualizacionesxhistorias;
+      pvisualizacionesxhistorias.classList.add("fechaRegistro");
+
+      var pinteraccionesxhistorias=document.createElement("p");
+      pinteraccionesxhistorias.textContent='Interacciones: '+registro.interaccionesxhistorias;
+      pinteraccionesxhistorias.classList.add("fechaRegistro");
+
+      var pseguidoresTotalesIg=document.createElement("p");
+      pseguidoresTotalesIg.textContent='Seguidores totales: '+registro.seguidoresTotalesIg;
+      pseguidoresTotalesIg.classList.add("fechaRegistro");
+
+      var pseguidoresdelmesIg=document.createElement("p");
+      pseguidoresdelmesIg.textContent='Seguidores del mes: '+registro.seguidoresdelmesIg;
+      pseguidoresdelmesIg.classList.add("fechaRegistro");
+
+      var pnPostsEnElMesIg=document.createElement("p");
+      pnPostsEnElMesIg.textContent='# Posts (cuántas en el mes): '+registro.nPostsEnElMesIg;
+      pnPostsEnElMesIg.classList.add("fechaRegistro");
+
+      var pvisualizacionesBFB=document.createElement("p");
+      pvisualizacionesBFB.textContent='Visualizaciones BFB: '+registro.visualizacionesBFB;
+      pvisualizacionesBFB.classList.add("fechaRegistro");
+
+      var pinversionPublicitariaig=document.createElement("p");
+      pinversionPublicitariaig.textContent='Inversion Publicitaria: '+registro.inversionPublicitariaig;
+      pinversionPublicitariaig.classList.add("fechaRegistro");
+
        //definimos las variables que tienen ads
       var Pseguidoresdelmesfb=document.createElement("p");
       Pseguidoresdelmesfb.textContent='Seguidores del mes: '+registro.seguidoresdelmesfb;
@@ -423,6 +479,21 @@ function MostrarRegistros(Registros) {
       pclicsenelalcancefbads.textContent='ads: '+registro.clicsenelalcancefbads;
 
 
+      var pAlcanceIg=document.createElement("p");
+      pAlcanceIg.textContent='Alcance: '+registro.alcanceIg;
+      var pAlcanceIgads=document.createElement("p");
+      pAlcanceIgads.textContent='ads: '+registro.alcanceIgads;
+
+      var pinteraccionesconelcontenidoig=document.createElement("p");
+      pinteraccionesconelcontenidoig.textContent='Interacciones con el contenido: '+registro.interaccionesconelcontenidoig;
+      var pinteraccionesconelcontenidoigads=document.createElement("p");
+      pinteraccionesconelcontenidoigads.textContent='ads: '+registro.interaccionesconelcontenidoigads;
+
+      var pclicsenelalcanceig=document.createElement("p");
+      pclicsenelalcanceig.textContent='Clics en el enlace :'+registro.clicsenelalcanceig;
+      var pclicsenelalcanceigads=document.createElement("p");
+      pclicsenelalcanceigads.textContent='ads: '+registro.clicsenelalcanceigads;
+
       //metemos en un div los p que tienen ads
       divRowContainer.appendChild(Pseguidoresdelmesfb);
       divRowContainer.appendChild(Pseguidoresdelmesfbads);
@@ -432,6 +503,14 @@ function MostrarRegistros(Registros) {
       divRowContainerInteracciones.appendChild(pInteraccionesconelcontenidofbads);
       divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefb);
       divRowContainerClicsEnlacefb.appendChild(pclicsenelalcancefbads);
+
+      divRowContainerAlcanceIg.appendChild(pAlcanceIg);
+      divRowContainerAlcanceIg.appendChild(pAlcanceIgads);
+      divRowContainerInteraccionesIg.appendChild(pinteraccionesconelcontenidoig);
+      divRowContainerInteraccionesIg.appendChild(pinteraccionesconelcontenidoigads);
+
+      divRowContainerClicsEnlaceIg.appendChild(pclicsenelalcanceig);
+      divRowContainerClicsEnlaceIg.appendChild(pclicsenelalcanceigads);
 
 
       //kpis
@@ -455,8 +534,53 @@ function MostrarRegistros(Registros) {
       pKPI_Visualizaciones_Posts.textContent='KPI Visualizaciones / Posts:'+kpiVisualizaciones_Posts;
       pKPI_Visualizaciones_Posts.classList.add("card-kpis");
 
+      var KPI_Visualizaciones_Posts_reels=(registro.visualizacionesxreels/registro.nReels).toFixed(0);
+      var pKPI_Visualizaciones_Posts_reels=document.createElement("p");
+      pKPI_Visualizaciones_Posts_reels.textContent='KPI Visualizaciones / Posts:'+KPI_Visualizaciones_Posts_reels;
+      pKPI_Visualizaciones_Posts_reels.classList.add("card-kpis");
+
+      var Kpi_visualizaciones_post_historias=(registro.visualizacionesxhistorias/registro.nHistorias).toFixed(0);
+      var pKpi_visualizaciones_post_historias=document.createElement("p");
+      pKpi_visualizaciones_post_historias.textContent='KPI Visualizaciones / Posts:'+Kpi_visualizaciones_post_historias;
+      pKpi_visualizaciones_post_historias.classList.add("card-kpis");
+
+      var kpi_View_Rate_ig=(registro.visualizacionesBFB/registro.nPostsEnElMesIg).toFixed(0);
+      var pKpi_View_Rate_ig=document.createElement("p");
+      pKpi_View_Rate_ig.textContent='View Rate IG: '+kpi_View_Rate_ig;
+      pKpi_View_Rate_ig.classList.add("card-kpis");
+
+      var kpi_Engagement_Rate_ig=(registro.interaccionesconelcontenidoig/registro.alcanceIg*100).toFixed(2);
+      var pKpi_Engagement_Rate_ig=document.createElement("p");
+      pKpi_Engagement_Rate_ig.textContent='Engagement Rate : '+kpi_Engagement_Rate_ig+'%';
+      pKpi_Engagement_Rate_ig.classList.add("card-kpis");
+
+      var kpi_Clickthrough_Rate_ig=(registro.clicsenelalcanceig/registro.alcanceIg*100).toFixed(2);
+      var pKpi_Clickthrough_Rate_ig=document.createElement("p");
+      pKpi_Clickthrough_Rate_ig.textContent='Clickthrough Rate : '+kpi_Clickthrough_Rate_ig+'%';
+      pKpi_Clickthrough_Rate_ig.classList.add("card-kpis");
+
+      //titulos
+      var PFacebook=document.createElement("p");
+      PFacebook.textContent='FACEBOOK';
+      PFacebook.classList.add("card-titulo");
+
+      var PInstagram=document.createElement("p");
+      PInstagram.textContent='INSTAGRAM';
+      PInstagram.classList.add("card-titulo");
+
+      var Ptiktok=document.createElement("p");
+      Ptiktok.textContent='TIKTOK';
+      Ptiktok.classList.add("card-titulo");
+
+      var PX=document.createElement("p");
+      PX.textContent='X';
+      PX.classList.add("card-titulo");
+
 
       containerRegistro.appendChild(pFecha);
+
+      containerRegistro.appendChild(PFacebook);
+      
       containerRegistro.appendChild(pSeguidoresfb);
       containerRegistro.appendChild(divRowContainer);
       containerRegistro.appendChild(ppostalmesfb);
@@ -472,6 +596,32 @@ function MostrarRegistros(Registros) {
       containerRegistro.appendChild(pvisualizacionesxpublicacionesfb);
       containerRegistro.appendChild(pInteraccionesxpublicacionesfb);  
       containerRegistro.appendChild(pKPI_Visualizaciones_Posts);
+      containerRegistro.appendChild(pnReels);
+      containerRegistro.appendChild(pVisualizacionesxreels);
+      containerRegistro.appendChild(pInteraccionesxreels);
+      containerRegistro.appendChild(pKPI_Visualizaciones_Posts_reels);
+      containerRegistro.appendChild(pnHistorias);
+      containerRegistro.appendChild(pvisualizacionesxhistorias);
+      containerRegistro.appendChild(pinteraccionesxhistorias);
+      containerRegistro.appendChild(pKpi_visualizaciones_post_historias);
+      containerRegistro.appendChild(PInstagram);
+      containerRegistro.appendChild(pseguidoresTotalesIg);
+      containerRegistro.appendChild(pseguidoresdelmesIg);
+      containerRegistro.appendChild(pnPostsEnElMesIg);
+      containerRegistro.appendChild(pvisualizacionesBFB);
+      containerRegistro.appendChild(divRowContainerAlcanceIg);
+      containerRegistro.appendChild(divRowContainerInteraccionesIg);
+      containerRegistro.appendChild(divRowContainerClicsEnlaceIg);
+      containerRegistro.appendChild(pinversionPublicitariaig);
+      containerRegistro.appendChild(pKpi_View_Rate_ig);
+      containerRegistro.appendChild(pKpi_Engagement_Rate_ig);
+      containerRegistro.appendChild(pKpi_Clickthrough_Rate_ig);
+      containerRegistro.appendChild(Ptiktok);
+      containerRegistro.appendChild(PX);
+
+
+
+
       resultadosRegistros.appendChild(containerRegistro);
 
   });
