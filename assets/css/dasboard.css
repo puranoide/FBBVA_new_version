@@ -201,10 +201,10 @@ form input[type="submit"]:hover {
     /* establece un ancho máximo para el contenedor */
  
     /* centra en el inicio de la pantalla */
-    padding: 20px;
+    padding: 0px;
     /* agrega un padding para separar el contenido del borde */
     overflow-x: auto;
-    background-color: aliceblue;
+    background-color: rgb(231, 229, 229);
     border-radius:  15px;
 }
 .container-registro{
