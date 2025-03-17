@@ -1,8 +1,9 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "fbbva_newversion";
+$username = "u685818680_admin_gab";
+$password = "GptYi#R5";
+$database = "u685818680_fbbva_nv
+";
 $conexion = mysqli_connect($servername,$username,$password,$database);
 
 if (!$conexion) {
@@ -10,6 +11,21 @@ if (!$conexion) {
 }
 
 /*
+
+$servername = "localhost";
+$username = "u685818680_admin_gab";
+$password = "GptYi#R5";
+$database = "u685818680_fbbva_nv
+";
+$conexion = mysqli_connect($servername,$username,$password,$database);
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "fbbva_newversion";
+$conexion = mysqli_connect($servername,$username,$password,$database);
+
 
 CREATE TABLE fbbva_newversion.usuario (
 	id INT auto_increment NOT NULL,
