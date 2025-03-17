@@ -304,7 +304,7 @@ const CONFIG_ELEMENTOS = {
   });
 
   function insertarDatos(data) {
-    fetch("http://localhost/fbbva_new_version/controller/registros.php", {
+    fetch("../controller/registros.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -325,7 +325,7 @@ const CONFIG_ELEMENTOS = {
   var Registros = {}
 
   function listarRegistros() {
-    fetch("http://localhost/fbbva_new_version/controller/registros.php", {
+    fetch("../controller/registros.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
