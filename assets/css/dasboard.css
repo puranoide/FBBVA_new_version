@@ -56,7 +56,7 @@ header button:hover {
 }
 
 main {
-    
+
     margin-top: 100px;
     display: flex;
     justify-content: start;
@@ -86,21 +86,27 @@ form {
     border-radius: 25px;
 
 }
-form h1{
+
+form h1 {
     color: #1e3041;
     font-weight: 600;
     font-size: 2rem;
     margin: 15px 15px 15px 0px;
 }
-form h3{
+
+form h3 {
     padding: 10px;
     background-color: rgb(204, 240, 169);
     color: #1e3041;
     font-weight: 600;
     font-size: 1rem;
-    margin: 15px 15px 15px 65%;
-    width: 35%;
-   border-radius: 10px;
+    margin: 15px 15px 15px 38%;
+    width: 60%;
+    border-radius: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea el texto horizontalmente hacia el final */
 }
 
 
@@ -109,18 +115,20 @@ form h3{
     flex-direction: row;
     margin-bottom: 10px;
     justify-content: start;
-    width:100%;
-    
+    width: 100%;
+
     padding: 10px;
 }
-.fila label{
+
+.fila label {
     width: 40%;
     font-size: 1rem;
     padding: 10px;
 }
-.fila input{
+
+.fila input {
     width: 60%;
-    font-size: 1rem;    
+    font-size: 1rem;
     border: none;
     background-color: #f1f1f1;
     padding: 10px;
@@ -133,35 +141,39 @@ form h3{
     flex-direction: row;
     margin-bottom: 10px;
     justify-content: start;
-    width:100%;
-   
+    width: 100%;
+
     padding: 10px;
 }
-.fila-ads label{
+
+.fila-ads label {
     width: 40%;
     font-size: 1rem;
     padding: 10px;
 }
+
 .fila-ads input::placeholder {
     font-size: 0.7rem;
     color: #535353;
 }
+
 .fila-ads input {
     width: 30%;
     font-size: 1rem;
     border: none;
     background-color: #f1f1f1;
     padding: 10px;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
-.ads{
+
+.ads {
     margin-left: 10px;
     cursor: help;
 }
 
-.tooltip{
+.tooltip {
     background-color: #1e3041;
-    width: 70px;    
+    width: 70px;
     height: 20px;
     border-radius: 5%;
     display: flex;
@@ -193,21 +205,23 @@ form input[type="submit"]:hover {
     transition: .3s;
 }
 
-.container-group-registros{
+.container-group-registros {
     margin: 20px;
     display: flex;
     flex-direction: row;
     width: 60%;
+    min-height: 950px;
     /* establece un ancho máximo para el contenedor */
- 
+
     /* centra en el inicio de la pantalla */
     padding: 0px;
     /* agrega un padding para separar el contenido del borde */
     overflow-x: auto;
     background-color: rgb(231, 229, 229);
-    border-radius:  15px;
+    border-radius: 15px;
 }
-.container-registro{
+
+.container-registro {
     border-radius: 15px;
     margin: 10px;
     min-width: 500px;
@@ -217,52 +231,89 @@ form input[type="submit"]:hover {
     flex-direction: column;
     flex-shrink: 0;
 }
-.container-registro > p:first-of-type {
+
+.container-registro>p:first-of-type {
     background-color: rgb(246, 239, 230);
     color: #3b5e7e;
     font-weight: bold;
     text-align: center;
     font-size: 24px;
-    padding: 15px ;
-    border-radius:1px;
+    padding: 15px;
+    border-radius: 1px;
 }
-.row-container-registros{
+
+.row-container-registros {
     display: flex;
     flex-direction: row;
-    padding: 15px ;
+    padding: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .07);
-    border-radius:15px;
+    border-radius: 15px;
     margin: 10px;
 }
 
-.fechaRegistro{
+.fechaRegistro {
     margin: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .07);
-    font-size: 18px ;
-    padding: 15px ;
-    border-radius:15px;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 15px;
 }
-.card-titulo{
+
+.card-titulo {
     margin: 10px;
-    font-size: 24px ;
+    font-size: 24px;
     font-weight: bold;
-    padding: 15px ;
-    border-radius:15px;
+    padding: 15px;
+    border-radius: 15px;
 }
-.card-kpis{
+
+.card-kpis {
     background-color: rgb(210, 216, 100);
     text-align: end;
     margin: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .07);
-    font-size: 18px ;
-    padding: 15px ;
-    border-radius:15px;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 15px;
 }
 
-.row-container-registros p{
+.row-container-registros p {
     font-size: 18px;
 }
 
-.row-container-registros p:nth-child(2){
+.row-container-registros p:nth-child(2) {
     margin-left: 15px;
+}
+
+
+.registros-conteiner-list {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+.registros-conteiner-list h1 {
+    color: #1e3041;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 15px 15px 15px 0px;
+}
+
+.registros-conteiner-list h3 {
+    padding: 10px;
+    background-color: rgb(204, 240, 169);
+    color: #1e3041;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 15px 15px 15px 38%;
+    width: 60%;
+    border-radius: 10px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea el texto horizontalmente hacia el final */
 }

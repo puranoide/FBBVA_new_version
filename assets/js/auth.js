@@ -6,7 +6,7 @@ var contrasena= document.getElementById("contrasena");
 var message = document.getElementById("message");
 function login(usuario, contrasena) {
 
-    fetch("../controller/auth.php", {
+    fetch("controller/auth.php", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
