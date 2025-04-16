@@ -3,8 +3,11 @@
 function createRegister($conexion, $data)
 {
 
-    // Agregar una fecha por defecto (por ejemplo, la fecha y hora actuales)
-    $data['fechaCreada'] = date('Y-m-d H:i:s');
+    // Agregar una fecha por defecto (por ejemplo, el primer día del mes actual)
+    $year = date('Y');
+    $month = $data['meses'];
+    $day = '01';
+    $data['fechaCreada'] = "$year-$month-$day";
     // Construir la consulta de forma dinámica
     $columns = implode(", ", array_keys($data));
     $placeholders = implode(", ", array_fill(0, count($data), "?"));
@@ -23,7 +26,7 @@ function createRegister($conexion, $data)
 
 function listRegisters($conexion)
 {
-    $query = "SELECT * FROM registros order by id ASC";
+    $query = "SELECT * FROM registros order by fechaCreada ASC";
     $result = mysqli_query($conexion, $query);
     if (mysqli_num_rows($result) > 0) {
         $registros = [];

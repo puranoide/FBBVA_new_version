@@ -31,19 +31,19 @@ if (!isset($_SESSION['nombre'])) {
 
                 <div class="fila">
                     <h1>FACEBOOK</h1>
-                    <select name="meses" id="">
-                        <option value="enero">Enero</option>
-                        <option value="febrero">Febrero</option>
-                        <option value="marzo">Marzo</option>
-                        <option value="abril">Abril</option>
-                        <option value="mayo">Mayo</option>
-                        <option value="junio">Junio</option>
-                        <option value="julio">Julio</option>
-                        <option value="agosto">Agosto</option>
-                        <option value="septiembre">Septiembre</option>
-                        <option value="octubre">Octubre</option>
-                        <option value="noviembre">Noviembre</option>
-                        <option value="diciembre">diciembre</option>
+                    <select name="meses" id="meses">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">diciembre</option>
                     </select>
                 </div>
                 <div class="fila">

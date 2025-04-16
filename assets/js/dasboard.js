@@ -300,6 +300,7 @@ formulario.addEventListener("submit", function (event) {
   event.preventDefault();
   const formData = new FormData(this);
   const data = Object.fromEntries(formData);
+  console.log(data);
   insertarDatos(data);
 });
 
@@ -317,6 +318,7 @@ function insertarDatos(data) {
     .then((response) => response.json())
     .then((result) => {
       console.log(result);
+      location.reload();
     })
     .catch((error) => {
       console.error("Error al insertar datos:", error);
