@@ -1633,6 +1633,9 @@ function MostrarRegistros2(Registros) {
     resultadosRegistros.appendChild(containerRegistro);
   });
 
+  const ultimoRegistro = resultadosRegistros.lastChild;
+  ultimoRegistro.scrollIntoView({ behavior:'instant' });
+
 
 
 }

@@ -28,7 +28,24 @@ if (!isset($_SESSION['nombre'])) {
     <main>
         <div class="container">
             <form action="" method="post" id="formulario">
-                <h1>FACEBOOK</h1>
+
+                <div class="fila">
+                    <h1>FACEBOOK</h1>
+                    <select name="meses" id="">
+                        <option value="enero">Enero</option>
+                        <option value="febrero">Febrero</option>
+                        <option value="marzo">Marzo</option>
+                        <option value="abril">Abril</option>
+                        <option value="mayo">Mayo</option>
+                        <option value="junio">Junio</option>
+                        <option value="julio">Julio</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="septiembre">Septiembre</option>
+                        <option value="octubre">Octubre</option>
+                        <option value="noviembre">Noviembre</option>
+                        <option value="diciembre">diciembre</option>
+                    </select>
+                </div>
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
                     <input type="number" name="seguidoresfb" id="seguidoresfb">
@@ -283,13 +300,13 @@ if (!isset($_SESSION['nombre'])) {
 
                 <h3 id="View_Rate4"></h3>
                 <div class="fila">
-                    
+
                     <input type="submit" name="enviar" id="enviar" value="Enviar">
                 </div>
             </form>
         </div>
         <div class="container-group-registros" id="resultadosRegistros">
-        
+
         </div>
 
     </main>
