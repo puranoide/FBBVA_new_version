@@ -24,6 +24,8 @@ function createRegister($conexion, $data)
     return $stmt->execute();
 }
 
+
+
 function listRegisters($conexion)
 {
     $query = "SELECT * FROM registros order by fechaCreada ASC";
@@ -37,6 +39,34 @@ function listRegisters($conexion)
     } else {
         return [];
     }
+}
+
+function updateRegister($conexion, $data, $id)
+{
+    // Update 'fechaCreada' column with format 'YYYY-MM-01' using 'meses' parameter
+    $year = date('Y');
+    $month = $data['meses'];
+    $day = '01';
+    $data['fechaCreada'] = "$year-$month-$day";
+    
+    // Build the SQL query dynamically
+    $sql = "UPDATE registros SET ";
+    foreach ($data as $column => $value) {
+        $sql .= "$column = ?, ";
+    }
+    $sql = rtrim($sql, ", ");
+    $sql .= " WHERE id = ?";
+
+    // Prepare the statement
+    $stmt = $conexion->prepare($sql);
+
+    // Assign the values to the parameters
+    $values = array_values($data);
+    $values[] = $id;
+    $stmt->bind_param(str_repeat("s", count($values)), ...$values);
+
+    // Execute the query
+    return $stmt->execute();
 }
 
 // Verify if receiving POST request with JSON
@@ -83,6 +113,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => true, 'data' => $response]);
             } else {
                 echo json_encode(['error' => 'list fallido']);
+            }
+            break;
+        case 'update':
+            if (!$conexion) {
+                echo json_encode(['error' => 'No se pudo conectar a la base de datos']);
+                exit;
+            }
+            try {
+                $response = updateRegister($conexion, $data['datos'], $data['id']);
+                if ($response) {
+                    echo json_encode(['success' => true, 'message' => 'update exitoso']);
+                } else {
+                    echo json_encode(['error' => 'update fallido']);
+                }
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
             }
             break;
         default:

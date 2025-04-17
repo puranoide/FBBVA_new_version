@@ -340,3 +340,40 @@ form input[type="submit"]:hover {
     align-items: center;
     justify-content: flex-end; /* Alinea el texto horizontalmente hacia el final */
 }
+
+
+.btn-editar-registro{
+    background-color: #3b5e7e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.btn-editar-registro:hover{
+    background-color: #3b5e7e;
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+.popup-editar {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 80vh; /* Allows space for scrolling */
+    overflow-y: auto; /* Enables vertical scrolling */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}

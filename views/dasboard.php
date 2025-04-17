@@ -309,6 +309,9 @@ if (!isset($_SESSION['nombre'])) {
 
         </div>
 
+        <div class="popup-editar" id="popup-editar">
+            
+        </div>
     </main>
 
 
