@@ -47,18 +47,18 @@ if (!isset($_SESSION['nombre'])) {
                     </select>
                 </div>
                 <div class="fila">
-                    <label for="email">Seguidores totales</label>
+                    <label for="email" name="labelseguidoresfb" id="labelseguidoresfb">Seguidores totales</label>
                     <input type="number" name="seguidoresfb" id="seguidoresfb">
 
                 </div>
                 <div class="fila-ads">
-                    <label for="email"># seguidores del mes</label>
+                    <label for="email" id="labelseguidoresdelmesfb"># seguidores del mes</label>
 
                     <input type="number" name="seguidoresdelmesfb" id="seguidoresdelmesfb">
                     <input class="ads" type="number" name="seguidoresdelmesfbads" id="seguidoresdelmesfbads" placeholder="ads">
                 </div>
                 <div class="fila">
-                    <label for="email"># Posts (cuántas en el mes)</label>
+                    <label for="email" id="labelpostalmesfb"># Posts (cuántas en el mes)</label>
                     <input type="number" name="postalmesfb" id="postalmesfb">
                 </div>
                 <div class="fila">

@@ -129,7 +129,9 @@ function calcularMetrica(valorEntrada, valorDivisor, formato) {
       ? (numero / denominador) * 100
       : numero / denominador;
 
-  return formato === "porcentaje" ? `${resultado.toFixed(2)}%` : resultado.toFixed();
+  return formato === "porcentaje"
+    ? `${resultado.toFixed(2)}%`
+    : resultado.toFixed();
 }
 
 /**
@@ -158,7 +160,11 @@ function crearManejadorMetrica(config) {
   return function () {
     try {
       const { entrada, divisor, salida } = obtenerElementosDOM(config);
-      const resultado = calcularMetrica(entrada.value, divisor.value, config.formato);
+      const resultado = calcularMetrica(
+        entrada.value,
+        divisor.value,
+        config.formato
+      );
 
       salida.textContent = config.etiqueta
         ? `${config.etiqueta}: ${resultado}`
@@ -179,7 +185,10 @@ function registrarEventos() {
     Object.values(plataforma).forEach((metrica) => {
       const elementoEntrada = document.getElementById(metrica.entrada);
       if (elementoEntrada) {
-        elementoEntrada.addEventListener("blur", crearManejadorMetrica(metrica));
+        elementoEntrada.addEventListener(
+          "blur",
+          crearManejadorMetrica(metrica)
+        );
       } else {
         console.warn(`No se encontró elemento con ID: ${metrica.entrada}`);
       }
@@ -187,10 +196,7 @@ function registrarEventos() {
   });
 }
 
-
-
 //logica de porcentaje de ads
-
 
 // Configuración de elementos y sus referencias
 const CONFIG_ELEMENTOS = {
@@ -276,7 +282,10 @@ function eliminarTooltip(elemento) {
  */
 function configurarEventosTooltip(elementoAds, elementoTotal) {
   elementoAds.addEventListener("mouseenter", () => {
-    const porcentaje = calcularPorcentaje(elementoAds.value, elementoTotal.value);
+    const porcentaje = calcularPorcentaje(
+      elementoAds.value,
+      elementoTotal.value
+    );
     mostrarTooltip(elementoAds, porcentaje);
   });
 
@@ -291,7 +300,11 @@ Object.values(elementosDOM).forEach((plataforma) => {
     if (ads && total) {
       configurarEventosTooltip(ads, total);
     } else {
-      console.warn(`Faltan elementos para configurar: ${ads?.id || "ads"} o ${total?.id || "total"}`);
+      console.warn(
+        `Faltan elementos para configurar: ${ads?.id || "ads"} o ${
+          total?.id || "total"
+        }`
+      );
     }
   });
 });
@@ -312,7 +325,7 @@ function insertarDatos(data) {
     },
     body: JSON.stringify({
       action: "insert",
-      data: data
+      data: data,
     }),
   })
     .then((response) => response.json())
@@ -325,7 +338,7 @@ function insertarDatos(data) {
     });
 }
 
-var Registros = {}
+var Registros = {};
 
 function listarRegistros() {
   fetch("../controller/registros.php", {
@@ -334,14 +347,13 @@ function listarRegistros() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      action: "list"
+      action: "list",
     }),
   })
     .then((response) => response.json())
     .then((result) => {
-      Registros = result.data
+      Registros = result.data;
       MostrarRegistros2(Registros);
-
     })
     .catch((error) => {
       console.error("Error al listar registros:", error);
@@ -355,7 +367,7 @@ function iniciarApp() {
 }
 function MostrarRegistros(Registros) {
   console.log(Registros);
-  Registros.forEach(registro => {
+  Registros.forEach((registro) => {
     var fecha = formatoFecha(registro.fechaCreada);
     var containerRegistro = document.createElement("div");
     containerRegistro.classList.add("container-registro");
@@ -367,7 +379,6 @@ function MostrarRegistros(Registros) {
     //conteiner con ads
     var divRowContainer = document.createElement("div");
     divRowContainer.classList.add("row-container-registros");
-
 
     var divRowContainerAlcance = document.createElement("div");
     divRowContainerAlcance.classList.add("row-container-registros");
@@ -387,188 +398,225 @@ function MostrarRegistros(Registros) {
     var divRowContainerClicsEnlaceIg = document.createElement("div");
     divRowContainerClicsEnlaceIg.classList.add("row-container-registros");
 
-
     //Parrafos normales
 
     var pSeguidoresfb = document.createElement("p");
-    pSeguidoresfb.textContent = 'Seguidores totales: ' + registro.seguidoresfb;
+    pSeguidoresfb.textContent = "Seguidores totales: " + registro.seguidoresfb;
     pSeguidoresfb.classList.add("fechaRegistro");
 
     var ppostalmesfb = document.createElement("p");
-    ppostalmesfb.textContent = '# Posts (cuántas en el mes) :' + registro.postalmesfb;
+    ppostalmesfb.textContent =
+      "# Posts (cuántas en el mes) :" + registro.postalmesfb;
     ppostalmesfb.classList.add("fechaRegistro");
     var pVisualizacionesfb = document.createElement("p");
-    pVisualizacionesfb.textContent = 'Visualizaciones :' + registro.visualizacionesfb;
+    pVisualizacionesfb.textContent =
+      "Visualizaciones :" + registro.visualizacionesfb;
     pVisualizacionesfb.classList.add("fechaRegistro");
     var pInversionPublicitaria = document.createElement("p");
-    pInversionPublicitaria.textContent = 'Inversion Publicitaria :' + registro.inversionPublicitaria;
-    pInversionPublicitaria.classList.add("fechaRegistro")
+    pInversionPublicitaria.textContent =
+      "Inversion Publicitaria :" + registro.inversionPublicitaria;
+    pInversionPublicitaria.classList.add("fechaRegistro");
 
     var pNumeroDePublicacionesFb = document.createElement("p");
-    pNumeroDePublicacionesFb.textContent = 'Numero de publicaciones: ' + registro.nPublicacionesfb;
+    pNumeroDePublicacionesFb.textContent =
+      "Numero de publicaciones: " + registro.nPublicacionesfb;
     pNumeroDePublicacionesFb.classList.add("fechaRegistro");
 
     var pvisualizacionesxpublicacionesfb = document.createElement("p");
-    pvisualizacionesxpublicacionesfb.textContent = 'Numero de visualizaciones: ' + registro.visualizacionesxpublicacionesfb;
+    pvisualizacionesxpublicacionesfb.textContent =
+      "Numero de visualizaciones: " + registro.visualizacionesxpublicacionesfb;
     pvisualizacionesxpublicacionesfb.classList.add("fechaRegistro");
 
     var pInteraccionesxpublicacionesfb = document.createElement("p");
-    pInteraccionesxpublicacionesfb.textContent = 'Numero de interacciones: ' + registro.interaccionesxpublicacionesfb;
+    pInteraccionesxpublicacionesfb.textContent =
+      "Numero de interacciones: " + registro.interaccionesxpublicacionesfb;
     pInteraccionesxpublicacionesfb.classList.add("fechaRegistro");
 
     var pnHistorias = document.createElement("p");
-    pnHistorias.textContent = '# de historias: ' + registro.nHistorias;
+    pnHistorias.textContent = "# de historias: " + registro.nHistorias;
     pnHistorias.classList.add("fechaRegistro");
 
     var pnReels = document.createElement("p");
-    pnReels.textContent = '# de reels: ' + registro.nReels;
+    pnReels.textContent = "# de reels: " + registro.nReels;
     pnReels.classList.add("fechaRegistro");
 
     var pVisualizacionesxreels = document.createElement("p");
-    pVisualizacionesxreels.textContent = 'Visualizaciones: ' + registro.visualizacionesxreels;
+    pVisualizacionesxreels.textContent =
+      "Visualizaciones: " + registro.visualizacionesxreels;
     pVisualizacionesxreels.classList.add("fechaRegistro");
 
     var pInteraccionesxreels = document.createElement("p");
-    pInteraccionesxreels.textContent = 'Interacciones: ' + registro.interaccionesxreels;
+    pInteraccionesxreels.textContent =
+      "Interacciones: " + registro.interaccionesxreels;
     pInteraccionesxreels.classList.add("fechaRegistro");
 
     var pvisualizacionesxhistorias = document.createElement("p");
-    pvisualizacionesxhistorias.textContent = 'Visualizaciones: ' + registro.visualizacionesxhistorias;
+    pvisualizacionesxhistorias.textContent =
+      "Visualizaciones: " + registro.visualizacionesxhistorias;
     pvisualizacionesxhistorias.classList.add("fechaRegistro");
 
     var pinteraccionesxhistorias = document.createElement("p");
-    pinteraccionesxhistorias.textContent = 'Interacciones: ' + registro.interaccionesxhistorias;
+    pinteraccionesxhistorias.textContent =
+      "Interacciones: " + registro.interaccionesxhistorias;
     pinteraccionesxhistorias.classList.add("fechaRegistro");
 
     var pseguidoresTotalesIg = document.createElement("p");
-    pseguidoresTotalesIg.textContent = 'Seguidores totales: ' + registro.seguidoresTotalesIg;
+    pseguidoresTotalesIg.textContent =
+      "Seguidores totales: " + registro.seguidoresTotalesIg;
     pseguidoresTotalesIg.classList.add("fechaRegistro");
 
     var pseguidoresdelmesIg = document.createElement("p");
-    pseguidoresdelmesIg.textContent = 'Seguidores del mes: ' + registro.seguidoresdelmesIg;
+    pseguidoresdelmesIg.textContent =
+      "Seguidores del mes: " + registro.seguidoresdelmesIg;
     pseguidoresdelmesIg.classList.add("fechaRegistro");
 
     var pnPostsEnElMesIg = document.createElement("p");
-    pnPostsEnElMesIg.textContent = '# Posts (cuántas en el mes): ' + registro.nPostsEnElMesIg;
+    pnPostsEnElMesIg.textContent =
+      "# Posts (cuántas en el mes): " + registro.nPostsEnElMesIg;
     pnPostsEnElMesIg.classList.add("fechaRegistro");
 
     var pvisualizacionesBFB = document.createElement("p");
-    pvisualizacionesBFB.textContent = 'Visualizaciones BFB: ' + registro.visualizacionesBFB;
+    pvisualizacionesBFB.textContent =
+      "Visualizaciones BFB: " + registro.visualizacionesBFB;
     pvisualizacionesBFB.classList.add("fechaRegistro");
 
     var pinversionPublicitariaig = document.createElement("p");
-    pinversionPublicitariaig.textContent = 'Inversion Publicitaria: ' + registro.inversionPublicitariaig;
+    pinversionPublicitariaig.textContent =
+      "Inversion Publicitaria: " + registro.inversionPublicitariaig;
     pinversionPublicitariaig.classList.add("fechaRegistro");
 
     var pnPublicacionesig = document.createElement("p");
-    pnPublicacionesig.textContent = 'Numero de publicaciones: ' + registro.nPublicacionesig;
+    pnPublicacionesig.textContent =
+      "Numero de publicaciones: " + registro.nPublicacionesig;
     pnPublicacionesig.classList.add("fechaRegistro");
 
     var pvisualizacionesxpublicacionesig = document.createElement("p");
-    pvisualizacionesxpublicacionesig.textContent = 'visualizaciones: ' + registro.visualizacionesxpublicacionesig;
+    pvisualizacionesxpublicacionesig.textContent =
+      "visualizaciones: " + registro.visualizacionesxpublicacionesig;
     pvisualizacionesxpublicacionesig.classList.add("fechaRegistro");
 
     var pinteraccionesxpublicacionesig = document.createElement("p");
-    pinteraccionesxpublicacionesig.textContent = 'interacciones: ' + registro.interaccionesxpublicacionesig;
+    pinteraccionesxpublicacionesig.textContent =
+      "interacciones: " + registro.interaccionesxpublicacionesig;
     pinteraccionesxpublicacionesig.classList.add("fechaRegistro");
 
     var pnReelsig = document.createElement("p");
-    pnReelsig.textContent = '# de reels: ' + registro.nReelsig;
+    pnReelsig.textContent = "# de reels: " + registro.nReelsig;
     pnReelsig.classList.add("fechaRegistro");
 
     var pvisualizacionesxreelsig = document.createElement("p");
-    pvisualizacionesxreelsig.textContent = 'visualizaciones: ' + registro.visualizacionesxreelsig;
+    pvisualizacionesxreelsig.textContent =
+      "visualizaciones: " + registro.visualizacionesxreelsig;
     pvisualizacionesxreelsig.classList.add("fechaRegistro");
 
     var pinteraccionesxreelsig = document.createElement("p");
-    pinteraccionesxreelsig.textContent = 'interacciones: ' + registro.interaccionesxreelsig;
+    pinteraccionesxreelsig.textContent =
+      "interacciones: " + registro.interaccionesxreelsig;
     pinteraccionesxreelsig.classList.add("fechaRegistro");
 
-
     var pnHistoriasig = document.createElement("p");
-    pnHistoriasig.textContent = '# de historias: ' + registro.nHistoriasig;
+    pnHistoriasig.textContent = "# de historias: " + registro.nHistoriasig;
     pnHistoriasig.classList.add("fechaRegistro");
 
     var palcanceHistoriasig = document.createElement("p");
-    palcanceHistoriasig.textContent = 'Alcance: ' + registro.alcanceHistoriasig;
+    palcanceHistoriasig.textContent = "Alcance: " + registro.alcanceHistoriasig;
     palcanceHistoriasig.classList.add("fechaRegistro");
 
     var pinteraccionesHistoriasig = document.createElement("p");
-    pinteraccionesHistoriasig.textContent = 'Interacciones: ' + registro.interaccionesHistoriasig;
+    pinteraccionesHistoriasig.textContent =
+      "Interacciones: " + registro.interaccionesHistoriasig;
     pinteraccionesHistoriasig.classList.add("fechaRegistro");
 
     var pseguidorestotalesTikTok = document.createElement("p");
-    pseguidorestotalesTikTok.textContent = 'Seguidores totales: ' + registro.seguidorestotalesTikTok;
+    pseguidorestotalesTikTok.textContent =
+      "Seguidores totales: " + registro.seguidorestotalesTikTok;
     pseguidorestotalesTikTok.classList.add("fechaRegistro");
 
     var pnSeguidoresDelMesTikTok = document.createElement("p");
-    pnSeguidoresDelMesTikTok.textContent = 'Seguidores del mes: ' + registro.nSeguidoresDelMesTikTok;
+    pnSeguidoresDelMesTikTok.textContent =
+      "Seguidores del mes: " + registro.nSeguidoresDelMesTikTok;
     pnSeguidoresDelMesTikTok.classList.add("fechaRegistro");
 
     var pnPublicacionesTikTok = document.createElement("p");
-    pnPublicacionesTikTok.textContent = 'Publicaciones: ' + registro.nPublicacionesTikTok;
+    pnPublicacionesTikTok.textContent =
+      "Publicaciones: " + registro.nPublicacionesTikTok;
     pnPublicacionesTikTok.classList.add("fechaRegistro");
 
     var pnMeGustaDelMesTikTok = document.createElement("p");
-    pnMeGustaDelMesTikTok.textContent = 'Me gusta del mes: ' + registro.nMeGustaDelMesTikTok;
+    pnMeGustaDelMesTikTok.textContent =
+      "Me gusta del mes: " + registro.nMeGustaDelMesTikTok;
     pnMeGustaDelMesTikTok.classList.add("fechaRegistro");
 
     var pvisualizacionesdevideoTikTok = document.createElement("p");
-    pvisualizacionesdevideoTikTok.textContent = 'Visualizaciones de video: ' + registro.visualizacionesdevideoTikTok;
+    pvisualizacionesdevideoTikTok.textContent =
+      "Visualizaciones de video: " + registro.visualizacionesdevideoTikTok;
     pvisualizacionesdevideoTikTok.classList.add("fechaRegistro");
 
     var pseguidorestotalesx = document.createElement("p");
-    pseguidorestotalesx.textContent = 'Seguidores totales: ' + registro.seguidorestotalesx;
+    pseguidorestotalesx.textContent =
+      "Seguidores totales: " + registro.seguidorestotalesx;
     pseguidorestotalesx.classList.add("fechaRegistro");
 
     var pnSeguidoresDelMesx = document.createElement("p");
-    pnSeguidoresDelMesx.textContent = 'Seguidores del mes: ' + registro.nSeguidoresDelMesx;
+    pnSeguidoresDelMesx.textContent =
+      "Seguidores del mes: " + registro.nSeguidoresDelMesx;
     pnSeguidoresDelMesx.classList.add("fechaRegistro");
 
     var pnPublicacionesx = document.createElement("p");
-    pnPublicacionesx.textContent = 'Publicaciones: ' + registro.nPublicacionesx;
+    pnPublicacionesx.textContent = "Publicaciones: " + registro.nPublicacionesx;
     pnPublicacionesx.classList.add("fechaRegistro");
 
     var pinpremionesx = document.createElement("p");
-    pinpremionesx.textContent = 'Premios: ' + registro.inpremionesx;
+    pinpremionesx.textContent = "Premios: " + registro.inpremionesx;
     pinpremionesx.classList.add("fechaRegistro");
 
     //definimos las variables que tienen ads
     var Pseguidoresdelmesfb = document.createElement("p");
-    Pseguidoresdelmesfb.textContent = 'Seguidores del mes: ' + registro.seguidoresdelmesfb;
+    Pseguidoresdelmesfb.textContent =
+      "Seguidores del mes: " + registro.seguidoresdelmesfb;
     var Pseguidoresdelmesfbads = document.createElement("p");
-    Pseguidoresdelmesfbads.textContent = 'ads: ' + registro.seguidoresdelmesfbads;
+    Pseguidoresdelmesfbads.textContent =
+      "ads: " + registro.seguidoresdelmesfbads;
 
     var pAlcancefb = document.createElement("p");
-    pAlcancefb.textContent = 'Alcance: ' + registro.alcancefb;
+    pAlcancefb.textContent = "Alcance: " + registro.alcancefb;
     var pAlcancefbads = document.createElement("p");
-    pAlcancefbads.textContent = 'ads: ' + registro.alcancefbads;
+    pAlcancefbads.textContent = "ads: " + registro.alcancefbads;
 
     var pInteraccionesconelcontenidofb = document.createElement("p");
-    pInteraccionesconelcontenidofb.textContent = 'Interacciones con el contenido: ' + registro.interracionesconelcontenidofb;
+    pInteraccionesconelcontenidofb.textContent =
+      "Interacciones con el contenido: " +
+      registro.interracionesconelcontenidofb;
     var pInteraccionesconelcontenidofbads = document.createElement("p");
-    pInteraccionesconelcontenidofbads.textContent = 'ads: ' + registro.interracionesconelcontenidofbads;
+    pInteraccionesconelcontenidofbads.textContent =
+      "ads: " + registro.interracionesconelcontenidofbads;
 
     var pclicsenelalcancefb = document.createElement("p");
-    pclicsenelalcancefb.textContent = 'Clics en el enlace :' + registro.clicsenelalcancefb;
+    pclicsenelalcancefb.textContent =
+      "Clics en el enlace :" + registro.clicsenelalcancefb;
     var pclicsenelalcancefbads = document.createElement("p");
-    pclicsenelalcancefbads.textContent = 'ads: ' + registro.clicsenelalcancefbads;
-
+    pclicsenelalcancefbads.textContent =
+      "ads: " + registro.clicsenelalcancefbads;
 
     var pAlcanceIg = document.createElement("p");
-    pAlcanceIg.textContent = 'Alcance: ' + registro.alcanceIg;
+    pAlcanceIg.textContent = "Alcance: " + registro.alcanceIg;
     var pAlcanceIgads = document.createElement("p");
-    pAlcanceIgads.textContent = 'ads: ' + registro.alcanceIgads;
+    pAlcanceIgads.textContent = "ads: " + registro.alcanceIgads;
 
     var pinteraccionesconelcontenidoig = document.createElement("p");
-    pinteraccionesconelcontenidoig.textContent = 'Interacciones con el contenido: ' + registro.interaccionesconelcontenidoig;
+    pinteraccionesconelcontenidoig.textContent =
+      "Interacciones con el contenido: " +
+      registro.interaccionesconelcontenidoig;
     var pinteraccionesconelcontenidoigads = document.createElement("p");
-    pinteraccionesconelcontenidoigads.textContent = 'ads: ' + registro.interaccionesconelcontenidoigads;
+    pinteraccionesconelcontenidoigads.textContent =
+      "ads: " + registro.interaccionesconelcontenidoigads;
 
     var pclicsenelalcanceig = document.createElement("p");
-    pclicsenelalcanceig.textContent = 'Clics en el enlace :' + registro.clicsenelalcanceig;
+    pclicsenelalcanceig.textContent =
+      "Clics en el enlace :" + registro.clicsenelalcanceig;
     var pclicsenelalcanceigads = document.createElement("p");
-    pclicsenelalcanceigads.textContent = 'ads: ' + registro.clicsenelalcanceigads;
+    pclicsenelalcanceigads.textContent =
+      "ads: " + registro.clicsenelalcanceigads;
 
     //metemos en un div los p que tienen ads
     divRowContainer.appendChild(Pseguidoresdelmesfb);
@@ -583,100 +631,144 @@ function MostrarRegistros(Registros) {
     divRowContainerAlcanceIg.appendChild(pAlcanceIg);
     divRowContainerAlcanceIg.appendChild(pAlcanceIgads);
     divRowContainerInteraccionesIg.appendChild(pinteraccionesconelcontenidoig);
-    divRowContainerInteraccionesIg.appendChild(pinteraccionesconelcontenidoigads);
+    divRowContainerInteraccionesIg.appendChild(
+      pinteraccionesconelcontenidoigads
+    );
 
     divRowContainerClicsEnlaceIg.appendChild(pclicsenelalcanceig);
     divRowContainerClicsEnlaceIg.appendChild(pclicsenelalcanceigads);
 
-
     //kpis
-    var ViewRateFb = (registro.visualizacionesfb / registro.postalmesfb).toFixed(0);
+    var ViewRateFb = (
+      registro.visualizacionesfb / registro.postalmesfb
+    ).toFixed(0);
     var pViewRateFb = document.createElement("p");
-    pViewRateFb.textContent = 'View Rate Fb: ' + ViewRateFb;
+    pViewRateFb.textContent = "View Rate Fb: " + ViewRateFb;
     pViewRateFb.classList.add("card-kpis");
 
-    var engagementRateFb = (registro.interracionesconelcontenidofb / registro.alcancefb * 100).toFixed(2);
+    var engagementRateFb = (
+      (registro.interracionesconelcontenidofb / registro.alcancefb) *
+      100
+    ).toFixed(2);
     var pEngagementRateFb = document.createElement("p");
-    pEngagementRateFb.textContent = 'Engagement Rate Fb: ' + engagementRateFb + '%';
+    pEngagementRateFb.textContent =
+      "Engagement Rate Fb: " + engagementRateFb + "%";
     pEngagementRateFb.classList.add("card-kpis");
 
-    var clickthroughRateFb = (registro.clicsenelalcancefb / registro.alcancefb * 100).toFixed(2);
+    var clickthroughRateFb = (
+      (registro.clicsenelalcancefb / registro.alcancefb) *
+      100
+    ).toFixed(2);
     var pClickthroughRateFb = document.createElement("p");
-    pClickthroughRateFb.textContent = 'Clickthrough Rate Fb: ' + clickthroughRateFb + '%';
+    pClickthroughRateFb.textContent =
+      "Clickthrough Rate Fb: " + clickthroughRateFb + "%";
     pClickthroughRateFb.classList.add("card-kpis");
 
-    var kpiVisualizaciones_Posts = (registro.visualizacionesxpublicacionesfb / registro.nPublicacionesfb).toFixed(0);
+    var kpiVisualizaciones_Posts = (
+      registro.visualizacionesxpublicacionesfb / registro.nPublicacionesfb
+    ).toFixed(0);
     var pKPI_Visualizaciones_Posts = document.createElement("p");
-    pKPI_Visualizaciones_Posts.textContent = 'KPI Visualizaciones / Posts:' + kpiVisualizaciones_Posts;
+    pKPI_Visualizaciones_Posts.textContent =
+      "KPI Visualizaciones / Posts:" + kpiVisualizaciones_Posts;
     pKPI_Visualizaciones_Posts.classList.add("card-kpis");
 
-    var KPI_Visualizaciones_Posts_reels = (registro.visualizacionesxreels / registro.nReels).toFixed(0);
+    var KPI_Visualizaciones_Posts_reels = (
+      registro.visualizacionesxreels / registro.nReels
+    ).toFixed(0);
     var pKPI_Visualizaciones_Posts_reels = document.createElement("p");
-    pKPI_Visualizaciones_Posts_reels.textContent = 'KPI Visualizaciones / Posts:' + KPI_Visualizaciones_Posts_reels;
+    pKPI_Visualizaciones_Posts_reels.textContent =
+      "KPI Visualizaciones / Posts:" + KPI_Visualizaciones_Posts_reels;
     pKPI_Visualizaciones_Posts_reels.classList.add("card-kpis");
 
-    var Kpi_visualizaciones_post_historias = (registro.visualizacionesxhistorias / registro.nHistorias).toFixed(0);
+    var Kpi_visualizaciones_post_historias = (
+      registro.visualizacionesxhistorias / registro.nHistorias
+    ).toFixed(0);
     var pKpi_visualizaciones_post_historias = document.createElement("p");
-    pKpi_visualizaciones_post_historias.textContent = 'KPI Visualizaciones / Posts:' + Kpi_visualizaciones_post_historias;
+    pKpi_visualizaciones_post_historias.textContent =
+      "KPI Visualizaciones / Posts:" + Kpi_visualizaciones_post_historias;
     pKpi_visualizaciones_post_historias.classList.add("card-kpis");
 
-    var kpi_View_Rate_ig = (registro.visualizacionesBFB / registro.nPostsEnElMesIg).toFixed(0);
+    var kpi_View_Rate_ig = (
+      registro.visualizacionesBFB / registro.nPostsEnElMesIg
+    ).toFixed(0);
     var pKpi_View_Rate_ig = document.createElement("p");
-    pKpi_View_Rate_ig.textContent = 'View Rate IG: ' + kpi_View_Rate_ig;
+    pKpi_View_Rate_ig.textContent = "View Rate IG: " + kpi_View_Rate_ig;
     pKpi_View_Rate_ig.classList.add("card-kpis");
 
-    var kpi_Engagement_Rate_ig = (registro.interaccionesconelcontenidoig / registro.alcanceIg * 100).toFixed(2);
+    var kpi_Engagement_Rate_ig = (
+      (registro.interaccionesconelcontenidoig / registro.alcanceIg) *
+      100
+    ).toFixed(2);
     var pKpi_Engagement_Rate_ig = document.createElement("p");
-    pKpi_Engagement_Rate_ig.textContent = 'Engagement Rate : ' + kpi_Engagement_Rate_ig + '%';
+    pKpi_Engagement_Rate_ig.textContent =
+      "Engagement Rate : " + kpi_Engagement_Rate_ig + "%";
     pKpi_Engagement_Rate_ig.classList.add("card-kpis");
 
-    var kpi_Clickthrough_Rate_ig = (registro.clicsenelalcanceig / registro.alcanceIg * 100).toFixed(2);
+    var kpi_Clickthrough_Rate_ig = (
+      (registro.clicsenelalcanceig / registro.alcanceIg) *
+      100
+    ).toFixed(2);
     var pKpi_Clickthrough_Rate_ig = document.createElement("p");
-    pKpi_Clickthrough_Rate_ig.textContent = 'Clickthrough Rate : ' + kpi_Clickthrough_Rate_ig + '%';
+    pKpi_Clickthrough_Rate_ig.textContent =
+      "Clickthrough Rate : " + kpi_Clickthrough_Rate_ig + "%";
     pKpi_Clickthrough_Rate_ig.classList.add("card-kpis");
 
-    var kpi_visualizaciones_post_publicaciones_ig = (registro.visualizacionesxpublicacionesig / registro.nPublicacionesig).toFixed(0);
-    var pKpi_visualizaciones_post_publicaciones_ig = document.createElement("p");
-    pKpi_visualizaciones_post_publicaciones_ig.textContent = 'KPI Visualizaciones / Posts:' + kpi_visualizaciones_post_publicaciones_ig;
+    var kpi_visualizaciones_post_publicaciones_ig = (
+      registro.visualizacionesxpublicacionesig / registro.nPublicacionesig
+    ).toFixed(0);
+    var pKpi_visualizaciones_post_publicaciones_ig =
+      document.createElement("p");
+    pKpi_visualizaciones_post_publicaciones_ig.textContent =
+      "KPI Visualizaciones / Posts:" +
+      kpi_visualizaciones_post_publicaciones_ig;
     pKpi_visualizaciones_post_publicaciones_ig.classList.add("card-kpis");
 
-    var kpi_visualizaciones_reels_ig = (registro.visualizacionesxreelsig / registro.nReelsig).toFixed(0);
+    var kpi_visualizaciones_reels_ig = (
+      registro.visualizacionesxreelsig / registro.nReelsig
+    ).toFixed(0);
     var pKpi_visualizaciones_reels_ig = document.createElement("p");
-    pKpi_visualizaciones_reels_ig.textContent = 'KPI Visualizaciones / Posts:' + kpi_visualizaciones_reels_ig;
+    pKpi_visualizaciones_reels_ig.textContent =
+      "KPI Visualizaciones / Posts:" + kpi_visualizaciones_reels_ig;
     pKpi_visualizaciones_reels_ig.classList.add("card-kpis");
 
-    var kpi_visulizaciones_historias_ig = (registro.alcanceHistoriasig / registro.nHistoriasig).toFixed(0);
+    var kpi_visulizaciones_historias_ig = (
+      registro.alcanceHistoriasig / registro.nHistoriasig
+    ).toFixed(0);
     var pKpi_visulizaciones_historias_ig = document.createElement("p");
-    pKpi_visulizaciones_historias_ig.textContent = 'KPI Visualizaciones / Posts:' + kpi_visulizaciones_historias_ig;
+    pKpi_visulizaciones_historias_ig.textContent =
+      "KPI Visualizaciones / Posts:" + kpi_visulizaciones_historias_ig;
     pKpi_visulizaciones_historias_ig.classList.add("card-kpis");
 
-    var kpi_view_rate_tiktok = (registro.visualizacionesdevideoTikTok / registro.nPublicacionesTikTok).toFixed(0);
+    var kpi_view_rate_tiktok = (
+      registro.visualizacionesdevideoTikTok / registro.nPublicacionesTikTok
+    ).toFixed(0);
     var pKpi_view_rate_tiktok = document.createElement("p");
-    pKpi_view_rate_tiktok.textContent = 'View Rate : ' + kpi_view_rate_tiktok;
+    pKpi_view_rate_tiktok.textContent = "View Rate : " + kpi_view_rate_tiktok;
     pKpi_view_rate_tiktok.classList.add("card-kpis");
 
-    var kpi_view_rate_X = (registro.inpremionesx / registro.nPublicacionesx).toFixed(0);
+    var kpi_view_rate_X = (
+      registro.inpremionesx / registro.nPublicacionesx
+    ).toFixed(0);
     var pKpi_view_rate_X = document.createElement("p");
-    pKpi_view_rate_X.textContent = 'View Rate : ' + kpi_view_rate_X;
+    pKpi_view_rate_X.textContent = "View Rate : " + kpi_view_rate_X;
     pKpi_view_rate_X.classList.add("card-kpis");
 
     //titulos
     var PFacebook = document.createElement("p");
-    PFacebook.textContent = 'FACEBOOK';
+    PFacebook.textContent = "FACEBOOK";
     PFacebook.classList.add("card-titulo");
 
     var PInstagram = document.createElement("p");
-    PInstagram.textContent = 'INSTAGRAM';
+    PInstagram.textContent = "INSTAGRAM";
     PInstagram.classList.add("card-titulo");
 
     var Ptiktok = document.createElement("p");
-    Ptiktok.textContent = 'TIKTOK';
+    Ptiktok.textContent = "TIKTOK";
     Ptiktok.classList.add("card-titulo");
 
     var PX = document.createElement("p");
-    PX.textContent = 'X';
+    PX.textContent = "X";
     PX.classList.add("card-titulo");
-
 
     containerRegistro.appendChild(pFecha);
 
@@ -739,7 +831,6 @@ function MostrarRegistros(Registros) {
     containerRegistro.appendChild(pvisualizacionesdevideoTikTok);
     containerRegistro.appendChild(pKpi_view_rate_tiktok);
 
-
     containerRegistro.appendChild(PX);
     containerRegistro.appendChild(pseguidorestotalesx);
     containerRegistro.appendChild(pnSeguidoresDelMesx);
@@ -747,19 +838,24 @@ function MostrarRegistros(Registros) {
     containerRegistro.appendChild(pinpremionesx);
     containerRegistro.appendChild(pKpi_view_rate_X);
 
-
-
-
-
     resultadosRegistros.appendChild(containerRegistro);
-
   });
 }
 
 function formatoFecha(fecha) {
   const meses = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
   const [year, month] = fecha.split("-");
   return `${meses[parseInt(month, 10) - 1]}-${year}`;
@@ -767,7 +863,7 @@ function formatoFecha(fecha) {
 
 function MostrarRegistros2(Registros) {
   console.log(Registros);
-  Registros.forEach(registro => {
+  Registros.forEach((registro) => {
     const fechaFormateada = formatoFecha(registro.fechaCreada);
     //creamos un div que contendra el registro
     const containerRegistro = document.createElement("div");
@@ -800,7 +896,8 @@ function MostrarRegistros2(Registros) {
     const divFilaNpublicacionesFb = document.createElement("div");
     divFilaNpublicacionesFb.classList.add("fila");
 
-    const divFilaVisualizacionesxPublicacionesFb = document.createElement("div");
+    const divFilaVisualizacionesxPublicacionesFb =
+      document.createElement("div");
     divFilaVisualizacionesxPublicacionesFb.classList.add("fila");
 
     const divFilaInteraccionesxPublicacionesFb = document.createElement("div");
@@ -906,7 +1003,6 @@ function MostrarRegistros2(Registros) {
     const h1Facebook = document.createElement("h1");
     h1Facebook.textContent = "FACEBOOK / " + fechaFormateada;
 
-
     const h1Instagram = document.createElement("h1");
     h1Instagram.textContent = "INSTAGRAM";
 
@@ -919,7 +1015,6 @@ function MostrarRegistros2(Registros) {
     //labels
     const labelFilaStotalesFb = document.createElement("label");
     labelFilaStotalesFb.textContent = "Seguidores totales";
-
 
     const labeNseguidoresDelMesFb = document.createElement("label");
     labeNseguidoresDelMesFb.textContent = "# seguidores del mes";
@@ -934,7 +1029,8 @@ function MostrarRegistros2(Registros) {
     labelAlcancefb.textContent = "Alcance";
 
     const labelInteraccionesConElContenidoFb = document.createElement("label");
-    labelInteraccionesConElContenidoFb.textContent = "Interacciones con el contenido";
+    labelInteraccionesConElContenidoFb.textContent =
+      "Interacciones con el contenido";
 
     const labelClicsEnElEnlaceFb = document.createElement("label");
     labelClicsEnElEnlaceFb.textContent = "Clics en el enlace";
@@ -985,7 +1081,8 @@ function MostrarRegistros2(Registros) {
     labelAlcanceIg.textContent = "Alcance";
 
     const labelInteraccionesConElContenidoIg = document.createElement("label");
-    labelInteraccionesConElContenidoIg.textContent = "Interacciones con el contenido";
+    labelInteraccionesConElContenidoIg.textContent =
+      "Interacciones con el contenido";
 
     const labelClicsEnElEnlaceIg = document.createElement("label");
     labelClicsEnElEnlaceIg.textContent = "Clics en el enlace";
@@ -1033,7 +1130,8 @@ function MostrarRegistros2(Registros) {
     labelMegustaDelMesTiktok.textContent = "Me gusta del mes";
 
     const labelVisualizacionesdevideoTiktok = document.createElement("label");
-    labelVisualizacionesdevideoTiktok.textContent = "Visualizaciones de video (máx)";
+    labelVisualizacionesdevideoTiktok.textContent =
+      "Visualizaciones de video (máx)";
 
     const labelSeguidoresTotalesX = document.createElement("label");
     labelSeguidoresTotalesX.textContent = "Seguidores totales";
@@ -1064,7 +1162,8 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadVisualizacionesFb.value = registro.visualizacionesfb;
     inputOnlyReadVisualizacionesFb.readOnly = true;
 
-    const inputOnlyReadInversionPublicitariaFb = document.createElement("input");
+    const inputOnlyReadInversionPublicitariaFb =
+      document.createElement("input");
     inputOnlyReadInversionPublicitariaFb.type = "number";
     inputOnlyReadInversionPublicitariaFb.value = registro.inversionPublicitaria;
     inputOnlyReadInversionPublicitariaFb.readOnly = true;
@@ -1074,14 +1173,18 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadNpublicacionesfb.value = registro.nPublicacionesfb;
     inputOnlyReadNpublicacionesfb.readOnly = true;
 
-    const inputOnlyReadVisualizacionesPublicacionesfb = document.createElement("input");
+    const inputOnlyReadVisualizacionesPublicacionesfb =
+      document.createElement("input");
     inputOnlyReadVisualizacionesPublicacionesfb.type = "number";
-    inputOnlyReadVisualizacionesPublicacionesfb.value = registro.visualizacionesxpublicacionesfb;
+    inputOnlyReadVisualizacionesPublicacionesfb.value =
+      registro.visualizacionesxpublicacionesfb;
     inputOnlyReadVisualizacionesPublicacionesfb.readOnly = true;
 
-    const inputOnlyReadInteraccionespublicacionesfb = document.createElement("input");
+    const inputOnlyReadInteraccionespublicacionesfb =
+      document.createElement("input");
     inputOnlyReadInteraccionespublicacionesfb.type = "number";
-    inputOnlyReadInteraccionespublicacionesfb.value = registro.interaccionesxpublicacionesfb;
+    inputOnlyReadInteraccionespublicacionesfb.value =
+      registro.interaccionesxpublicacionesfb;
     inputOnlyReadInteraccionespublicacionesfb.readOnly = true;
 
     const inputOnlyReadNreelsfb = document.createElement("input");
@@ -1094,7 +1197,6 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadVisualizacionesReelsfb.value = registro.visualizacionesxreels;
     inputOnlyReadVisualizacionesReelsfb.readOnly = true;
 
-
     const inputOnlyReadInteraccionesxReelsfb = document.createElement("input");
     inputOnlyReadInteraccionesxReelsfb.type = "number";
     inputOnlyReadInteraccionesxReelsfb.value = registro.interaccionesxreels;
@@ -1105,14 +1207,18 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadNhistoriasfb.value = registro.nHistorias;
     inputOnlyReadNhistoriasfb.readOnly = true;
 
-    const inputOnlyReadVisualizacionesHistoriasfb = document.createElement("input");
+    const inputOnlyReadVisualizacionesHistoriasfb =
+      document.createElement("input");
     inputOnlyReadVisualizacionesHistoriasfb.type = "number";
-    inputOnlyReadVisualizacionesHistoriasfb.value = registro.visualizacionesxhistorias;
+    inputOnlyReadVisualizacionesHistoriasfb.value =
+      registro.visualizacionesxhistorias;
     inputOnlyReadVisualizacionesHistoriasfb.readOnly = true;
 
-    const inputOnlyReadInteraccionesxhistoriasfb = document.createElement("input");
+    const inputOnlyReadInteraccionesxhistoriasfb =
+      document.createElement("input");
     inputOnlyReadInteraccionesxhistoriasfb.type = "number";
-    inputOnlyReadInteraccionesxhistoriasfb.value = registro.interaccionesxhistorias;
+    inputOnlyReadInteraccionesxhistoriasfb.value =
+      registro.interaccionesxhistorias;
     inputOnlyReadInteraccionesxhistoriasfb.readOnly = true;
 
     const inputOnlyReadSeguidoresTotalesIg = document.createElement("input");
@@ -1135,9 +1241,11 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadVisualizacionesBfb.value = registro.visualizacionesBFB;
     inputOnlyReadVisualizacionesBfb.readOnly = true;
 
-    const inputOnlyReadInversionPublicitariaIg = document.createElement("input");
+    const inputOnlyReadInversionPublicitariaIg =
+      document.createElement("input");
     inputOnlyReadInversionPublicitariaIg.type = "number";
-    inputOnlyReadInversionPublicitariaIg.value = registro.inversionPublicitariaig;
+    inputOnlyReadInversionPublicitariaIg.value =
+      registro.inversionPublicitariaig;
     inputOnlyReadInversionPublicitariaIg.readOnly = true;
 
     const inputOnlyReadNpublicacionesig = document.createElement("input");
@@ -1147,12 +1255,15 @@ function MostrarRegistros2(Registros) {
 
     const inputOnlyReadVisualizacionesig = document.createElement("input");
     inputOnlyReadVisualizacionesig.type = "number";
-    inputOnlyReadVisualizacionesig.value = registro.visualizacionesxpublicacionesig;
+    inputOnlyReadVisualizacionesig.value =
+      registro.visualizacionesxpublicacionesig;
     inputOnlyReadVisualizacionesig.readOnly = true;
 
-    const inputOnlyReadInteraccionespublicacionesig = document.createElement("input");
+    const inputOnlyReadInteraccionespublicacionesig =
+      document.createElement("input");
     inputOnlyReadInteraccionespublicacionesig.type = "number";
-    inputOnlyReadInteraccionespublicacionesig.value = registro.interaccionesxpublicacionesig;
+    inputOnlyReadInteraccionespublicacionesig.value =
+      registro.interaccionesxpublicacionesig;
     inputOnlyReadInteraccionespublicacionesig.readOnly = true;
 
     const inputOnlyReadNreelsIg = document.createElement("input");
@@ -1162,7 +1273,8 @@ function MostrarRegistros2(Registros) {
 
     const inputOnlyReadVisualizacionesReelsIg = document.createElement("input");
     inputOnlyReadVisualizacionesReelsIg.type = "number";
-    inputOnlyReadVisualizacionesReelsIg.value = registro.visualizacionesxreelsig;
+    inputOnlyReadVisualizacionesReelsIg.value =
+      registro.visualizacionesxreelsig;
     inputOnlyReadVisualizacionesReelsIg.readOnly = true;
 
     const inputOnlyReadInteraccionesReelsIg = document.createElement("input");
@@ -1180,19 +1292,25 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadAlcanceHistoriasIg.value = registro.alcanceHistoriasig;
     inputOnlyReadAlcanceHistoriasIg.readOnly = true;
 
-    const inputOnlyReadInterraccionesHistoriasIg = document.createElement("input");
+    const inputOnlyReadInterraccionesHistoriasIg =
+      document.createElement("input");
     inputOnlyReadInterraccionesHistoriasIg.type = "number";
-    inputOnlyReadInterraccionesHistoriasIg.value = registro.interaccionesHistoriasig;
+    inputOnlyReadInterraccionesHistoriasIg.value =
+      registro.interaccionesHistoriasig;
     inputOnlyReadInterraccionesHistoriasIg.readOnly = true;
 
-    const inputOnlyReadSeguidoresTotalesTikTok = document.createElement("input");
+    const inputOnlyReadSeguidoresTotalesTikTok =
+      document.createElement("input");
     inputOnlyReadSeguidoresTotalesTikTok.type = "number";
-    inputOnlyReadSeguidoresTotalesTikTok.value = registro.seguidorestotalesTikTok;
+    inputOnlyReadSeguidoresTotalesTikTok.value =
+      registro.seguidorestotalesTikTok;
     inputOnlyReadSeguidoresTotalesTikTok.readOnly = true;
 
-    const inputOnlyReadNseguidoresdelmesTiktok = document.createElement("input");
+    const inputOnlyReadNseguidoresdelmesTiktok =
+      document.createElement("input");
     inputOnlyReadNseguidoresdelmesTiktok.type = "number";
-    inputOnlyReadNseguidoresdelmesTiktok.value = registro.nSeguidoresDelMesTikTok;
+    inputOnlyReadNseguidoresdelmesTiktok.value =
+      registro.nSeguidoresDelMesTikTok;
     inputOnlyReadNseguidoresdelmesTiktok.readOnly = true;
 
     const inputOnlyReadNpublicacionestiktok = document.createElement("input");
@@ -1205,9 +1323,11 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadMegustadelmesTiktok.value = registro.nMeGustaDelMesTikTok;
     inputOnlyReadMegustadelmesTiktok.readOnly = true;
 
-    const inputOnlyReadVisualizacionesdevideoTikTok = document.createElement("input");
+    const inputOnlyReadVisualizacionesdevideoTikTok =
+      document.createElement("input");
     inputOnlyReadVisualizacionesdevideoTikTok.type = "number";
-    inputOnlyReadVisualizacionesdevideoTikTok.value = registro.visualizacionesdevideoTikTok;
+    inputOnlyReadVisualizacionesdevideoTikTok.value =
+      registro.visualizacionesdevideoTikTok;
     inputOnlyReadVisualizacionesdevideoTikTok.readOnly = true;
 
     const inputOnlyReadSeguidoresTotalesX = document.createElement("input");
@@ -1241,13 +1361,22 @@ function MostrarRegistros2(Registros) {
     inputOnlyreadNseguidoresdelmesfbads.type = "number";
     inputOnlyreadNseguidoresdelmesfbads.value = registro.seguidoresdelmesfbads;
     inputOnlyreadNseguidoresdelmesfbads.readOnly = true;
-    inputOnlyreadNseguidoresdelmesfbads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyreadNseguidoresdelmesfbads.value, inputOnlyreadNseguidoresdelmesfb.value);
-      mostrarTooltip(inputOnlyreadNseguidoresdelmesfbads, porcentaje);
-    });
-    inputOnlyreadNseguidoresdelmesfbads.addEventListener("mouseleave", function () {
-      eliminarTooltip(inputOnlyreadNseguidoresdelmesfbads);
-    });
+    inputOnlyreadNseguidoresdelmesfbads.addEventListener(
+      "mouseenter",
+      function () {
+        const porcentaje = calcularPorcentaje(
+          inputOnlyreadNseguidoresdelmesfbads.value,
+          inputOnlyreadNseguidoresdelmesfb.value
+        );
+        mostrarTooltip(inputOnlyreadNseguidoresdelmesfbads, porcentaje);
+      }
+    );
+    inputOnlyreadNseguidoresdelmesfbads.addEventListener(
+      "mouseleave",
+      function () {
+        eliminarTooltip(inputOnlyreadNseguidoresdelmesfbads);
+      }
+    );
 
     //
     const inputOnlyReadAlcancefb = document.createElement("input");
@@ -1261,7 +1390,10 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadAlcancefbads.value = registro.alcancefbads;
     inputOnlyReadAlcancefbads.readOnly = true;
     inputOnlyReadAlcancefbads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadAlcancefbads.value, inputOnlyReadAlcancefb.value);
+      const porcentaje = calcularPorcentaje(
+        inputOnlyReadAlcancefbads.value,
+        inputOnlyReadAlcancefb.value
+      );
       mostrarTooltip(inputOnlyReadAlcancefbads, porcentaje);
     });
     inputOnlyReadAlcancefbads.addEventListener("mouseleave", function () {
@@ -1269,23 +1401,39 @@ function MostrarRegistros2(Registros) {
     });
 
     //
-    const inputOnlyReadInteraccionesConElContenidoFb = document.createElement("input");
+    const inputOnlyReadInteraccionesConElContenidoFb =
+      document.createElement("input");
     inputOnlyReadInteraccionesConElContenidoFb.type = "number";
-    inputOnlyReadInteraccionesConElContenidoFb.value = registro.interracionesconelcontenidofb;
+    inputOnlyReadInteraccionesConElContenidoFb.value =
+      registro.interracionesconelcontenidofb;
     inputOnlyReadInteraccionesConElContenidoFb.readOnly = true;
 
-    const inputOnlyReadInteraccionesConElContenidoFbads = document.createElement("input");
+    const inputOnlyReadInteraccionesConElContenidoFbads =
+      document.createElement("input");
     inputOnlyReadInteraccionesConElContenidoFbads.classList.add("ads");
     inputOnlyReadInteraccionesConElContenidoFbads.type = "number";
-    inputOnlyReadInteraccionesConElContenidoFbads.value = registro.interracionesconelcontenidofbads;
+    inputOnlyReadInteraccionesConElContenidoFbads.value =
+      registro.interracionesconelcontenidofbads;
     inputOnlyReadInteraccionesConElContenidoFbads.readOnly = true;
-    inputOnlyReadInteraccionesConElContenidoFbads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadInteraccionesConElContenidoFbads.value, inputOnlyReadInteraccionesConElContenidoFb.value);
-      mostrarTooltip(inputOnlyReadInteraccionesConElContenidoFbads, porcentaje);
-    });
-    inputOnlyReadInteraccionesConElContenidoFbads.addEventListener("mouseleave", function () {
-      eliminarTooltip(inputOnlyReadInteraccionesConElContenidoFbads);
-    });
+    inputOnlyReadInteraccionesConElContenidoFbads.addEventListener(
+      "mouseenter",
+      function () {
+        const porcentaje = calcularPorcentaje(
+          inputOnlyReadInteraccionesConElContenidoFbads.value,
+          inputOnlyReadInteraccionesConElContenidoFb.value
+        );
+        mostrarTooltip(
+          inputOnlyReadInteraccionesConElContenidoFbads,
+          porcentaje
+        );
+      }
+    );
+    inputOnlyReadInteraccionesConElContenidoFbads.addEventListener(
+      "mouseleave",
+      function () {
+        eliminarTooltip(inputOnlyReadInteraccionesConElContenidoFbads);
+      }
+    );
     //
 
     const inputOnlyReadClicSenElAlcanceFb = document.createElement("input");
@@ -1298,13 +1446,22 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadClicSenElAlcanceFbads.type = "number";
     inputOnlyReadClicSenElAlcanceFbads.value = registro.clicsenelalcancefbads;
     inputOnlyReadClicSenElAlcanceFbads.readOnly = true;
-    inputOnlyReadClicSenElAlcanceFbads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadClicSenElAlcanceFbads.value, inputOnlyReadClicSenElAlcanceFb.value);
-      mostrarTooltip(inputOnlyReadClicSenElAlcanceFbads, porcentaje);
-    });
-    inputOnlyReadClicSenElAlcanceFbads.addEventListener("mouseleave", function () {
-      eliminarTooltip(inputOnlyReadClicSenElAlcanceFbads);
-    });
+    inputOnlyReadClicSenElAlcanceFbads.addEventListener(
+      "mouseenter",
+      function () {
+        const porcentaje = calcularPorcentaje(
+          inputOnlyReadClicSenElAlcanceFbads.value,
+          inputOnlyReadClicSenElAlcanceFb.value
+        );
+        mostrarTooltip(inputOnlyReadClicSenElAlcanceFbads, porcentaje);
+      }
+    );
+    inputOnlyReadClicSenElAlcanceFbads.addEventListener(
+      "mouseleave",
+      function () {
+        eliminarTooltip(inputOnlyReadClicSenElAlcanceFbads);
+      }
+    );
 
     //
     const inputOnlyReadAlcanceIg = document.createElement("input");
@@ -1318,7 +1475,10 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadAlcanceIgads.value = registro.alcanceIgads;
     inputOnlyReadAlcanceIgads.readOnly = true;
     inputOnlyReadAlcanceIgads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadAlcanceIgads.value, inputOnlyReadAlcanceIg.value);
+      const porcentaje = calcularPorcentaje(
+        inputOnlyReadAlcanceIgads.value,
+        inputOnlyReadAlcanceIg.value
+      );
       mostrarTooltip(inputOnlyReadAlcanceIgads, porcentaje);
     });
     inputOnlyReadAlcanceIgads.addEventListener("mouseleave", function () {
@@ -1327,23 +1487,39 @@ function MostrarRegistros2(Registros) {
 
     //
 
-    const inputOnlyReadInteraccionesConElContenidoig = document.createElement("input");
+    const inputOnlyReadInteraccionesConElContenidoig =
+      document.createElement("input");
     inputOnlyReadInteraccionesConElContenidoig.type = "number";
-    inputOnlyReadInteraccionesConElContenidoig.value = registro.interaccionesconelcontenidoig;
+    inputOnlyReadInteraccionesConElContenidoig.value =
+      registro.interaccionesconelcontenidoig;
     inputOnlyReadInteraccionesConElContenidoig.readOnly = true;
 
-    const inputOnlyReadInteraccionesConElContenidoigads = document.createElement("input");
+    const inputOnlyReadInteraccionesConElContenidoigads =
+      document.createElement("input");
     inputOnlyReadInteraccionesConElContenidoigads.classList.add("ads");
     inputOnlyReadInteraccionesConElContenidoigads.type = "number";
-    inputOnlyReadInteraccionesConElContenidoigads.value = registro.interaccionesconelcontenidoigads;
+    inputOnlyReadInteraccionesConElContenidoigads.value =
+      registro.interaccionesconelcontenidoigads;
     inputOnlyReadInteraccionesConElContenidoigads.readOnly = true;
-    inputOnlyReadInteraccionesConElContenidoigads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadInteraccionesConElContenidoigads.value, inputOnlyReadInteraccionesConElContenidoig.value);
-      mostrarTooltip(inputOnlyReadInteraccionesConElContenidoigads, porcentaje);
-    });
-    inputOnlyReadInteraccionesConElContenidoigads.addEventListener("mouseleave", function () {
-      eliminarTooltip(inputOnlyReadInteraccionesConElContenidoigads);
-    });
+    inputOnlyReadInteraccionesConElContenidoigads.addEventListener(
+      "mouseenter",
+      function () {
+        const porcentaje = calcularPorcentaje(
+          inputOnlyReadInteraccionesConElContenidoigads.value,
+          inputOnlyReadInteraccionesConElContenidoig.value
+        );
+        mostrarTooltip(
+          inputOnlyReadInteraccionesConElContenidoigads,
+          porcentaje
+        );
+      }
+    );
+    inputOnlyReadInteraccionesConElContenidoigads.addEventListener(
+      "mouseleave",
+      function () {
+        eliminarTooltip(inputOnlyReadInteraccionesConElContenidoigads);
+      }
+    );
 
     //
 
@@ -1357,13 +1533,22 @@ function MostrarRegistros2(Registros) {
     inputOnlyReadClicSenElAlcanceIgads.type = "number";
     inputOnlyReadClicSenElAlcanceIgads.value = registro.clicsenelalcanceigads;
     inputOnlyReadClicSenElAlcanceIgads.readOnly = true;
-    inputOnlyReadClicSenElAlcanceIgads.addEventListener("mouseenter", function () {
-      const porcentaje = calcularPorcentaje(inputOnlyReadClicSenElAlcanceIgads.value, inputOnlyReadClicSenElAlcanceIg.value);
-      mostrarTooltip(inputOnlyReadClicSenElAlcanceIgads, porcentaje);
-    });
-    inputOnlyReadClicSenElAlcanceIgads.addEventListener("mouseleave", function () {
-      eliminarTooltip(inputOnlyReadClicSenElAlcanceIgads);
-    });
+    inputOnlyReadClicSenElAlcanceIgads.addEventListener(
+      "mouseenter",
+      function () {
+        const porcentaje = calcularPorcentaje(
+          inputOnlyReadClicSenElAlcanceIgads.value,
+          inputOnlyReadClicSenElAlcanceIg.value
+        );
+        mostrarTooltip(inputOnlyReadClicSenElAlcanceIgads, porcentaje);
+      }
+    );
+    inputOnlyReadClicSenElAlcanceIgads.addEventListener(
+      "mouseleave",
+      function () {
+        eliminarTooltip(inputOnlyReadClicSenElAlcanceIgads);
+      }
+    );
 
     //armamos los labels-inputregistro
     divFilaStotalesFb.appendChild(labelFilaStotalesFb);
@@ -1383,43 +1568,71 @@ function MostrarRegistros2(Registros) {
     divFilaAlcancefb.appendChild(inputOnlyReadAlcancefb);
     divFilaAlcancefb.appendChild(inputOnlyReadAlcancefbads);
 
-    divFilaIntereccionesConElContenidoFb.appendChild(labelInteraccionesConElContenidoFb);
-    divFilaIntereccionesConElContenidoFb.appendChild(inputOnlyReadInteraccionesConElContenidoFb);
-    divFilaIntereccionesConElContenidoFb.appendChild(inputOnlyReadInteraccionesConElContenidoFbads);
+    divFilaIntereccionesConElContenidoFb.appendChild(
+      labelInteraccionesConElContenidoFb
+    );
+    divFilaIntereccionesConElContenidoFb.appendChild(
+      inputOnlyReadInteraccionesConElContenidoFb
+    );
+    divFilaIntereccionesConElContenidoFb.appendChild(
+      inputOnlyReadInteraccionesConElContenidoFbads
+    );
 
     divFilaClicsEnElAlcanceFb.appendChild(labelClicsEnElEnlaceFb);
     divFilaClicsEnElAlcanceFb.appendChild(inputOnlyReadClicSenElAlcanceFb);
     divFilaClicsEnElAlcanceFb.appendChild(inputOnlyReadClicSenElAlcanceFbads);
 
     divFilaInversionPublicitariaFb.appendChild(labelInversionPublicitariaFb);
-    divFilaInversionPublicitariaFb.appendChild(inputOnlyReadInversionPublicitariaFb);
+    divFilaInversionPublicitariaFb.appendChild(
+      inputOnlyReadInversionPublicitariaFb
+    );
 
     divFilaNpublicacionesFb.appendChild(labelNpublicacionesfb);
     divFilaNpublicacionesFb.appendChild(inputOnlyReadNpublicacionesfb);
 
-    divFilaVisualizacionesxPublicacionesFb.appendChild(labelVisualizacionesPublicacionesfb);
-    divFilaVisualizacionesxPublicacionesFb.appendChild(inputOnlyReadVisualizacionesPublicacionesfb);
+    divFilaVisualizacionesxPublicacionesFb.appendChild(
+      labelVisualizacionesPublicacionesfb
+    );
+    divFilaVisualizacionesxPublicacionesFb.appendChild(
+      inputOnlyReadVisualizacionesPublicacionesfb
+    );
 
-    divFilaInteraccionesxPublicacionesFb.appendChild(labelInteraccionespublicacionesfb);
-    divFilaInteraccionesxPublicacionesFb.appendChild(inputOnlyReadInteraccionespublicacionesfb);
+    divFilaInteraccionesxPublicacionesFb.appendChild(
+      labelInteraccionespublicacionesfb
+    );
+    divFilaInteraccionesxPublicacionesFb.appendChild(
+      inputOnlyReadInteraccionespublicacionesfb
+    );
 
     divFilaNreelsFb.appendChild(labelNreelsfb);
     divFilaNreelsFb.appendChild(inputOnlyReadNreelsfb);
 
     divFilaVisualizacionesxReelsFb.appendChild(labelVisualizacionesReelsfb);
-    divFilaVisualizacionesxReelsFb.appendChild(inputOnlyReadVisualizacionesReelsfb);
+    divFilaVisualizacionesxReelsFb.appendChild(
+      inputOnlyReadVisualizacionesReelsfb
+    );
 
     divFilaInteraccionesxReelsFb.appendChild(labelInteraccionesxReelsfb);
-    divFilaInteraccionesxReelsFb.appendChild(inputOnlyReadInteraccionesxReelsfb);
+    divFilaInteraccionesxReelsFb.appendChild(
+      inputOnlyReadInteraccionesxReelsfb
+    );
 
     divFilaNHistoriasFb.appendChild(labelNhistoriasfb);
     divFilaNHistoriasFb.appendChild(inputOnlyReadNhistoriasfb);
 
-    divFilaVisualizacionesxhistoriasFb.appendChild(labelVisualizacionesHistoriasfb);
-    divFilaVisualizacionesxhistoriasFb.appendChild(inputOnlyReadVisualizacionesHistoriasfb);
+    divFilaVisualizacionesxhistoriasFb.appendChild(
+      labelVisualizacionesHistoriasfb
+    );
+    divFilaVisualizacionesxhistoriasFb.appendChild(
+      inputOnlyReadVisualizacionesHistoriasfb
+    );
 
-    divFilaInteraccionesxhistoriasFb.appendChild(labelInteraccionesxhistoriasfb);
-    divFilaInteraccionesxhistoriasFb.appendChild(inputOnlyReadInteraccionesxhistoriasfb);
+    divFilaInteraccionesxhistoriasFb.appendChild(
+      labelInteraccionesxhistoriasfb
+    );
+    divFilaInteraccionesxhistoriasFb.appendChild(
+      inputOnlyReadInteraccionesxhistoriasfb
+    );
 
     divFilaSeguidoresTotalesIg.appendChild(labelSeguidoresTotalesIg);
     divFilaSeguidoresTotalesIg.appendChild(inputOnlyReadSeguidoresTotalesIg);
@@ -1433,21 +1646,28 @@ function MostrarRegistros2(Registros) {
     divFilaVisualizacionesBfbIg.appendChild(labelVisualizacionesBfbIg);
     divFilaVisualizacionesBfbIg.appendChild(inputOnlyReadVisualizacionesBfb);
 
-
     divFilaAlcanceIg.appendChild(labelAlcanceIg);
     divFilaAlcanceIg.appendChild(inputOnlyReadAlcanceIg);
     divFilaAlcanceIg.appendChild(inputOnlyReadAlcanceIgads);
 
-    divFilaIntereccionesConElContenidoIg.appendChild(labelInteraccionesConElContenidoIg);
-    divFilaIntereccionesConElContenidoIg.appendChild(inputOnlyReadInteraccionesConElContenidoig);
-    divFilaIntereccionesConElContenidoIg.appendChild(inputOnlyReadInteraccionesConElContenidoigads);
+    divFilaIntereccionesConElContenidoIg.appendChild(
+      labelInteraccionesConElContenidoIg
+    );
+    divFilaIntereccionesConElContenidoIg.appendChild(
+      inputOnlyReadInteraccionesConElContenidoig
+    );
+    divFilaIntereccionesConElContenidoIg.appendChild(
+      inputOnlyReadInteraccionesConElContenidoigads
+    );
 
     divFilasClicsConElenlaceIg.appendChild(labelClicsEnElEnlaceIg);
     divFilasClicsConElenlaceIg.appendChild(inputOnlyReadClicSenElAlcanceIg);
     divFilasClicsConElenlaceIg.appendChild(inputOnlyReadClicSenElAlcanceIgads);
 
     divFilaInversionPublicitariaIg.appendChild(labelInversionPublicitariaIg);
-    divFilaInversionPublicitariaIg.appendChild(inputOnlyReadInversionPublicitariaIg);
+    divFilaInversionPublicitariaIg.appendChild(
+      inputOnlyReadInversionPublicitariaIg
+    );
 
     divFilaNpublicacionesIg.appendChild(labelNpublicacionesig);
     divFilaNpublicacionesIg.appendChild(inputOnlyReadNpublicacionesig);
@@ -1455,14 +1675,20 @@ function MostrarRegistros2(Registros) {
     divFilaVisualizacionesig.appendChild(labelVisualizacionesig);
     divFilaVisualizacionesig.appendChild(inputOnlyReadVisualizacionesig);
 
-    divFilaInteraccionesxPublicacionesig.appendChild(labelInteraccionesxpublicacionesig);
-    divFilaInteraccionesxPublicacionesig.appendChild(inputOnlyReadInteraccionespublicacionesig);
+    divFilaInteraccionesxPublicacionesig.appendChild(
+      labelInteraccionesxpublicacionesig
+    );
+    divFilaInteraccionesxPublicacionesig.appendChild(
+      inputOnlyReadInteraccionespublicacionesig
+    );
 
     divFilaNreelsIg.appendChild(labelNreelsIg);
     divFilaNreelsIg.appendChild(inputOnlyReadNreelsIg);
 
     divFilaVisualizacionesReelsIg.appendChild(labelvisualizacionesReelsIg);
-    divFilaVisualizacionesReelsIg.appendChild(inputOnlyReadVisualizacionesReelsIg);
+    divFilaVisualizacionesReelsIg.appendChild(
+      inputOnlyReadVisualizacionesReelsIg
+    );
 
     divFilaInteraccionesReelsIg.appendChild(labelInteraccionesReelsIg);
     divFilaInteraccionesReelsIg.appendChild(inputOnlyReadInteraccionesReelsIg);
@@ -1474,13 +1700,19 @@ function MostrarRegistros2(Registros) {
     divFilaAlcanceReelsIg.appendChild(inputOnlyReadAlcanceHistoriasIg);
 
     divFilaInteraccionesHistoriasIg.appendChild(labelInteraccionesHistoriasIg);
-    divFilaInteraccionesHistoriasIg.appendChild(inputOnlyReadInterraccionesHistoriasIg);
+    divFilaInteraccionesHistoriasIg.appendChild(
+      inputOnlyReadInterraccionesHistoriasIg
+    );
 
     divFilaSeguidoresTotalestiktok.appendChild(labelSeguidoresTotalesTiktok);
-    divFilaSeguidoresTotalestiktok.appendChild(inputOnlyReadSeguidoresTotalesTikTok);
+    divFilaSeguidoresTotalestiktok.appendChild(
+      inputOnlyReadSeguidoresTotalesTikTok
+    );
 
     divFilaNseguidoresmesTiktok.appendChild(labelNseguidoresDelMesTiktok);
-    divFilaNseguidoresmesTiktok.appendChild(inputOnlyReadNseguidoresdelmesTiktok)
+    divFilaNseguidoresmesTiktok.appendChild(
+      inputOnlyReadNseguidoresdelmesTiktok
+    );
 
     divFilaNpostAlMesTiktok.appendChild(labelNpostAlmesTiktok);
     divFilaNpostAlMesTiktok.appendChild(inputOnlyReadNpublicacionestiktok);
@@ -1489,7 +1721,9 @@ function MostrarRegistros2(Registros) {
     divFilaMegustadelmesTiktok.appendChild(inputOnlyReadMegustadelmesTiktok);
 
     divFilaVisualizacionesTiktok.appendChild(labelVisualizacionesdevideoTiktok);
-    divFilaVisualizacionesTiktok.appendChild(inputOnlyReadVisualizacionesdevideoTikTok);
+    divFilaVisualizacionesTiktok.appendChild(
+      inputOnlyReadVisualizacionesdevideoTikTok
+    );
 
     divFilaSeguidoresTotalesX.appendChild(labelSeguidoresTotalesX);
     divFilaSeguidoresTotalesX.appendChild(inputOnlyReadSeguidoresTotalesX);
@@ -1504,59 +1738,98 @@ function MostrarRegistros2(Registros) {
     divFilasImpresionesX.appendChild(inputOnlyReadImpresionesX);
 
     //armamos los kpis
-    const viewRatefb = inputOnlyReadVisualizacionesFb.value / inputOnlyReadnPostAlmesFb.value;
+    const viewRatefb =
+      inputOnlyReadVisualizacionesFb.value / inputOnlyReadnPostAlmesFb.value;
     const h3ViewRateFb = document.createElement("h3");
     h3ViewRateFb.textContent = "View Rate:" + viewRatefb.toFixed();
 
-    const engagementRateFb = (inputOnlyReadInteraccionesConElContenidoFb.value / inputOnlyReadAlcancefb.value) * 100;
+    const engagementRateFb =
+      (inputOnlyReadInteraccionesConElContenidoFb.value /
+        inputOnlyReadAlcancefb.value) *
+      100;
     const h3engagementRateFb = document.createElement("h3");
-    h3engagementRateFb.textContent = "Engagement Rate:" + engagementRateFb.toFixed(2);
+    h3engagementRateFb.textContent =
+      "Engagement Rate:" + engagementRateFb.toFixed(2);
 
-    const clickthroughRatefb = (inputOnlyReadClicSenElAlcanceFb.value / inputOnlyReadAlcancefb.value) * 100;
+    const clickthroughRatefb =
+      (inputOnlyReadClicSenElAlcanceFb.value / inputOnlyReadAlcancefb.value) *
+      100;
     const h3clickthroughRatefb = document.createElement("h3");
-    h3clickthroughRatefb.textContent = "Clickthrough Rate:" + clickthroughRatefb.toFixed(2);
+    h3clickthroughRatefb.textContent =
+      "Clickthrough Rate:" + clickthroughRatefb.toFixed(2);
 
-    const visualizacionesxpublicacionesfb = inputOnlyReadVisualizacionesPublicacionesfb.value / inputOnlyReadNpublicacionesfb.value;
+    const visualizacionesxpublicacionesfb =
+      inputOnlyReadVisualizacionesPublicacionesfb.value /
+      inputOnlyReadNpublicacionesfb.value;
     const h3Visualizacionesxpublicacionesfb = document.createElement("h3");
-    h3Visualizacionesxpublicacionesfb.textContent = "KPI Visualizaciones / Posts:" + visualizacionesxpublicacionesfb.toFixed();
+    h3Visualizacionesxpublicacionesfb.textContent =
+      "KPI Visualizaciones / Posts:" +
+      visualizacionesxpublicacionesfb.toFixed();
 
-    const kpiVisualizacionesPostsReels = inputOnlyReadVisualizacionesReelsfb.value / inputOnlyReadNreelsfb.value;
+    const kpiVisualizacionesPostsReels =
+      inputOnlyReadVisualizacionesReelsfb.value / inputOnlyReadNreelsfb.value;
     const h3kpiVisualizacionesPostsReels = document.createElement("h3");
-    h3kpiVisualizacionesPostsReels.textContent = "KPI Visualizaciones / Posts:" + kpiVisualizacionesPostsReels.toFixed();
+    h3kpiVisualizacionesPostsReels.textContent =
+      "KPI Visualizaciones / Posts:" + kpiVisualizacionesPostsReels.toFixed();
 
-    const kpiVisualizacionesPostxHistorias = inputOnlyReadVisualizacionesHistoriasfb.value / inputOnlyReadNhistoriasfb.value;
+    const kpiVisualizacionesPostxHistorias =
+      inputOnlyReadVisualizacionesHistoriasfb.value /
+      inputOnlyReadNhistoriasfb.value;
     const h3kpiVisualizacionesPostxHistorias = document.createElement("h3");
-    h3kpiVisualizacionesPostxHistorias.textContent = "KPI Visualizaciones / Posts:" + kpiVisualizacionesPostxHistorias.toFixed();
+    h3kpiVisualizacionesPostxHistorias.textContent =
+      "KPI Visualizaciones / Posts:" +
+      kpiVisualizacionesPostxHistorias.toFixed();
 
-    const kpi_View_Rate_ig = inputOnlyReadVisualizacionesBfb.value / inputOnlyReadNpostAlmesIg.value;
+    const kpi_View_Rate_ig =
+      inputOnlyReadVisualizacionesBfb.value / inputOnlyReadNpostAlmesIg.value;
     const h3kpi_View_Rate_ig = document.createElement("h3");
     h3kpi_View_Rate_ig.textContent = "View Rate: " + kpi_View_Rate_ig.toFixed();
 
-    const kpiEngagementRateig = (inputOnlyReadInteraccionesConElContenidoig.value / inputOnlyReadAlcanceIg.value) * 100;
+    const kpiEngagementRateig =
+      (inputOnlyReadInteraccionesConElContenidoig.value /
+        inputOnlyReadAlcanceIg.value) *
+      100;
     const h3kpiEngagementRateig = document.createElement("h3");
-    h3kpiEngagementRateig.textContent = "Engagement Rate: " + kpiEngagementRateig.toFixed(2);
+    h3kpiEngagementRateig.textContent =
+      "Engagement Rate: " + kpiEngagementRateig.toFixed(2);
 
-    const kpiClickthroughRateig = (inputOnlyReadClicSenElAlcanceIg.value / inputOnlyReadAlcanceIg.value) * 100;
+    const kpiClickthroughRateig =
+      (inputOnlyReadClicSenElAlcanceIg.value / inputOnlyReadAlcanceIg.value) *
+      100;
     const h3kpiClickthroughRateig = document.createElement("h3");
-    h3kpiClickthroughRateig.textContent = "Clickthrough Rate: " + kpiClickthroughRateig.toFixed(2);
+    h3kpiClickthroughRateig.textContent =
+      "Clickthrough Rate: " + kpiClickthroughRateig.toFixed(2);
 
-    const kpiVisualizaciones_PostsIG = inputOnlyReadVisualizacionesig.value / inputOnlyReadNpublicacionesig.value;
+    const kpiVisualizaciones_PostsIG =
+      inputOnlyReadVisualizacionesig.value /
+      inputOnlyReadNpublicacionesig.value;
     const h3kpiVisualizaciones_PostsIG = document.createElement("h3");
-    h3kpiVisualizaciones_PostsIG.textContent = "KPI Visualizaciones / Posts:" + kpiVisualizaciones_PostsIG.toFixed();
+    h3kpiVisualizaciones_PostsIG.textContent =
+      "KPI Visualizaciones / Posts:" + kpiVisualizaciones_PostsIG.toFixed();
 
-    const kpiVisualizaciones_PostsReelsIg = inputOnlyReadVisualizacionesReelsIg.value / inputOnlyReadNreelsIg.value;
+    const kpiVisualizaciones_PostsReelsIg =
+      inputOnlyReadVisualizacionesReelsIg.value / inputOnlyReadNreelsIg.value;
     const h3kpiVisualizaciones_PostsReelsIg = document.createElement("h3");
-    h3kpiVisualizaciones_PostsReelsIg.textContent = "KPI Visualizaciones / Posts:" + kpiVisualizaciones_PostsReelsIg.toFixed();
+    h3kpiVisualizaciones_PostsReelsIg.textContent =
+      "KPI Visualizaciones / Posts:" +
+      kpiVisualizaciones_PostsReelsIg.toFixed();
 
-    const kpiVisualizaciones_PostsHistoriasIg = inputOnlyReadAlcanceHistoriasIg.value / inputOnlyReadNhistoriasIg.value;
+    const kpiVisualizaciones_PostsHistoriasIg =
+      inputOnlyReadAlcanceHistoriasIg.value / inputOnlyReadNhistoriasIg.value;
     const h3kpiVisualizaciones_PostsHistoriasIg = document.createElement("h3");
-    h3kpiVisualizaciones_PostsHistoriasIg.textContent = "KPI Visualizaciones / Posts:" + kpiVisualizaciones_PostsHistoriasIg.toFixed();
+    h3kpiVisualizaciones_PostsHistoriasIg.textContent =
+      "KPI Visualizaciones / Posts:" +
+      kpiVisualizaciones_PostsHistoriasIg.toFixed();
 
-    const kpiViewRateTikTok = inputOnlyReadVisualizacionesdevideoTikTok.value / inputOnlyReadNpublicacionestiktok.value;
+    const kpiViewRateTikTok =
+      inputOnlyReadVisualizacionesdevideoTikTok.value /
+      inputOnlyReadNpublicacionestiktok.value;
     const h3kpiViewRateTikTok = document.createElement("h3");
-    h3kpiViewRateTikTok.textContent = "View Rate: " + kpiViewRateTikTok.toFixed();
+    h3kpiViewRateTikTok.textContent =
+      "View Rate: " + kpiViewRateTikTok.toFixed();
 
-    const kpiViewRateX = inputOnlyReadImpresionesX.value / inputOnlyReadNpublicacionestiktok.value;
+    const kpiViewRateX =
+      inputOnlyReadImpresionesX.value / inputOnlyReadNpublicacionestiktok.value;
     const h3kpiViewRateX = document.createElement("h3");
     h3kpiViewRateX.textContent = "View Rate: " + kpiViewRateX.toFixed();
 
@@ -1586,7 +1859,6 @@ function MostrarRegistros2(Registros) {
     containerRegistro.appendChild(divFilaInteraccionesxhistoriasFb);
     containerRegistro.appendChild(h3kpiVisualizacionesPostxHistorias);
 
-
     containerRegistro.appendChild(h1Instagram);
     containerRegistro.appendChild(divFilaSeguidoresTotalesIg);
     containerRegistro.appendChild(divFilaNeguidoresDelmesig);
@@ -1612,9 +1884,7 @@ function MostrarRegistros2(Registros) {
     containerRegistro.appendChild(divFilaInteraccionesHistoriasIg);
     containerRegistro.appendChild(h3kpiVisualizaciones_PostsHistoriasIg);
 
-
-
-    containerRegistro.appendChild(h1Tiktok)
+    containerRegistro.appendChild(h1Tiktok);
     containerRegistro.appendChild(divFilaSeguidoresTotalestiktok);
     containerRegistro.appendChild(divFilaNseguidoresmesTiktok);
     containerRegistro.appendChild(divFilaNpostAlMesTiktok);
@@ -1639,16 +1909,12 @@ function MostrarRegistros2(Registros) {
     });
     containerRegistro.appendChild(botonEditar);
 
-
     //metemos todo al div padre
     resultadosRegistros.appendChild(containerRegistro);
   });
 
   const ultimoRegistro = resultadosRegistros.lastChild;
-  ultimoRegistro.scrollIntoView({ behavior: 'instant' });
-
-
-
+  ultimoRegistro.scrollIntoView({ behavior: "instant" });
 }
 
 function mostrarPopUpEditarRegistro(registro) {
@@ -1662,66 +1928,116 @@ function mostrarPopUpEditarRegistro(registro) {
                 <div class="fila">
                     <h1>FACEBOOK</h1>
                     <select name="meses" id="meses">
-                        <option value="1" ${registro.meses == 1 ? "selected" : ""}>Enero</option>
-                        <option value="2" ${registro.meses == 2 ? "selected" : ""}>Febrero</option>
-                        <option value="3" ${registro.meses == 3 ? "selected" : ""}>Marzo</option>
-                        <option value="4" ${registro.meses == 4 ? "selected" : ""}>Abril</option>
-                        <option value="5" ${registro.meses == 5 ? "selected" : ""}>Mayo</option>
-                        <option value="6" ${registro.meses == 6 ? "selected" : ""}>Junio</option>
-                        <option value="7" ${registro.meses == 7 ? "selected" : ""}>Julio</option>
-                        <option value="8" ${registro.meses == 8 ? "selected" : ""}>Agosto</option>
-                        <option value="9" ${registro.meses == 9 ? "selected" : ""}>Septiembre</option>
-                        <option value="10" ${registro.meses == 10 ? "selected" : ""}>Octubre</option>
-                        <option value="11" ${registro.meses == 11 ? "selected" : ""}>Noviembre</option>
-                        <option value="12" ${registro.meses == 12 ? "selected" : ""}>diciembre</option>
+                        <option value="1" ${
+                          registro.meses == 1 ? "selected" : ""
+                        }>Enero</option>
+                        <option value="2" ${
+                          registro.meses == 2 ? "selected" : ""
+                        }>Febrero</option>
+                        <option value="3" ${
+                          registro.meses == 3 ? "selected" : ""
+                        }>Marzo</option>
+                        <option value="4" ${
+                          registro.meses == 4 ? "selected" : ""
+                        }>Abril</option>
+                        <option value="5" ${
+                          registro.meses == 5 ? "selected" : ""
+                        }>Mayo</option>
+                        <option value="6" ${
+                          registro.meses == 6 ? "selected" : ""
+                        }>Junio</option>
+                        <option value="7" ${
+                          registro.meses == 7 ? "selected" : ""
+                        }>Julio</option>
+                        <option value="8" ${
+                          registro.meses == 8 ? "selected" : ""
+                        }>Agosto</option>
+                        <option value="9" ${
+                          registro.meses == 9 ? "selected" : ""
+                        }>Septiembre</option>
+                        <option value="10" ${
+                          registro.meses == 10 ? "selected" : ""
+                        }>Octubre</option>
+                        <option value="11" ${
+                          registro.meses == 11 ? "selected" : ""
+                        }>Noviembre</option>
+                        <option value="12" ${
+                          registro.meses == 12 ? "selected" : ""
+                        }>diciembre</option>
                     </select>
                 </div>
                 <div class="fila">
                     <label for="email">id</label>
-                    <input type="number" name="id" id="idRegistro" value="${registro.id}">
+                    <input type="number" name="id" id="idRegistro" value="${
+                      registro.id
+                    }">
                 </div>
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
-                    <input type="number" name="seguidoresfb" id="seguidoresfb" value="${registro.seguidoresfb}">
+                    <input type="number" name="seguidoresfb" id="seguidoresfb" value="${
+                      registro.seguidoresfb
+                    }">
 
                 </div>
                 <div class="fila-ads">
                     <label for="email"># seguidores del mes</label>
 
-                    <input type="number" name="seguidoresdelmesfb" id="seguidoresdelmesfb" value="${registro.seguidoresdelmesfb}">
-                    <input class="ads" type="number" name="seguidoresdelmesfbads" id="seguidoresdelmesfbads" placeholder="ads" value="${registro.seguidoresdelmesfbads}">
+                    <input type="number" name="seguidoresdelmesfb" id="seguidoresdelmesfb" value="${
+                      registro.seguidoresdelmesfb
+                    }">
+                    <input class="ads" type="number" name="seguidoresdelmesfbads" id="seguidoresdelmesfbads" placeholder="ads" value="${
+                      registro.seguidoresdelmesfbads
+                    }">
                 </div>
                 <div class="fila">
                     <label for="email"># Posts (cuántas en el mes)</label>
-                    <input type="number" name="postalmesfb" id="postalmesfb" value="${registro.postalmesfb}" >
+                    <input type="number" name="postalmesfb" id="postalmesfb" value="${
+                      registro.postalmesfb
+                    }" >
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones</label>
-                    <input type="number" name="visualizacionesfb" id="visualizacionesfb" value="${registro.visualizacionesfb}" >
+                    <input type="number" name="visualizacionesfb" id="visualizacionesfb" value="${
+                      registro.visualizacionesfb
+                    }" >
 
                 </div>
 
                 <div class="fila-ads">
                     <label for="email">Alcance</label>
-                    <input type="number" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024" value="${registro.alcancefb}">
-                    <input type="number" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads" value="${registro.alcancefbads}">
+                    <input type="number" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024" value="${
+                      registro.alcancefb
+                    }">
+                    <input type="number" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads" value="${
+                      registro.alcancefbads
+                    }">
 
                 </div>
 
                 <div class="fila-ads">
                     <label for="email">Interacciones con el contenido</label>
-                    <input type="number" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb" placeholder="Agregar dato del mismo mes 2024" value="${registro.interracionesconelcontenidofb}" >
-                    <input type="number" class="ads" name="interracionesconelcontenidofbads" id="interracionesconelcontenidofbads" placeholder="ads" value="${registro.interracionesconelcontenidofbads}">
+                    <input type="number" name="interracionesconelcontenidofb" id="interracionesconelcontenidofb" placeholder="Agregar dato del mismo mes 2024" value="${
+                      registro.interracionesconelcontenidofb
+                    }" >
+                    <input type="number" class="ads" name="interracionesconelcontenidofbads" id="interracionesconelcontenidofbads" placeholder="ads" value="${
+                      registro.interracionesconelcontenidofbads
+                    }">
                 </div>
 
                 <div class="fila-ads">
                     <label for="email">Clics en enlace</label>
-                    <input type="number" name="clicsenelalcancefb" id="clicsenelalcancefb" placeholder="Agregar dato del mismo mes 2024" value=${registro.clicsenelalcancefb}>
-                    <input type="number" class="ads" name="clicsenelalcancefbads" id="clicsenelalcancefbads" placeholder="ads" value=${registro.clicsenelalcancefbads}>
+                    <input type="number" name="clicsenelalcancefb" id="clicsenelalcancefb" placeholder="Agregar dato del mismo mes 2024" value=${
+                      registro.clicsenelalcancefb
+                    }>
+                    <input type="number" class="ads" name="clicsenelalcancefbads" id="clicsenelalcancefbads" placeholder="ads" value=${
+                      registro.clicsenelalcancefbads
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Inversión Publicitaria</label>
-                    <input type="number" name="inversionPublicitaria" id="inversionPublicitaria" placeholder="ads" value=${registro.inversionPublicitaria} >
+                    <input type="number" name="inversionPublicitaria" id="inversionPublicitaria" placeholder="ads" value=${
+                      registro.inversionPublicitaria
+                    } >
                 </div>
 
 
@@ -1734,15 +2050,21 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
-                    <input type="number" name="nPublicacionesfb" id="nPublicacionesfb" value=${registro.nPublicacionesfb}>
+                    <input type="number" name="nPublicacionesfb" id="nPublicacionesfb" value=${
+                      registro.nPublicacionesfb
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones</label>
-                    <input type="number" name="visualizacionesxpublicacionesfb" id="visualizacionesxpublicacionesfb" value=${registro.visualizacionesxpublicacionesfb}>
+                    <input type="number" name="visualizacionesxpublicacionesfb" id="visualizacionesxpublicacionesfb" value=${
+                      registro.visualizacionesxpublicacionesfb
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones</label>
-                    <input type="number" name="interaccionesxpublicacionesfb" id="interaccionesxpublicacionesfb" value=${registro.interaccionesxpublicacionesfb}>
+                    <input type="number" name="interaccionesxpublicacionesfb" id="interaccionesxpublicacionesfb" value=${
+                      registro.interaccionesxpublicacionesfb
+                    }>
                 </div>
 
 
@@ -1751,16 +2073,22 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Reels </label>
-                    <input type="number" name="nReels" id="nReels" value=${registro.nReels}>
+                    <input type="number" name="nReels" id="nReels" value=${
+                      registro.nReels
+                    }>
 
                 </div>
                 <div class="fila">
                     <label for="email"> Visualizaciones </label>
-                    <input type="number" name="visualizacionesxreels" id="visualizacionesxreels" value=${registro.visualizacionesxreels}>
+                    <input type="number" name="visualizacionesxreels" id="visualizacionesxreels" value=${
+                      registro.visualizacionesxreels
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones </label>
-                    <input type="number" name="interaccionesxreels" id="interaccionesxreels" value=${registro.interaccionesxreels}>
+                    <input type="number" name="interaccionesxreels" id="interaccionesxreels" value=${
+                      registro.interaccionesxreels
+                    }>
                 </div>
 
                 <h3 id="KPI2_Visualizaciones_Posts"></h3>
@@ -1770,15 +2098,21 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Historias </label>
-                    <input type="number" name="nHistorias" id="nHistorias" value=${registro.nHistorias}>
+                    <input type="number" name="nHistorias" id="nHistorias" value=${
+                      registro.nHistorias
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones </label>
-                    <input type="number" name="visualizacionesxhistorias" id="visualizacionesxhistorias" value=${registro.visualizacionesxhistorias}>
+                    <input type="number" name="visualizacionesxhistorias" id="visualizacionesxhistorias" value=${
+                      registro.visualizacionesxhistorias
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones </label>
-                    <input type="number" name="interaccionesxhistorias" id="interaccionesxhistorias" value=${registro.interaccionesxhistorias}>
+                    <input type="number" name="interaccionesxhistorias" id="interaccionesxhistorias" value=${
+                      registro.interaccionesxhistorias
+                    }>
                 </div>
 
 
@@ -1789,38 +2123,60 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email">Seguidores totales </label>
-                    <input type="number" name="seguidoresTotalesIg" id="seguidoresTotalesIg" value =${registro.seguidoresTotalesIg}>
+                    <input type="number" name="seguidoresTotalesIg" id="seguidoresTotalesIg" value =${
+                      registro.seguidoresTotalesIg
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email"># Seguidores del mes</label>
-                    <input type="number" name="seguidoresdelmesIg" id="seguidoresdelmesIg" value=${registro.seguidoresdelmesIg}>
+                    <input type="number" name="seguidoresdelmesIg" id="seguidoresdelmesIg" value=${
+                      registro.seguidoresdelmesIg
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email"># Posts (cuántas en el mes)</label>
-                    <input type="number" name="nPostsEnElMesIg" id="nPostsEnElMesIg" value=${registro.nPostsEnElMesIg}>
+                    <input type="number" name="nPostsEnElMesIg" id="nPostsEnElMesIg" value=${
+                      registro.nPostsEnElMesIg
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones BFB</label>
-                    <input type="number" name="visualizacionesBFB" id="visualizacionesBFB" value=${registro.visualizacionesBFB}>
+                    <input type="number" name="visualizacionesBFB" id="visualizacionesBFB" value=${
+                      registro.visualizacionesBFB
+                    }>
                 </div>
                 <div class="fila-ads">
                     <label for="email">Alcance</label>
-                    <input type="number" name="alcanceIg" id="alcanceIg" placeholder="Agregar dato del mismo mes 2024" value=${registro.alcanceIg}>
-                    <input type="number" class="ads" name="alcanceIgads" id="alcanceIgads" placeholder="ads" value=${registro.alcanceIgads}>
+                    <input type="number" name="alcanceIg" id="alcanceIg" placeholder="Agregar dato del mismo mes 2024" value=${
+                      registro.alcanceIg
+                    }>
+                    <input type="number" class="ads" name="alcanceIgads" id="alcanceIgads" placeholder="ads" value=${
+                      registro.alcanceIgads
+                    }>
                 </div>
                 <div class="fila-ads">
                     <label for="email">Interacciones con el contenido</label>
-                    <input type="number" name="interaccionesconelcontenidoig" id="interaccionesconelcontenidoig" placeholder="Agregar dato del mismo mes 2024" value=${registro.interaccionesconelcontenidoig} >
-                    <input type="number" class="ads" name="interaccionesconelcontenidoigads" id="interaccionesconelcontenidoigads" placeholder="ads" value=${registro.interaccionesconelcontenidoigads}>
+                    <input type="number" name="interaccionesconelcontenidoig" id="interaccionesconelcontenidoig" placeholder="Agregar dato del mismo mes 2024" value=${
+                      registro.interaccionesconelcontenidoig
+                    } >
+                    <input type="number" class="ads" name="interaccionesconelcontenidoigads" id="interaccionesconelcontenidoigads" placeholder="ads" value=${
+                      registro.interaccionesconelcontenidoigads
+                    }>
                 </div>
                 <div class="fila-ads">
                     <label for="email">Clics en enlace</label>
-                    <input type="number" name="clicsenelalcanceig" id="clicsenelalcanceig" placeholder="Agregar dato del mismo mes 2024" value=${registro.clicsenelalcanceig}>
-                    <input type="number" class="ads" name="clicsenelalcanceigads" id="clicsenelalcanceigads" placeholder="ads" value=${registro.clicsenelalcanceigads} >
+                    <input type="number" name="clicsenelalcanceig" id="clicsenelalcanceig" placeholder="Agregar dato del mismo mes 2024" value=${
+                      registro.clicsenelalcanceig
+                    }>
+                    <input type="number" class="ads" name="clicsenelalcanceigads" id="clicsenelalcanceigads" placeholder="ads" value=${
+                      registro.clicsenelalcanceigads
+                    } >
                 </div>
                 <div class="fila">
                     <label for="email">Inversión Publicitaria</label>
-                    <input type="number" name="inversionPublicitariaig" id="inversionPublicitariaig" value=${registro.inversionPublicitariaig}>
+                    <input type="number" name="inversionPublicitariaig" id="inversionPublicitariaig" value=${
+                      registro.inversionPublicitariaig
+                    }>
                 </div>
 
                 <h3 id="View_Rate2"></h3>
@@ -1832,15 +2188,21 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
-                    <input type="number" name="nPublicacionesig" id="nPublicacionesig" value=${registro.nPublicacionesig}>
+                    <input type="number" name="nPublicacionesig" id="nPublicacionesig" value=${
+                      registro.nPublicacionesig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones</label>
-                    <input type="number" name="visualizacionesxpublicacionesig" id="visualizacionesxpublicacionesig" value=${registro.visualizacionesxpublicacionesig}>
+                    <input type="number" name="visualizacionesxpublicacionesig" id="visualizacionesxpublicacionesig" value=${
+                      registro.visualizacionesxpublicacionesig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones</label>
-                    <input type="number" name="interaccionesxpublicacionesig" id="interaccionesxpublicacionesig" value=${registro.interaccionesxpublicacionesig}>
+                    <input type="number" name="interaccionesxpublicacionesig" id="interaccionesxpublicacionesig" value=${
+                      registro.interaccionesxpublicacionesig
+                    }>
                 </div>
 
                 <h3 id="KPI4_Visualizaciones_Posts"></h3>
@@ -1849,15 +2211,21 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Reels </label>
-                    <input type="number" name="nReelsig" id="nReelsig" value=${registro.nReelsig}>
+                    <input type="number" name="nReelsig" id="nReelsig" value=${
+                      registro.nReelsig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Visualizaciones </label>
-                    <input type="number" name="visualizacionesxreelsig" id="visualizacionesxreelsig" value=${registro.visualizacionesxreelsig}>
+                    <input type="number" name="visualizacionesxreelsig" id="visualizacionesxreelsig" value=${
+                      registro.visualizacionesxreelsig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones</label>
-                    <input type="number" name="interaccionesxreelsig" id="interaccionesxreelsig" value=${registro.interaccionesxreelsig}>
+                    <input type="number" name="interaccionesxreelsig" id="interaccionesxreelsig" value=${
+                      registro.interaccionesxreelsig
+                    }>
                 </div>
 
 
@@ -1867,15 +2235,21 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email"># Historias</label>
-                    <input type="number" name="nHistoriasig" id="nHistoriasig" value=${registro.nHistoriasig}>
+                    <input type="number" name="nHistoriasig" id="nHistoriasig" value=${
+                      registro.nHistoriasig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Alcance</label>
-                    <input type="number" name="alcanceHistoriasig" id="alcanceHistoriasig" value=${registro.alcanceHistoriasig}>
+                    <input type="number" name="alcanceHistoriasig" id="alcanceHistoriasig" value=${
+                      registro.alcanceHistoriasig
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Interacciones</label>
-                    <input type="number" name="interaccionesHistoriasig" id="interaccionesHistoriasig" value=${registro.interaccionesHistoriasig}>
+                    <input type="number" name="interaccionesHistoriasig" id="interaccionesHistoriasig" value=${
+                      registro.interaccionesHistoriasig
+                    }>
                 </div>
 
 
@@ -1888,24 +2262,34 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
-                    <input type="number" name="seguidorestotalesTikTok" id="seguidorestotalesTikTok" value=${registro.seguidorestotalesTikTok}>
+                    <input type="number" name="seguidorestotalesTikTok" id="seguidorestotalesTikTok" value=${
+                      registro.seguidorestotalesTikTok
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email"># Seguidores del mes</label>
-                    <input type="number" name="nSeguidoresDelMesTikTok" id="nSeguidoresDelMesTikTok" value=${registro.nSeguidoresDelMesTikTok}>
+                    <input type="number" name="nSeguidoresDelMesTikTok" id="nSeguidoresDelMesTikTok" value=${
+                      registro.nSeguidoresDelMesTikTok
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
-                    <input type="number" name="nPublicacionesTikTok" id="nPublicacionesTikTok" value=${registro.nPublicacionesTikTok}>
+                    <input type="number" name="nPublicacionesTikTok" id="nPublicacionesTikTok" value=${
+                      registro.nPublicacionesTikTok
+                    }>
                 </div>
                 <div class="fila">
                     <label for="email">Me gusta del mes</label>
-                    <input type="number" name="nMeGustaDelMesTikTok" id="nMeGustaDelMesTikTok" value=${registro.nMeGustaDelMesTikTok}>
+                    <input type="number" name="nMeGustaDelMesTikTok" id="nMeGustaDelMesTikTok" value=${
+                      registro.nMeGustaDelMesTikTok
+                    }>
                 </div>
 
                 <div class="fila">
                     <label for="email">Visualizaciones de video (máx)</label>
-                    <input type="number" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok" value=${registro.visualizacionesdevideoTikTok}>
+                    <input type="number" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok" value=${
+                      registro.visualizacionesdevideoTikTok
+                    }>
                 </div>
 
                 <h3 id="View_Rate3"></h3>
@@ -1914,22 +2298,30 @@ function mostrarPopUpEditarRegistro(registro) {
 
                 <div class="fila">
                     <label for="email">Seguidores totales</label>
-                    <input type="number" name="seguidorestotalesx" id="seguidorestotalesx" value=${registro.seguidorestotalesx}>
+                    <input type="number" name="seguidorestotalesx" id="seguidorestotalesx" value=${
+                      registro.seguidorestotalesx
+                    }>
                 </div>
 
                 <div class="fila">
                     <label for="email"># Seguidores del mes</label>
-                    <input type="number" name="nSeguidoresDelMesx" id="nSeguidoresDelMesTikTok" value=${registro.nSeguidoresDelMesx}>
+                    <input type="number" name="nSeguidoresDelMesx" id="nSeguidoresDelMesTikTok" value=${
+                      registro.nSeguidoresDelMesx
+                    }>
                 </div>
 
                 <div class="fila">
                     <label for="email"># Publicaciones</label>
-                    <input type="number" name="nPublicacionesx" id="nPublicacionesx" value=${registro.nPublicacionesx}>
+                    <input type="number" name="nPublicacionesx" id="nPublicacionesx" value=${
+                      registro.nPublicacionesx
+                    }>
                 </div>
 
                 <div class="fila">
                     <label for="email">Impresiones</label>
-                    <input type="number" name="inpremionesx" id="inpremionesx" value=${registro.inpremionesx}>
+                    <input type="number" name="inpremionesx" id="inpremionesx" value=${
+                      registro.inpremionesx
+                    }>
                 </div>
 
                 <h3 id="View_Rate4"></h3>
@@ -1949,45 +2341,67 @@ function mostrarPopUpEditarRegistro(registro) {
   });
 }
 
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    console.log('Escape key pressed');
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    console.log("Escape key pressed");
     // Add your logic here
 
     const popupEditar = document.getElementById("popup-editar");
     popupEditar.style.display = "none";
-
   }
 });
 
-function editardatos(datos){
+function editardatos(datos) {
   console.log("editar datos", datos);
-  console.log(typeof(datos));
-  console.log(datos.id)
+  console.log(typeof datos);
+  console.log(datos.id);
   const idRegistro = datos.id;
   const datosSinId = { ...datos };
   delete datosSinId.id;
   console.log("datos sin id", datosSinId);
   fetch("../controller/registros.php", {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      action: 'update',
+      action: "update",
       datos: datosSinId,
-      id: idRegistro
+      id: idRegistro,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      alert(data.message);
+      location.reload();
     })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    alert(data.message);
-    location.reload();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
+function getLabelsFormulario(formulario) {
+  const labels = formulario.querySelectorAll("div");
+  return [...labels].map((label) => label);
+}
+
+getLabelsFormulario(formulario).forEach((label) => {
+  label.addEventListener("click", () => {
+    const inputs = label.querySelectorAll("input");
+    const objeto = [...inputs].map((input) => ({
+      id: input.id,
+      name: input.name,
+      value: input.value,
+    }));
+    const url = `report.php?objeto=${JSON.stringify(objeto)}`;
+    window.location = url;
+    console.log(
+      [...inputs].map((input) => ({
+        id: input.id,
+        name: input.name,
+        value: input.value,
+      }))
+    );
+  });
+});
