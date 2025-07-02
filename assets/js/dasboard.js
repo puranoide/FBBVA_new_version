@@ -1555,10 +1555,16 @@ function MostrarRegistros2(Registros) {
     const kpiViewRateTikTok = inputOnlyReadVisualizacionesdevideoTikTok.value / inputOnlyReadNpublicacionestiktok.value;
     const h3kpiViewRateTikTok = document.createElement("h3");
     h3kpiViewRateTikTok.textContent = "View Rate: " + kpiViewRateTikTok.toFixed();
+    console.log('inputOnlyReadVisualizacionesdevideoTikTok.value:', inputOnlyReadVisualizacionesdevideoTikTok.value);
+    console.log('inputOnlyReadNpublicacionestiktok.value:', inputOnlyReadNpublicacionestiktok.value);
 
-    const kpiViewRateX = inputOnlyReadImpresionesX.value / inputOnlyReadNpublicacionestiktok.value;
+    console.log('kpiViewRateTikTok:', kpiViewRateTikTok);
+
+    const kpiViewRateX = inputOnlyReadImpresionesX.value / inputOnlyReadNpublicacionesx.value;
     const h3kpiViewRateX = document.createElement("h3");
     h3kpiViewRateX.textContent = "View Rate: " + kpiViewRateX.toFixed();
+
+
 
     //armamos el registros
     containerRegistro.appendChild(h1Facebook);
@@ -1950,7 +1956,7 @@ function mostrarPopUpEditarRegistro(registro) {
 }
 
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') {
     console.log('Escape key pressed');
     // Add your logic here
@@ -1961,9 +1967,9 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-function editardatos(datos){
+function editardatos(datos) {
   console.log("editar datos", datos);
-  console.log(typeof(datos));
+  console.log(typeof (datos));
   console.log(datos.id)
   const idRegistro = datos.id;
   const datosSinId = { ...datos };
@@ -1980,14 +1986,14 @@ function editardatos(datos){
       id: idRegistro
     })
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    alert(data.message);
-    location.reload();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      alert(data.message);
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
