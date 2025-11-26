@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 function login($conexion, $usuario, $contrasena)
 {
     // Sanitize inputs to prevent SQL injection
