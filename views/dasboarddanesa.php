@@ -20,7 +20,7 @@ if (!isset($_SESSION['nombre'])) {
 
     <header>
         <button id="logout">Salir</button>
-        <!--<h1>FAROMEDIC-FBBVA</h1>-->
+        <h1></h1>
         <h2>BIENVENIDO: <?php echo $_SESSION['nombre']; ?></h2>
 
     </header>
@@ -282,6 +282,7 @@ if (!isset($_SESSION['nombre'])) {
                     <label for="email">Visualizaciones de video (máx)</label>
                     <input type="number" name="visualizacionesdevideoTikTok" id="visualizacionesdevideoTikTok">
                 </div>
+
                 <div class="fila">
                     <label for="email">Inversión Publicitaria</label>
                     <input type="number" name="inversionPublicitariaTikTok" id="inversionPublicitariaTikTok">
@@ -328,7 +329,7 @@ if (!isset($_SESSION['nombre'])) {
     </main>
 
 
-    <script src="../assets/js/dasboard.js"></script>
+    <script src="../assets/js/dasboardannesa.js"></script>
 </body>
 
 </html>

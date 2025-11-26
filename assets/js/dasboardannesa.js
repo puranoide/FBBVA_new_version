@@ -305,7 +305,7 @@ formulario.addEventListener("submit", function (event) {
 });
 
 function insertarDatos(data) {
-  fetch("../controller/registros.php", {
+  fetch("../controller/registrosdanesa.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -328,7 +328,7 @@ function insertarDatos(data) {
 var Registros = {}
 
 function listarRegistros() {
-  fetch("../controller/registros.php", {
+  fetch("../controller/registrosdanesa.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -767,7 +767,7 @@ function formatoFecha(fecha) {
 }
 
 function MostrarRegistros2(Registros) {
-  //console.log(Registros);
+  
   Registros.forEach(registro => {
     const fechaFormateada = formatoFecha(registro.fechaCreada);
     //creamos un div que contendra el registro
@@ -1973,6 +1973,7 @@ function mostrarPopUpEditarRegistro(registro) {
     e.preventDefault();
 
     var datos = new FormData(formEditar);
+    console.log("datos", Object.fromEntries(datos));
     editardatos(Object.fromEntries(datos));
   });
 }
@@ -1997,7 +1998,7 @@ function editardatos(datos) {
   const datosSinId = { ...datos };
   delete datosSinId.id;
   console.log("datos sin id", datosSinId);
-  fetch("../controller/registros.php", {
+  fetch("../controller/registrosdanesa.php", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

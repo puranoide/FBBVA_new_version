@@ -38,7 +38,26 @@ header h1{
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px;
-}   
+} 
+
+.institucion{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2e4963;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px;
+}
 
 main{
     position: relative;
