@@ -1,10 +1,10 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "fbbva_dev";
+$username = "u685818680_admin_gab";
+$password = "GptYi#R5";
+$database = "u685818680_fbbva_nv
+";
 $conexion = mysqli_connect($servername,$username,$password,$database);
-
 
 
 if (!$conexion) {
