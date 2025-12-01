@@ -69,7 +69,7 @@ if (!isset($_SESSION['nombre'])) {
                 </div>
 
                 <div class="fila-ads">
-                    <label for="email">Alcance</label>
+                    <label for="email">Espectadores</label>
                     <input type="number" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024">
                     <input type="number" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads">
 
