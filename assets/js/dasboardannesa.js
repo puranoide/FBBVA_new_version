@@ -935,7 +935,7 @@ function MostrarRegistros2(Registros) {
     labelVisualizacionesFb.textContent = "Visualizaciones";
 
     const labelAlcancefb = document.createElement("label");
-    labelAlcancefb.textContent = "Alcance";
+    labelAlcancefb.textContent = "Espectadores";
 
     const labelInteraccionesConElContenidoFb = document.createElement("label");
     labelInteraccionesConElContenidoFb.textContent = "Interacciones con el contenido";
@@ -1725,7 +1725,7 @@ function mostrarPopUpEditarRegistro(registro) {
                 </div>
 
                 <div class="fila-ads">
-                    <label for="email">Alcance</label>
+                    <label for="email">Espectadores</label>
                     <input type="number" name="alcancefb" id="alcancefb" placeholder="Agregar dato del mismo mes 2024" value="${registro.alcancefb}">
                     <input type="number" class="ads" name="alcancefbads" id="alcancefbads" placeholder="ads" value="${registro.alcancefbads}">
 
